@@ -1,7 +1,9 @@
+/*------------------------------------*\
+  #MAIN-SECTION
+\*------------------------------------*/
 body {
   margin: 0%;
 }
-
 
 .main-div {
   display: flex;
@@ -11,35 +13,81 @@ body {
 }
 
 
+
+
+
+/*------------------------------------*\
+  #LEFT-SIDE
+\*------------------------------------*/
 .left-container {
   background-color: white;
   width: 100%;
 }
 
+.left-container__menu {
+  padding-top: 3.32%;
+  padding-left: 2.86%;
+}
 
+.left-container__smilies {
+  padding-top: 9.11%;
+}
+
+@font-face {
+  font-family: Open Sans Bold;
+  src: url('./assets/fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: Open Sans Regular;
+  src: url('./assets/fonts/OpenSans-Regular.ttf');
+}
+
+.left-container__app-title {
+  font-family: Open Sans Bold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.25em;
+  line-height: 1.7em;
+  letter-spacing: 0.2em;
+  color: black;
+}
+
+.left-container__app-subtitle {
+  font-family: Open Sans Bold;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.1em;
+  line-height: 2em;
+}
+
+.left-container__description-text {
+  font-family: Open Sans Regular;
+  font-size: 0.9em;
+  line-height: 26px;
+  padding-left: 27.67%;
+  padding-right: 27.67%;
+  text-align: center;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #RIGHT-SIDE
+\*------------------------------------*/
 .right-container {
   background-color: #2FBCF7;
   width: 100%;
   position: relative;
 }
 
-.menu {
-  padding-top: 3.32%;
-  padding-left: 2.86%;
-}
-
-
-.smilies {
-  padding-top: 9.11%;
-}
-
-
-.i6-img {
+.right-container__i6-img {
   bottom: 6.58%;
 }
 
-
-.app-store-button {
+.right-container__app-store-button {
   position: absolute;
   bottom: 25%;
   /* This to center an image with absolute position */
@@ -50,8 +98,7 @@ body {
   z-index: 1;
 }
 
-
-.social {
+.right-container__social {
   position: absolute;
   text-align: center;
   bottom: 20%;
@@ -62,8 +109,7 @@ body {
   z-index: 1;
 }
 
-
-.play {
+.right-container__play {
   position: absolute;
   text-align: center;
   bottom: 57%;
@@ -72,46 +118,4 @@ body {
   left: 0;
   right: 0;
   z-index: 1;
-}
-
-
-@font-face {
-  font-family: Open Sans Bold;
-  src: url('./assets/fonts/OpenSans-Bold.ttf');
-}
-
-
-@font-face {
-  font-family: Open Sans Regular;
-  src: url('./assets/fonts/OpenSans-Regular.ttf');
-}
-
-
-.app-title {
-  font-family: Open Sans Bold;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 27px;
-  letter-spacing: 3px;
-  color: black;
-}
-
-
-.app-subtitle {
-  font-family: Open Sans Bold;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 32px;
-}
-
-
-.description-text {
-  font-family: Open Sans Regular;
-  font-size: 14px;
-  line-height: 26px;
-  padding-left: 27.67%;
-  padding-right: 27.67%;
-  text-align: center;
 }
