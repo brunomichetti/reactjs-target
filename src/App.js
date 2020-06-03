@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import smilies from "./assets/smilies.png";
 import i6 from "./assets/i6.png";
 import social from "./assets/social.png";
