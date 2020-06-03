@@ -8,7 +8,7 @@
   #MAIN-SECTION
 \*------------------------------------*/
 body {
-  margin: 0%;
+  margin: 0;
 }
 
 .main-div {
@@ -29,12 +29,12 @@ body {
 }
 
 .left-container__menu {
-  padding-top: 3.32%;
-  padding-left: 2.86%;
+  padding-top: 2em;
+  padding-left: 1.5em;
 }
 
 .left-container__smilies {
-  padding-top: 9.11%;
+  padding-top: 4.5em;
 }
 
 @font-face {
@@ -49,11 +49,10 @@ body {
 
 .left-container__app-title {
   font-family: Open Sans Bold;
-  font-style: normal;
   font-weight: bold;
-  font-size: 1.25em;
-  line-height: 1.7em;
-  letter-spacing: 0.2em;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  letter-spacing: 0.5em;
   color: $black;
 }
 
@@ -61,16 +60,16 @@ body {
   font-family: Open Sans Bold;
   font-style: normal;
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 1em;
   line-height: 2em;
 }
 
 .left-container__description-text {
   font-family: Open Sans Regular;
-  font-size: 0.9em;
-  line-height: 1.7em;
-  padding-left: 27.67%;
-  padding-right: 27.67%;
+  font-size: 1em;
+  line-height: 2em;
+  padding-left: 21em;
+  padding-right: 21em;
   text-align: center;
 }
 
@@ -88,38 +87,32 @@ body {
 }
 
 .right-container__i6-img {
-  bottom: 6.58%;
+  bottom: 3em;
+}
+
+/* Define this for @extend*/
+%overlap-image {
+  /* This to center an image with absolute position */
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .right-container__app-store-button {
-  position: absolute;
-  bottom: 25%;
-  /* This to center an image with absolute position */
-  margin: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 1;
+  top: 40em;
+  @extend %overlap-image
 }
-
+  
 .right-container__social {
-  position: absolute;
-  text-align: center;
-  bottom: 20%;
-  /* This to center an image with absolute position */
-  margin: auto;
-  left: 0;
-  right: 0;
-  z-index: 1;
+  top: 44em;
+  @extend %overlap-image
+}
+  
+.right-container__play {
+  top: 20em;
+  @extend %overlap-image
 }
 
-.right-container__play {
-  position: absolute;
-  text-align: center;
-  bottom: 57%;
-  /* This to center an image with absolute position */
-  margin: auto;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
