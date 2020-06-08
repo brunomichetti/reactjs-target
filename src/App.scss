@@ -1,0 +1,118 @@
+@import './style/common/constants';
+
+
+
+
+
+/*------------------------------------*\
+  #MAIN-SECTION
+\*------------------------------------*/
+body {
+  margin: 0;
+}
+
+.main-div {
+  display: flex;
+  height: 100vh;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #LEFT-SIDE
+\*------------------------------------*/
+.left-container {
+  background-color: $white-left-side;
+  width: 100%;
+}
+
+.left-container__menu {
+  padding-top: 2em;
+  padding-left: 1.5em;
+}
+
+.left-container__smilies {
+  padding-top: 4.5em;
+}
+
+@font-face {
+  font-family: Open Sans Bold;
+  src: url('./assets/fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: Open Sans Regular;
+  src: url('./assets/fonts/OpenSans-Regular.ttf');
+}
+
+.left-container__app-title {
+  font-family: Open Sans Bold;
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  letter-spacing: 0.5em;
+  color: $black;
+}
+
+.left-container__app-subtitle {
+  font-family: Open Sans Bold;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+.left-container__description-text {
+  font-family: Open Sans Regular;
+  font-size: 1em;
+  line-height: 2em;
+  padding-left: 21em;
+  padding-right: 21em;
+  text-align: center;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #RIGHT-SIDE
+\*------------------------------------*/
+.right-container {
+  background-color: $light-blue-right-side;
+  width: 100%;
+  position: relative;
+}
+
+.right-container__i6-img {
+  bottom: 3em;
+}
+
+/* Define this for @extend*/
+%overlap-image {
+  /* This to center an image with absolute position */
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.right-container__app-store-button {
+  top: 40em;
+  @extend %overlap-image
+}
+  
+.right-container__social {
+  top: 44em;
+  @extend %overlap-image
+}
+  
+.right-container__play {
+  top: 20em;
+  @extend %overlap-image
+}
+
