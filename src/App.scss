@@ -73,8 +73,79 @@ body {
   text-align: center;
 }
 
+.left-container__login-form {
+  padding-top: 1em;
+}
 
+.left-container__login-text {
+  font-family: Open Sans Regular;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1em;
+}
 
+.left-container__input {
+  width: 18em;
+  height: 2em;
+}
+
+.left-container__login-btn {
+ margin-top: 1em;
+ border: 0;
+ 
+}
+
+.left-container__login-btn-text {
+  width: 15.5em;
+  height: 2em;
+  border: 0;
+  margin-top: 1em;
+
+  // text
+  background-color: $black;
+  color: $white-left-side;
+  font-family: Open Sans Regular;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.left-container__forgot-pwd {
+  font-family: Open Sans Regular;
+  font-size: 0.8em;
+  line-height: 2em;
+}
+
+.left-container__facebook {
+  padding-top: 3em;
+  font-family: Open Sans Bold;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+.left-container__hr {
+  width: 11em;
+}
+
+.left-container__sign-up {
+  font-family: Open Sans Regular;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+// underline links only on hover
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: $black;
+}
 
 
 /*------------------------------------*\
@@ -87,7 +158,7 @@ body {
 }
 
 .right-container__i6-img {
-  bottom: 3em;
+  margin-top: 4em;
 }
 
 /* Define this for @extend*/
@@ -102,17 +173,17 @@ body {
 }
 
 .right-container__app-store-button {
-  top: 40em;
-  @extend %overlap-image
-}
-  
-.right-container__social {
   top: 44em;
   @extend %overlap-image
 }
   
+.right-container__social {
+  top: 48em;
+  @extend %overlap-image
+}
+  
 .right-container__play {
-  top: 20em;
+  top: 24em;
   @extend %overlap-image
 }
 

@@ -25,6 +25,34 @@ function App() {
           <p class="left-container__app-subtitle" align="center">Find people near you & connect</p>
           <p class="left-container__description-text" align="center">Create a  target wherever on the map, specify your interest: 
             Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
+          
+          <form align='center' class="left-container__login-form">
+
+            <p class="left-container__login-text">EMAIL</p>
+            <input class="left-container__input" type="email"/>
+
+            <p class="left-container__login-text">PASSWORD</p>
+            <input class="left-container__input" type="password"/>
+
+            <div>
+              <button type="button" class="left-container__login-btn-text">SIGN IN</button>
+            </div>
+
+            <div class="left-container__forgot-pwd">
+              <a href="#" onclick="return false;">Forgot your password?</a>
+            </div>
+            
+            <div class="left-container__facebook">
+              <a href="#" onclick="return false;">CONNECT WITH FACEBOOK</a>
+              <hr class="left-container__hr"></hr>
+            </div>
+          
+
+            <div class="left-container__sign-up">
+              <a href="#" onclick="return false;">SIGN UP</a>
+            </div>
+
+          </form>
 
         </div>
 
