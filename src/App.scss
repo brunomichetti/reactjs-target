@@ -9,11 +9,12 @@
 \*------------------------------------*/
 body {
   margin: 0;
+  border: 0;
 }
 
 .main-div {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 
@@ -25,7 +26,7 @@ body {
 \*------------------------------------*/
 .left-container {
   background-color: $white-left-side;
-  width: 100%;
+  width: 50vw;
 }
 
 .left-container__menu {
@@ -34,7 +35,8 @@ body {
 }
 
 .left-container__smilies {
-  padding-top: 4.5em;
+  padding-top: 3em;
+  text-align: center;
 }
 
 @font-face {
@@ -51,9 +53,10 @@ body {
   font-family: Open Sans Bold;
   font-weight: bold;
   font-size: 1.5em;
-  line-height: 1.5em;
-  letter-spacing: 0.5em;
+  line-height: 1em;
+  letter-spacing: 0.25em;
   color: $black;
+  text-align: center;
 }
 
 .left-container__app-subtitle {
@@ -61,16 +64,17 @@ body {
   font-style: normal;
   font-weight: 600;
   font-size: 1em;
-  line-height: 2em;
+  line-height: 1em;
+  text-align: center;
 }
 
 .left-container__description-text {
   font-family: Open Sans Regular;
   font-size: 1em;
   line-height: 2em;
-  padding-left: 21em;
-  padding-right: 21em;
   text-align: center;
+  padding-left: 12em;
+  padding-right: 12em;
 }
 
 .left-container__login-form {
@@ -130,6 +134,7 @@ body {
   font-family: Open Sans Regular;
   font-size: 1em;
   line-height: 2em;
+  padding-bottom: 3em;
 }
 
 // underline links only on hover
@@ -151,7 +156,7 @@ a:visited {
 \*------------------------------------*/
 .right-container {
   background-color: $light-blue-right-side;
-  width: 100%;
+  width: 50vw;
   position: relative;
 }
 
@@ -159,7 +164,7 @@ a:visited {
   margin-top: 4em;
 }
 
-/* Define this for @extend*/
+/* Define this for @extend */
 %overlap-image {
   /* This to center an image with absolute position */
   position: absolute;
@@ -171,17 +176,17 @@ a:visited {
 }
 
 .right-container__app-store-button {
-  top: 44em;
+  top: 43em;
   @extend %overlap-image
 }
   
 .right-container__social {
-  top: 48em;
-  @extend %overlap-image
+  top: 46em;
+  @extend %overlap-image;
+  padding-bottom: 3em;
 }
   
 .right-container__play {
   top: 24em;
   @extend %overlap-image
 }
-

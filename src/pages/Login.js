@@ -17,13 +17,13 @@ function Login() {
               <img src={menuIcon} alt="menu_button"></img>
             </div>
   
-            <div class="left-container__smilies" align="center">
+            <div class="left-container__smilies">
               <img src={smilies} alt="smilies"></img>
             </div>
   
-            <p class="left-container__app-title" align="center">TARGET MVD</p>
-            <p class="left-container__app-subtitle" align="center">Find people near you & connect</p>
-            <p class="left-container__description-text" align="center">Create a  target wherever on the map, specify your interest: 
+            <p class="left-container__app-title">TARGET MVD</p>
+            <p class="left-container__app-subtitle">Find people near you & connect</p>
+            <p class="left-container__description-text" >Create a  target wherever on the map, specify your interest: 
               Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
             
             <form align='center' class="left-container__login-form">
