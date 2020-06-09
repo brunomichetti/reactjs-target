@@ -1,11 +1,12 @@
 import React from "react";
-import "../App.scss";
+import "../style/App.scss";
 import smilies from "../assets/smilies.png";
 import i6 from "../assets/i6.png";
 import social from "../assets/social.png";
 import play from "../assets/play.png";
 import appStoreButton from "../assets/appstore_button.png";
 import menuIcon from "../assets/icons/menu_icon.png";
+import LoginForm from "../components/users/LoginForm"
 
 function Login() {
     return (
@@ -26,34 +27,7 @@ function Login() {
             <p class="left-container__description-text" >Create a  target wherever on the map, specify your interest: 
               Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
             
-            <form align='center' class="left-container__login-form">
-  
-              <p class="left-container__login-text">EMAIL</p>
-              <input class="left-container__input" type="email"/>
-  
-              <p class="left-container__login-text">PASSWORD</p>
-              <input class="left-container__input" type="password"/>
-  
-              <div>
-                <button type="submit" class="left-container__login-btn-text">SIGN IN</button>
-              </div>
-
-              {/* href="/" until de feature is done */}
-              <div class="left-container__forgot-pwd">
-                <a href="/">Forgot your password?</a>
-              </div>
-              
-              <div class="left-container__facebook">
-                <a href="/">CONNECT WITH FACEBOOK</a>
-                <hr class="left-container__hr"></hr>
-              </div>
-            
-  
-              <div class="left-container__sign-up">
-                <a href="/">SIGN UP</a>
-              </div>
-  
-            </form>
+            <LoginForm/>
   
           </div>
   

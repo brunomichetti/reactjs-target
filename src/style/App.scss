@@ -1,0 +1,122 @@
+@import '../style/common/constants';
+
+
+
+
+
+/*------------------------------------*\
+  #MAIN-SECTION
+\*------------------------------------*/
+body {
+    margin: 0;
+    border: 0;
+}
+
+.main-div {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #LEFT-SIDE
+\*------------------------------------*/
+.left-container {
+    background-color: $white-left-side;
+    width: 50vw;
+}
+
+.left-container__menu {
+    padding-top: 2em;
+    padding-left: 1.5em;
+}
+
+.left-container__smilies {
+    padding-top: 3em;
+    text-align: center;
+}
+
+@font-face {
+    font-family: Open Sans Bold;
+    src: url('../assets/fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: Open Sans Regular;
+    src: url('../assets/fonts/OpenSans-Regular.ttf');
+}
+
+.left-container__app-title {
+    font-family: Open Sans Bold;
+    font-weight: bold;
+    font-size: 1.5em;
+    line-height: 1em;
+    letter-spacing: 0.25em;
+    color: $black;
+    text-align: center;
+}
+
+.left-container__app-subtitle {
+    font-family: Open Sans Bold;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1em;
+    line-height: 1em;
+    text-align: center;
+}
+
+.left-container__description-text {
+    font-family: Open Sans Regular;
+    font-size: 1em;
+    line-height: 2em;
+    text-align: center;
+    padding-left: 12em;
+    padding-right: 12em;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #RIGHT-SIDE
+\*------------------------------------*/
+.right-container {
+    background-color: $light-blue-right-side;
+    width: 50vw;
+    position: relative;
+}
+
+.right-container__i6-img {
+    margin-top: 4em;
+}
+
+/* Define this for @extend */
+%overlap-image {
+    /* This to center an image with absolute position */
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.right-container__app-store-button {
+    top: 43em;
+    @extend %overlap-image
+}
+  
+.right-container__social {
+    top: 46em;
+    @extend %overlap-image;
+    padding-bottom: 3em;
+}
+  
+.right-container__play {
+    top: 24em;
+    @extend %overlap-image
+}
