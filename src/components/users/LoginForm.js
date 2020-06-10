@@ -30,29 +30,29 @@ function LoginForm() {
     }
   
      return (      
-        <form align="center" class="login-form" onSubmit={handleSubmit}>
+        <form align="center" className="login-form" onSubmit={handleSubmit}>
 
-            <p class="login-form__text">EMAIL</p>
-            <input class="login-form__input" type="email" value={email} onChange={handleChange}/>
+            <p className="login-form__text">EMAIL</p>
+            <input className="login-form__input" type="email" value={email} onChange={handleChange}/>
 
-            <p class="login-form__text">PASSWORD</p>
-            <input class="login-form__input" type="password" value={password} onChange={handleChange}/>
+            <p className="login-form__text">PASSWORD</p>
+            <input className="login-form__input" type="password" value={password} onChange={handleChange}/>
 
             <div>
-                <button type="submit" class="login-form__btn-text">SIGN IN</button>
+                <button type="submit" className="login-form__btn-text">SIGN IN</button>
             </div>
 
             {/* href="/" until de feature is done */}
-            <div class="login-form__forgot-pwd">
+            <div className="login-form__forgot-pwd">
                 <a href="/">Forgot your password?</a>
             </div>
             
-            <div class="login-form__facebook">
+            <div className="login-form__facebook">
                 <a href="/">CONNECT WITH FACEBOOK</a>
-                <hr class="login-form__hr"></hr>
+                <hr className="login-form__hr"></hr>
             </div>
 
-            <div class="login-form__sign-up">
+            <div className="login-form__sign-up">
                 <a href="/">SIGN UP</a>
             </div>
 

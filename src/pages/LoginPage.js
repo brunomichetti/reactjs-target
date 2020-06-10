@@ -10,42 +10,42 @@ import LoginForm from "../components/users/LoginForm"
 
 function Login() {
     return (
-      <div class="main-div">
+      <div className="main-div">
   
-          <div class="left-container">
+          <div className="left-container">
   
-            <div class="left-container__menu">
+            <div className="left-container__menu">
               <img src={menuIcon} alt="menu_button"></img>
             </div>
   
-            <div class="left-container__smilies">
+            <div className="left-container__smilies">
               <img src={smilies} alt="smilies"></img>
             </div>
   
-            <p class="left-container__app-title">TARGET MVD</p>
-            <p class="left-container__app-subtitle">Find people near you & connect</p>
-            <p class="left-container__description-text" >Create a  target wherever on the map, specify your interest: 
+            <p className="left-container__app-title">TARGET MVD</p>
+            <p className="left-container__app-subtitle">Find people near you & connect</p>
+            <p className="left-container__description-text" >Create a  target wherever on the map, specify your interest: 
               Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
             
             <LoginForm/>
   
           </div>
   
-          <div class="right-container" align="center">
+          <div className="right-container" align="center">
   
-            <div class="right-container__i6-img">
+            <div className="right-container__i6-img">
               <img src={i6} alt="i6"></img>
             </div>
   
-            <div class="right-container__app-store-button">
+            <div className="right-container__app-store-button">
               <img src={appStoreButton} alt="app-store-button"></img>
             </div>
   
-            <div class="right-container__social">
+            <div className="right-container__social">
               <img src={social} alt="social"></img>
             </div>
   
-            <div class="right-container__play">
+            <div className="right-container__play">
               <img src={play} alt="play"></img>
             </div>
   
