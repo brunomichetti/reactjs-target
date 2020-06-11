@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import { userActions } from "../../actions/user.actions"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../style/App.scss";
-import "./login-form.scss"
+import "./login-form.scss";
 
 function LoginForm() {
+    // get the alert from the Redux store
+    const alert = useSelector(state => state.alert);
 
     // the inputs are going to be updated with setInputs function
     // initial state is empty email and password
-    const [inputs, setInputs] = useState({email: '', password: ''});
+    const [inputs, setInputs] = useState({email: "", password: ""});
     const { email, password } = inputs;
+
+    // cleanAlert is to remove error alert on change. This will be erased
+    const [cleanAlert, setCleanAlert] = useState(false);
 
     // function to update the inputs when the user modifies the input
     function handleChange(e) {
         const { name, value } = e.target;
         setInputs(inputs => ({ ...inputs, [name]: value }));
+        setCleanAlert(true);
     }
 
     // get dispatch function of the Redux store
@@ -25,6 +31,7 @@ function LoginForm() {
         e.preventDefault();
 
         if (email && password) {
+            setCleanAlert(false);
             dispatch(userActions.login(email, password));
         }
     }
@@ -33,14 +40,16 @@ function LoginForm() {
         <form align="center" className="login-form" onSubmit={handleSubmit}>
 
             <p className="login-form__text">EMAIL</p>
-            <input className="login-form__input" type="email" value={email} onChange={handleChange}/>
+            <input className="login-form__input" type="email" name="email" value={email} onChange={handleChange}/>
 
             <p className="login-form__text">PASSWORD</p>
-            <input className="login-form__input" type="password" value={password} onChange={handleChange}/>
+            <input className="login-form__input" type="password" name="password" value={password} onChange={handleChange} autoComplete="on"/>
 
             <div>
                 <button type="submit" className="login-form__btn-text">SIGN IN</button>
             </div>
+
+            {!(cleanAlert) && alert && alert.message && <div>{alert.message}</div>}
 
             {/* href="/" until de feature is done */}
             <div className="login-form__forgot-pwd">
