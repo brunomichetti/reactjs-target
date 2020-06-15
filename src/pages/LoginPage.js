@@ -6,7 +6,8 @@ import social from "../assets/social.png";
 import play from "../assets/play.png";
 import appStoreButton from "../assets/appstore_button.png";
 import menuIcon from "../assets/icons/menu_icon.png";
-import LoginForm from "../components/users/LoginForm"
+import LoginForm from "../components/users/LoginForm";
+import { FormattedMessage } from "react-intl"
 
 function Login() {
     return (
@@ -23,9 +24,8 @@ function Login() {
             </div>
   
             <p className="left-container__app-title">TARGET MVD</p>
-            <p className="left-container__app-subtitle">Find people near you & connect</p>
-            <p className="left-container__description-text" >Create a  target wherever on the map, specify your interest: 
-              Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
+            <p className="left-container__app-subtitle"><FormattedMessage id="loginpage.subtitle.text"/></p>
+            <p className="left-container__description-text" ><FormattedMessage id="loginpage.description.text"/></p>
             
             <LoginForm/>
   

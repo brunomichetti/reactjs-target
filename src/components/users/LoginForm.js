@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../../style/App.scss";
 import "./login-form.scss";
 import Loader from "react-loader-spinner";
+import { FormattedMessage } from "react-intl";
 
 function LoginForm() {
     // get the alert from the Redux store
@@ -19,9 +20,11 @@ function LoginForm() {
 
     // function to update the inputs when the user modifies the input
     function handleChange(e) {
-        const { name, value } = e.target;
-        setInputs(inputs => ({ ...inputs, [name]: value }));
-        setCleanAlert(true);
+        if (!loggingIn) {
+            const { name, value } = e.target;
+            setInputs(inputs => ({ ...inputs, [name]: value }));
+            setCleanAlert(true);
+        }
     }
 
     // get dispatch function of the Redux store
@@ -30,7 +33,6 @@ function LoginForm() {
     // handle submit of the form
     function handleSubmit(e) {
         e.preventDefault();
-
         if (email && password) {
             setCleanAlert(false);
             dispatch(userActions.login(email, password));
@@ -50,7 +52,7 @@ function LoginForm() {
             <input className="login-form__input" type="password" name="password" value={password} onChange={handleChange} autoComplete="on"/>
 
             <div>
-                <button type="submit" className="login-form__btn-text">SIGN IN</button>
+                <button type="submit" className="login-form__btn-text"><FormattedMessage id="loginform.signin.text"/></button>
             </div>
 
             {loggingIn && <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50}/>}
@@ -58,16 +60,16 @@ function LoginForm() {
 
             {/* href="/" until de feature is done */}
             <div className="login-form__forgot-pwd">
-                <a href="/">Forgot your password?</a>
+                <a href="/"><FormattedMessage id="loginform.forgotpwd.text"/></a>
             </div>
             
             <div className="login-form__facebook">
-                <a href="/">CONNECT WITH FACEBOOK</a>
+                <a href="/"><FormattedMessage id="loginform.connectfb.text"/></a>
                 <hr className="login-form__hr"></hr>
             </div>
 
             <div className="login-form__sign-up">
-                <a href="/">SIGN UP</a>
+                <a href="/"><FormattedMessage id="loginform.signup.text"/></a>
             </div>
 
         </form>
