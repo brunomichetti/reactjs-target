@@ -39,18 +39,8 @@ body {
     text-align: center;
 }
 
-@font-face {
-    font-family: Open Sans Bold;
-    src: url("../assets/fonts/OpenSans-Bold.ttf");
-}
-
-@font-face {
-    font-family: Open Sans Regular;
-    src: url("../assets/fonts/OpenSans-Regular.ttf");
-}
-
 .left-container__app-title {
-    font-family: Open Sans Bold;
+    font-family: $font-family-bold;
     font-weight: bold;
     font-size: 1.5em;
     line-height: 1em;
@@ -60,7 +50,7 @@ body {
 }
 
 .left-container__app-subtitle {
-    font-family: Open Sans Bold;
+    font-family: $font-family-bold;
     font-style: normal;
     font-weight: 600;
     font-size: 1em;
@@ -69,7 +59,7 @@ body {
 }
 
 .left-container__description-text {
-    font-family: Open Sans Regular;
+    font-family: $font-family-regular;
     font-size: 1em;
     line-height: 2em;
     text-align: center;

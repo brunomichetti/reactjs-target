@@ -1,4 +1,16 @@
+// Colors
 $black: black;
 $white-left-side: #fff;
 $light-blue-right-side:  #2FBCF7;
 
+// Fonts
+@font-face {
+    font-family: Open Sans Regular;
+    src: url("../../assets/fonts/OpenSans-Regular.ttf");
+}
+@font-face {
+    font-family: Open Sans Bold;
+    src: url("../../assets/fonts/OpenSans-Bold.ttf");
+}
+$font-family-regular: Open Sans Regular;
+$font-family-bold: Open Sans Bold;
