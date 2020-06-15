@@ -9,11 +9,12 @@
 \*------------------------------------*/
 body {
   margin: 0;
+  border: 0;
 }
 
 .main-div {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 
@@ -25,7 +26,7 @@ body {
 \*------------------------------------*/
 .left-container {
   background-color: $white-left-side;
-  width: 100%;
+  width: 50vw;
 }
 
 .left-container__menu {
@@ -34,7 +35,8 @@ body {
 }
 
 .left-container__smilies {
-  padding-top: 4.5em;
+  padding-top: 3em;
+  text-align: center;
 }
 
 @font-face {
@@ -51,9 +53,10 @@ body {
   font-family: Open Sans Bold;
   font-weight: bold;
   font-size: 1.5em;
-  line-height: 1.5em;
-  letter-spacing: 0.5em;
+  line-height: 1em;
+  letter-spacing: 0.25em;
   color: $black;
+  text-align: center;
 }
 
 .left-container__app-subtitle {
@@ -61,20 +64,91 @@ body {
   font-style: normal;
   font-weight: 600;
   font-size: 1em;
-  line-height: 2em;
+  line-height: 1em;
+  text-align: center;
 }
 
 .left-container__description-text {
   font-family: Open Sans Regular;
   font-size: 1em;
   line-height: 2em;
-  padding-left: 21em;
-  padding-right: 21em;
   text-align: center;
+  padding-left: 12em;
+  padding-right: 12em;
 }
 
+.left-container__login-form {
+  padding-top: 1em;
+}
 
+.left-container__login-text {
+  font-family: Open Sans Regular;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1em;
+}
 
+.left-container__input {
+  width: 18em;
+  height: 2em;
+}
+
+.left-container__login-btn {
+ margin-top: 1em;
+ border: 0;
+}
+
+.left-container__login-btn-text {
+  width: 15.5em;
+  height: 2em;
+  border: 0;
+  margin-top: 1em;
+  // text
+  background-color: $black;
+  color: $white-left-side;
+  font-family: Open Sans Regular;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.left-container__forgot-pwd {
+  font-family: Open Sans Regular;
+  font-size: 0.8em;
+  line-height: 2em;
+}
+
+.left-container__facebook {
+  padding-top: 3em;
+  font-family: Open Sans Bold;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+.left-container__hr {
+  width: 11em;
+}
+
+.left-container__sign-up {
+  font-family: Open Sans Regular;
+  font-size: 1em;
+  line-height: 2em;
+  padding-bottom: 3em;
+}
+
+// underline links only on hover
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: $black;
+}
 
 
 /*------------------------------------*\
@@ -82,15 +156,15 @@ body {
 \*------------------------------------*/
 .right-container {
   background-color: $light-blue-right-side;
-  width: 100%;
+  width: 50vw;
   position: relative;
 }
 
 .right-container__i6-img {
-  bottom: 3em;
+  margin-top: 4em;
 }
 
-/* Define this for @extend*/
+/* Define this for @extend */
 %overlap-image {
   /* This to center an image with absolute position */
   position: absolute;
@@ -102,17 +176,17 @@ body {
 }
 
 .right-container__app-store-button {
-  top: 40em;
+  top: 43em;
   @extend %overlap-image
 }
   
 .right-container__social {
-  top: 44em;
-  @extend %overlap-image
+  top: 46em;
+  @extend %overlap-image;
+  padding-bottom: 3em;
 }
   
 .right-container__play {
-  top: 20em;
+  top: 24em;
   @extend %overlap-image
 }
-
