@@ -3,6 +3,7 @@ import { userActions } from "../../actions/user.actions"
 import { useDispatch, useSelector } from "react-redux";
 import "../../style/App.scss";
 import "./login-form.scss";
+import Loader from "react-loader-spinner";
 
 function LoginForm() {
     // get the alert from the Redux store
@@ -35,6 +36,9 @@ function LoginForm() {
             dispatch(userActions.login(email, password));
         }
     }
+
+    // get flag to see if the user is logging in
+    const loggingIn = useSelector(state => state.authentication.loggingIn);
   
      return (      
         <form align="center" className="login-form" onSubmit={handleSubmit}>
@@ -49,7 +53,8 @@ function LoginForm() {
                 <button type="submit" className="login-form__btn-text">SIGN IN</button>
             </div>
 
-            {!(cleanAlert) && alert && alert.message && <div>{alert.message}</div>}
+            {loggingIn && <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50}/>}
+            {!loggingIn && !(cleanAlert) && alert && alert.message && <div>{alert.message}</div>}
 
             {/* href="/" until de feature is done */}
             <div className="login-form__forgot-pwd">
