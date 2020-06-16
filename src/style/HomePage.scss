@@ -4,17 +4,19 @@
     background-color: $white-left-side;
     width: 30vw;
     text-align: center;
-}
-
-.targets-map {
-    background-color: $light-blue-right-side;
-    width: 70vw;
+    position: relative;
 }
 
 .left-menu__profile-picture {
     align-content: center;
     align-items: center;
     display: inline-block;
+}
+
+.left-menu__options {
+    padding-top: 2em;
+    padding-left: 1.5em;
+    position: absolute;
 }
 
 .left-menu__app-title {
@@ -51,6 +53,20 @@
 .left-menu__hr {
     width: 11em;
     margin-top: 2em;
+}
+
+.left-menu__smilies {
+    bottom: 1em;
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+.smilies-img {
+    width: 4em;
+    height: auto;
 }
 
 a:hover {
