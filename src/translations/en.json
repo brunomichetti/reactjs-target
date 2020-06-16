@@ -4,5 +4,9 @@
     "loginform.forgotpwd.text": "Forgot your password?",
     "loginform.connectfb.text": "CONNECT WITH FACEBOOK",
     "loginform.signin.text": "SIGN IN",
-    "loginform.signup.text": "SIGN UP"
+    "loginform.signup.text": "SIGN UP",
+
+    "homepage.edit.text": "Edit",
+    "homepage.logout.text": "Logout",
+    "homepage.nomatches.text": "There are no matches for your targets yet."
 }
