@@ -14,10 +14,10 @@ const data = {
 const language = navigator.language.split(/[-_]/)[0];
 
 render(
-  <IntlProvider locale={language} messages={data[language]}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </IntlProvider>,
+    <IntlProvider locale={language} messages={data[language]}>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </IntlProvider>,
   document.getElementById("root")
 );

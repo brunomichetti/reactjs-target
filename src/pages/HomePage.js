@@ -9,10 +9,8 @@ import "../style/HomePage.scss";
 import defaultProfileImg from "../assets/profilePicture.png";
 import TargetsMap from "../components/targets-map/TargetsMap";
 
-function HomePage() {
-
+const HomePage = () => {
     const { user: { email }} = JSON.parse(localStorage.getItem("user"));
-
     return (
         <div className="main-div">
   

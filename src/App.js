@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage"
 import {history } from "./helpers/history"
 import PrivateRoute from "./helpers/private.route";
 
-function App() {
+const App = () => {
   return (
     <Router history={history}>
         <Switch>
