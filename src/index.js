@@ -1,9 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
-import { store } from "./helpers/store";
 import { Provider } from "react-redux";
-import App from "./App";
 import {IntlProvider} from "react-intl";
+
+import { store } from "./helpers/store";
+import App from "./App";
 import locale_en from "./translations/en.json";
 
 const data = {

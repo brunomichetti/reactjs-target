@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import { useSelector } from "react-redux";
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route } from "react-router-dom";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     // Check if the user is loggedIn
@@ -19,4 +19,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )
 }
 
-export default PrivateRoute
+export default PrivateRoute;

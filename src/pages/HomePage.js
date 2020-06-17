@@ -1,13 +1,14 @@
 import React from "react";
-import "../style/App.scss";
-import "../style/HomePage.scss";
 import ExampleComponent from "react-rounded-image";
-import defaultProfileImg from "../assets/profilePicture.png";
 import { FormattedMessage } from "react-intl";
 import { Map, TileLayer } from "react-leaflet";
+
 import { mapConstants } from "../constants/map.constants";
 import menuIcon from "../assets/icons/menu_icon.png";
 import smilies from "../assets/smilies.png";
+import "../style/App.scss";
+import "../style/HomePage.scss";
+import defaultProfileImg from "../assets/profilePicture.png";
 
 function HomePage() {
     const { user: { email }} = JSON.parse(localStorage.getItem("user"));
