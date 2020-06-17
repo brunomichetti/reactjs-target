@@ -10,7 +10,6 @@ import appStoreButton from "../assets/appstore_button.png";
 import menuIcon from "../assets/icons/menu_icon.png";
 import LoginForm from "../components/users/LoginForm";
 
-
 function Login() {
     return (
       <div className="main-div">
