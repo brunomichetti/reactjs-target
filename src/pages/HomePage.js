@@ -10,6 +10,7 @@ import defaultProfileImg from "../assets/profilePicture.png";
 import TargetsMap from "../components/targets-map/TargetsMap";
 
 function HomePage() {
+
     const { user: { email }} = JSON.parse(localStorage.getItem("user"));
 
     return (
