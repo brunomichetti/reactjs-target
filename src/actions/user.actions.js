@@ -3,12 +3,8 @@ import { userService } from "../services/user.services";
 import { history } from "../helpers/history";
 import { alertActions } from "../actions/alert.actions";
 
-export const userActions = {
-    login,
-};
-
 // Actions creator, the alerts will be removed
-function login(email, password) {
+const login = (email, password) => {
     return async dispatch => {
         dispatch(request({ email }));
         try {
@@ -26,3 +22,7 @@ function login(email, password) {
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
+
+export const userActions = {
+    login,
+};

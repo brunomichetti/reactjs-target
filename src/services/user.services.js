@@ -1,8 +1,4 @@
-export const userService = {
-    login
-};
-
-async function login(email, password) {
+const login = async(email, password) => {
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -14,7 +10,7 @@ async function login(email, password) {
     return user;
 }
 
-async function handleResponse(response) {
+const handleResponse = async(response) => {
     const text = await response.text()
     const data = text && JSON.parse(text);
     if (!response.ok) {
@@ -23,3 +19,7 @@ async function handleResponse(response) {
     }
     return data;
 }
+
+export const userService = {
+    login
+};
