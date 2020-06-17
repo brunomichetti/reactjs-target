@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { userActions } from "../../actions/user.actions"
 import { useDispatch, useSelector } from "react-redux";
-import "../../style/App.scss";
-import "./login-form.scss";
 import Loader from "react-loader-spinner";
 import { FormattedMessage } from "react-intl";
+
+import { userActions } from "../../actions/user.actions";
+import "../../style/App.scss";
+import "./login-form.scss";
 
 function LoginForm() {
     // get the alert from the Redux store

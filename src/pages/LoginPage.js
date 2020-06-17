@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+
 import "../style/App.scss";
 import smilies from "../assets/smilies.png";
 import i6 from "../assets/i6.png";
@@ -7,7 +9,7 @@ import play from "../assets/play.png";
 import appStoreButton from "../assets/appstore_button.png";
 import menuIcon from "../assets/icons/menu_icon.png";
 import LoginForm from "../components/users/LoginForm";
-import { FormattedMessage } from "react-intl"
+
 
 function Login() {
     return (
