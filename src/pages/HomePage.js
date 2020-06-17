@@ -49,17 +49,18 @@ function HomePage() {
                 </div>
      
         </div>
-  
-        <Map
-            center={{lat: mapConstants.INTIAL_LAT, lng: mapConstants.INITIAL_LONG}}
-            zoom={mapConstants.INITIAL_ZOOM}
-            style={{ width: "70vw", height: "100vh"}}
-        >
-            <TileLayer
+        <div className="targets-map">
+            <Map
+                center={{lat: mapConstants.INTIAL_LAT, lng: mapConstants.INITIAL_LONG}}
+                zoom={mapConstants.INITIAL_ZOOM}
+                style={{ width: "70vw", height: "100vh"}}
+            >
+                <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            />
-        </Map>
+                />
+            </Map>
+        </div>
 
       </div>
     )
