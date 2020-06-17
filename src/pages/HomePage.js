@@ -1,14 +1,13 @@
 import React from "react";
 import ExampleComponent from "react-rounded-image";
 import { FormattedMessage } from "react-intl";
-import { Map, TileLayer } from "react-leaflet";
 
-import { mapConstants } from "../constants/map.constants";
 import menuIcon from "../assets/icons/menu_icon.png";
 import smilies from "../assets/smilies.png";
 import "../style/App.scss";
 import "../style/HomePage.scss";
 import defaultProfileImg from "../assets/profilePicture.png";
+import TargetsMap from "../components/targets-map/TargetsMap";
 
 function HomePage() {
     const { user: { email }} = JSON.parse(localStorage.getItem("user"));
@@ -36,8 +35,8 @@ function HomePage() {
                 <p className="left-menu__username">{ email }</p>
 
                 <div className="left-menu__edit-logout">
-                    <a href="/"><FormattedMessage id="homepage.edit.text"/></a> &nbsp; / &nbsp;
-                    <a href="/"><FormattedMessage id="homepage.logout.text"/></a>
+                    <a href="/home"><FormattedMessage id="homepage.edit.text"/></a> &nbsp; / &nbsp;
+                    <a href="/home"><FormattedMessage id="homepage.logout.text"/></a>
                 </div>
 
                 <hr className="left-menu__hr"></hr>
@@ -48,21 +47,11 @@ function HomePage() {
                     <img src={smilies} alt="smilies" className="smilies-img"></img>
                 </div>
      
-        </div>
-        <div className="targets-map">
-            <Map
-                center={{lat: mapConstants.INTIAL_LAT, lng: mapConstants.INITIAL_LONG}}
-                zoom={mapConstants.INITIAL_ZOOM}
-                style={{ width: "70vw", height: "100vh"}}
-            >
-                <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                />
-            </Map>
-        </div>
+            </div>
+        
+            <TargetsMap />
 
-      </div>
+        </div>
     )
 }
 
