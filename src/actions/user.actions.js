@@ -11,18 +11,28 @@ const login = (email, password) => {
             const user = await userService.login(email, password)
             dispatch(success(user));
             history.push("/home");
-            dispatch(alertActions.success("Login successful")); //This will be removed
         } catch(error) {
-            dispatch(failure(error.toString()));
-            dispatch(alertActions.error(error.toString())); //This will be removed
+            dispatch(failure(error));
+            dispatch(alertActions.error(error));
         }
     };
-
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
+const logout = () => {
+    return async dispatch => {
+        dispatch(request());
+        await userService.logout();
+        dispatch(logoutResult);
+        history.push("/");
+    };
+    function request() { return { type: userConstants.LOGOUT_REQUEST } }
+    function logoutResult() { return { type: userConstants.LOGOUT } }
+}
+
 export const userActions = {
     login,
+    logout
 };

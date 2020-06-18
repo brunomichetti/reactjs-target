@@ -5,6 +5,8 @@
     "loginform.connectfb.text": "CONNECT WITH FACEBOOK",
     "loginform.signin.text": "SIGN IN",
     "loginform.signup.text": "SIGN UP",
+    "loginform.missing.email.text": "Email is required.",
+    "loginform.missing.pass.text": "Password is required.",
 
     "homepage.edit.text": "Edit",
     "homepage.logout.text": "Logout",

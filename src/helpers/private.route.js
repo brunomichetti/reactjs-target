@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ comp: Component, ...rest }) => {
     // Check if the user is loggedIn
-    const loggedIn = useSelector(state => state.authentication.loggingIn);
+    const loggedIn = useSelector(state => state.authentication.loggedIn);
     return (
         <Route
         {...rest}
@@ -12,7 +12,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             loggedIn ? (
             <Component {...props} />
             ) : (
-            <Redirect to={{ pathname: "/" }} />
+            <Redirect to="/" />
             )
         }
         />
