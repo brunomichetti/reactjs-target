@@ -5,6 +5,10 @@ import { alertActions } from "../actions/alert.actions";
 
 // Actions creator, the alerts will be removed
 const login = (email, password) => {
+    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } };
+    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } };
+    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } };
+
     return async dispatch => {
         dispatch(request({ email }));
         try {
@@ -17,12 +21,12 @@ const login = (email, password) => {
             dispatch(alertActions.error(error));
         }
     };
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
 const logout = () => {
+    function request() { return { type: userConstants.LOGOUT_REQUEST } };
+    function logoutResult() { return { type: userConstants.LOGOUT } };
+
     return async dispatch => {
         dispatch(request());
         await userService.logout();
@@ -30,8 +34,6 @@ const logout = () => {
         dispatch(alertActions.success());
         history.push("/");
     };
-    function request() { return { type: userConstants.LOGOUT_REQUEST } }
-    function logoutResult() { return { type: userConstants.LOGOUT } }
 }
 
 export const userActions = {

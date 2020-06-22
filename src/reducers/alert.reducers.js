@@ -7,7 +7,6 @@ export function alert(state = {}, action) {
         type: "alert-danger",
         message: action.message
       };
-    case alertConstants.SUCCESS:
     default:
       return state
   }
