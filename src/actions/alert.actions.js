@@ -5,9 +5,9 @@ export const alertActions = {
     error
 };
 
-function success(message) {
-    return { type: alertConstants.SUCCESS, message };
-}
+function success() {
+    return { type: alertConstants.SUCCESS };
+};
 
 function error(message) {
     return { type: alertConstants.ERROR, message };

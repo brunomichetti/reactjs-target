@@ -24,7 +24,7 @@
     margin-top: 1em;
     // text
     background-color: $black;
-    color: $white-left-side;
+    color: $white;
     font-family: $font-family-regular;
     font-style: normal;
     font-weight: 600;
@@ -53,6 +53,14 @@
     font-size: 1em;
     line-height: 2em;
     padding-bottom: 3em;
+}
+
+.login-form__alert {
+    margin: 1em;
+    color: $error-red-shiraz;
+    font-family: $font-family-regular;
+    font-size: 0.8em;
+    line-height: 2em;
 }
 
 // underline links only on hover

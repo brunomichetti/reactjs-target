@@ -1,51 +1,75 @@
-@import "../style/common/constants";
+@import "../../style/common/constants";
 
 
 
 /*------------------------------------*\
-  #LEFT-SIDE
+  #USER-PROFILE
 \*------------------------------------*/
-.left-menu {
-    background-color: $white-left-side;
+.user-profile {
+    background-color: $white;
     width: 30vw;
     text-align: center;
     position: relative;
 }
 
-.left-menu__profile-picture {
+.user-profile__profile-picture {
     align-content: center;
     align-items: center;
     display: inline-block;
 }
 
-.left-menu__options {
+.user-profile__options {
     padding-top: 2em;
     padding-left: 1.5em;
     position: absolute;
 }
 
-.left-menu__app-title {
+.user-profile__app-title {
     font-family: $font-family-bold;
     font-size: 1.5em;
     line-height: 1.5em;
     letter-spacing: 0.2em;
 }
 
-.left-menu__username {
+.user-profile__username {
     font-family: $font-family-bold;
     font-size: 1em;
     line-height: 1em;
     letter-spacing: 0.1em;
 }
 
-.left-menu__edit-logout {
+.user-profile__edit-logout {
     font-family: $font-family-regular;
     font-size: 0.8em;
     line-height: 1em;
     letter-spacing: 0.1em;
 }
 
-.left-menu__matches {
+.logout__btn-text {
+    font-family: $font-family-regular;
+    font-size: 1em;
+    line-height: 1em;
+    letter-spacing: 0.1em;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: arial, sans-serif;
+    cursor: pointer;
+}
+
+.logout__btn-text:hover {
+    // Underline and turn the button blue on hover
+    text-decoration: underline;
+    color: $dodger-blue;
+}
+
+.logout__btn-text:focus{
+    // Eliminate border when the button is clicked
+    border-color:transparent;
+    outline:none;
+}
+
+.user-profile__matches {
     font-family: $font-family-regular;
     font-size: 1.2em;
     line-height: 1em;
@@ -55,12 +79,12 @@
     padding-right: 5em;
 }
 
-.left-menu__hr {
+.user-profile__hr {
     width: 11em;
     margin-top: 2em;
 }
 
-.left-menu__smilies {
+.user-profile__smilies {
     bottom: 1em;
     position: absolute;
     text-align: center;
@@ -76,5 +100,5 @@
 
 a:hover {
     text-decoration: underline;
-    color: $light-blue-right-side;
+    color: $dodger-blue;
 }

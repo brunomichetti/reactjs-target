@@ -10,8 +10,8 @@ const App = () => {
   return (
     <Router history={history}>
         <Switch>
-            <Route exact path={["/", "/login"]}><LoginPage /></Route>
-            <PrivateRoute path="/home"><HomePage /></PrivateRoute>
+            <Route exact path={["/", "/login"]} component={LoginPage}></Route>
+            <PrivateRoute path="/home" comp={HomePage}></PrivateRoute>
         </Switch>
     </Router>
   );
