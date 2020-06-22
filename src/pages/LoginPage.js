@@ -1,5 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import "../style/App.scss";
 import smilies from "../assets/smilies.png";
@@ -11,6 +13,12 @@ import menuIcon from "../assets/icons/menu_icon.png";
 import LoginForm from "../components/users/LoginForm";
 
 const Login = () => {
+    const loggedIn = useSelector(state => state.authentication.loggedIn);
+
+    if (loggedIn) {
+        return <Redirect to="/home" />;
+    };
+
     return (
         <div className="main-div">
             <div className="left-container">

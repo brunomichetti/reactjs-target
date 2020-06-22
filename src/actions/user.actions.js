@@ -10,6 +10,7 @@ const login = (email, password) => {
         try {
             const user = await userService.login(email, password)
             dispatch(success(user));
+            dispatch(alertActions.success());
             history.push("/home");
         } catch(error) {
             dispatch(failure(error));
@@ -26,6 +27,7 @@ const logout = () => {
         dispatch(request());
         await userService.logout();
         dispatch(logoutResult);
+        dispatch(alertActions.success());
         history.push("/");
     };
     function request() { return { type: userConstants.LOGOUT_REQUEST } }

@@ -50,9 +50,9 @@
     font-size: 1em;
     line-height: 1em;
     letter-spacing: 0.1em;
-    background: none!important;
+    background: none;
     border: none;
-    padding: 0!important;
+    padding: 0;
     font-family: arial, sans-serif;
     cursor: pointer;
 }
@@ -65,7 +65,7 @@
 
 .logout__btn-text:focus{
     // Eliminate border when the button is clicked
-    border-color:transparent!important;
+    border-color:transparent;
     outline:none;
 }
 

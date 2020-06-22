@@ -15,12 +15,11 @@ export function authentication(state = initialState,  { type, user }) {
                 loggedIn: true,
                 user: user
             };
-        case userConstants.LOGIN_FAILURE:
-            return {};
         case userConstants.LOGOUT_REQUEST:
             return {
                 loggingOut: true
             };
+        case userConstants.LOGIN_FAILURE:
         case userConstants.LOGOUT:
             return {};
         default:
