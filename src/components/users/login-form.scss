@@ -1,77 +1,77 @@
-@import "../../style/common/constants";
+@import '../../style/common/constants';
 
 .login-form {
-    padding-top: 1em;
-  }
-  
+  padding-top: 1em;
+}
+
 .login-form__text {
-    font-family: $font-family-regular;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1em;
-    line-height: 1em;
+  font-family: $font-family-regular;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1em;
 }
 
 .login-form__input {
-    width: 18em;
-    height: 2em;
+  width: 18em;
+  height: 2em;
 }
 
 .login-form__btn-text {
-    width: 15.5em;
-    height: 2em;
-    border: 0;
-    margin-top: 1em;
-    // text
-    background-color: $black;
-    color: $white;
-    font-family: $font-family-regular;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1em;
+  width: 15.5em;
+  height: 2em;
+  border: 0;
+  margin-top: 1em;
+  // text
+  background-color: $black;
+  color: $white;
+  font-family: $font-family-regular;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
 }
 
 .login-form__forgot-pwd {
-    font-family: $font-family-regular;
-    font-size: 0.8em;
-    line-height: 2em;
+  font-family: $font-family-regular;
+  font-size: 0.8em;
+  line-height: 2em;
 }
 
 .login-form__facebook {
-    padding-top: 3em;
-    font-family: $font-family-bold;
-    font-size: 1em;
-    line-height: 2em;
+  padding-top: 3em;
+  font-family: $font-family-bold;
+  font-size: 1em;
+  line-height: 2em;
 }
 
 .login-form__hr {
-    width: 11em;
+  width: 11em;
 }
 
 .login-form__sign-up {
-    font-family: $font-family-regular;
-    font-size: 1em;
-    line-height: 2em;
-    padding-bottom: 3em;
+  font-family: $font-family-regular;
+  font-size: 1em;
+  line-height: 2em;
+  padding-bottom: 3em;
 }
 
 .login-form__alert {
-    margin: 1em;
-    color: $error-red-shiraz;
-    font-family: $font-family-regular;
-    font-size: 0.8em;
-    line-height: 2em;
+  margin: 1em;
+  color: $error-red-shiraz;
+  font-family: $font-family-regular;
+  font-size: 0.8em;
+  line-height: 2em;
 }
 
 // underline links only on hover
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 a:visited {
-    color: $black;
+  color: $black;
 }
