@@ -2,6 +2,7 @@ import { userConstants } from "../constants/user.constants";
 import { userService } from "../services/user.services";
 import { history } from "../helpers/history";
 import { alertActions } from "../actions/alert.actions";
+import handleLoginError from "../helpers/error.handler";
 
 // Actions creator, the alerts will be removed
 const login = (email, password) => {
@@ -12,13 +13,16 @@ const login = (email, password) => {
     return async dispatch => {
         dispatch(request({ email }));
         try {
-            const user = await userService.login(email, password)
+            const response = await userService.login(email, password);
+            const user = response.data.user;
+            localStorage.setItem("user", JSON.stringify(user));
             dispatch(success(user));
             dispatch(alertActions.success());
             history.push("/home");
         } catch(error) {
-            dispatch(failure(error));
-            dispatch(alertActions.error(error));
+            const errorMsg = handleLoginError(error);
+            dispatch(failure(errorMsg));
+            dispatch(alertActions.error(errorMsg));
         }
     };
 }
@@ -32,6 +36,7 @@ const logout = () => {
         await userService.logout();
         dispatch(logoutResult);
         dispatch(alertActions.success());
+        localStorage.removeItem("user");
         history.push("/");
     };
 }
