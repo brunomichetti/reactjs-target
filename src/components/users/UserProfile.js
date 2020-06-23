@@ -13,7 +13,7 @@ import { userActions } from "../../actions/user.actions";
 
 const UserProfile = () => {
     const dispatch = useDispatch();
-    const { user: { email }} = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
     const loggingOut = useSelector(state => state.authentication.loggingOut);
     function handleLogout() {
         dispatch(userActions.logout())
@@ -32,7 +32,7 @@ const UserProfile = () => {
                     imageHeight="150"
                 />
             </div>
-            <p className="user-profile__username">{ email }</p>
+            <p className="user-profile__username">{ user.email }</p>
             <div className="user-profile__edit-logout">
                 <a href="/home"><FormattedMessage id="homepage.edit.text"/></a> &nbsp; / &nbsp;
                 <button 
