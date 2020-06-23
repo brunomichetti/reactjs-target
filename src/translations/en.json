@@ -1,14 +1,14 @@
 {
-    "loginpage.subtitle.text": "Find people near you & connect",
-    "loginpage.description.text": "Create a  target wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.",
-    "loginform.forgotpwd.text": "Forgot your password?",
-    "loginform.connectfb.text": "CONNECT WITH FACEBOOK",
-    "loginform.signin.text": "SIGN IN",
-    "loginform.signup.text": "SIGN UP",
-    "loginform.missing.email.text": "Email is required.",
-    "loginform.missing.pass.text": "Password is required.",
+  "loginpage.subtitle.text": "Find people near you & connect",
+  "loginpage.description.text": "Create a  target wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.",
+  "loginform.forgotpwd.text": "Forgot your password?",
+  "loginform.connectfb.text": "CONNECT WITH FACEBOOK",
+  "loginform.signin.text": "SIGN IN",
+  "loginform.signup.text": "SIGN UP",
+  "loginform.missing.email.text": "Email is required.",
+  "loginform.missing.pass.text": "Password is required.",
 
-    "homepage.edit.text": "Edit",
-    "homepage.logout.text": "Logout",
-    "homepage.nomatches.text": "There are no matches for your targets yet."
+  "homepage.edit.text": "Edit",
+  "homepage.logout.text": "Logout",
+  "homepage.nomatches.text": "There are no matches for your targets yet."
 }

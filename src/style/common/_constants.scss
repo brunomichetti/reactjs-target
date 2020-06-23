@@ -1,17 +1,17 @@
 // Colors
 $black: black;
 $white: #fff;
-$dodger-blue:  #2FBCF7;
-$error-red-shiraz: #AD0B1D;
+$dodger-blue: #2fbcf7;
+$error-red-shiraz: #ad0b1d;
 
 // Fonts
 @font-face {
-    font-family: Open Sans Regular;
-    src: url("../../assets/fonts/OpenSans-Regular.ttf");
+  font-family: Open Sans Regular;
+  src: url('../../assets/fonts/OpenSans-Regular.ttf');
 }
 @font-face {
-    font-family: Open Sans Bold;
-    src: url("../../assets/fonts/OpenSans-Bold.ttf");
+  font-family: Open Sans Bold;
+  src: url('../../assets/fonts/OpenSans-Bold.ttf');
 }
 $font-family-regular: Open Sans Regular;
 $font-family-bold: Open Sans Bold;

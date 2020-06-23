@@ -1,104 +1,102 @@
-@import "../../style/common/constants";
-
-
+@import '../../style/common/constants';
 
 /*------------------------------------*\
   #USER-PROFILE
 \*------------------------------------*/
 .user-profile {
-    background-color: $white;
-    width: 30vw;
-    text-align: center;
-    position: relative;
+  background-color: $white;
+  width: 30vw;
+  text-align: center;
+  position: relative;
 }
 
 .user-profile__profile-picture {
-    align-content: center;
-    align-items: center;
-    display: inline-block;
+  align-content: center;
+  align-items: center;
+  display: inline-block;
 }
 
 .user-profile__options {
-    padding-top: 2em;
-    padding-left: 1.5em;
-    position: absolute;
+  padding-top: 2em;
+  padding-left: 1.5em;
+  position: absolute;
 }
 
 .user-profile__app-title {
-    font-family: $font-family-bold;
-    font-size: 1.5em;
-    line-height: 1.5em;
-    letter-spacing: 0.2em;
+  font-family: $font-family-bold;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  letter-spacing: 0.2em;
 }
 
 .user-profile__username {
-    font-family: $font-family-bold;
-    font-size: 1em;
-    line-height: 1em;
-    letter-spacing: 0.1em;
+  font-family: $font-family-bold;
+  font-size: 1em;
+  line-height: 1em;
+  letter-spacing: 0.1em;
 }
 
 .user-profile__edit-logout {
-    font-family: $font-family-regular;
-    font-size: 0.8em;
-    line-height: 1em;
-    letter-spacing: 0.1em;
+  font-family: $font-family-regular;
+  font-size: 0.8em;
+  line-height: 1em;
+  letter-spacing: 0.1em;
 }
 
 .logout__btn-text {
-    font-family: $font-family-regular;
-    font-size: 1em;
-    line-height: 1em;
-    letter-spacing: 0.1em;
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: arial, sans-serif;
-    cursor: pointer;
+  font-family: $font-family-regular;
+  font-size: 1em;
+  line-height: 1em;
+  letter-spacing: 0.1em;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: arial, sans-serif;
+  cursor: pointer;
 }
 
 .logout__btn-text:hover {
-    // Underline and turn the button blue on hover
-    text-decoration: underline;
-    color: $dodger-blue;
+  // Underline and turn the button blue on hover
+  text-decoration: underline;
+  color: $dodger-blue;
 }
 
-.logout__btn-text:focus{
-    // Eliminate border when the button is clicked
-    border-color:transparent;
-    outline:none;
+.logout__btn-text:focus {
+  // Eliminate border when the button is clicked
+  border-color: transparent;
+  outline: none;
 }
 
 .user-profile__matches {
-    font-family: $font-family-regular;
-    font-size: 1.2em;
-    line-height: 1em;
-    letter-spacing: 0.1em;
-    margin-top: 10em;
-    padding-left: 5em;
-    padding-right: 5em;
+  font-family: $font-family-regular;
+  font-size: 1.2em;
+  line-height: 1em;
+  letter-spacing: 0.1em;
+  margin-top: 10em;
+  padding-left: 5em;
+  padding-right: 5em;
 }
 
 .user-profile__hr {
-    width: 11em;
-    margin-top: 2em;
+  width: 11em;
+  margin-top: 2em;
 }
 
 .user-profile__smilies {
-    bottom: 1em;
-    position: absolute;
-    text-align: center;
-    margin: auto;
-    left: 0;
-    right: 0;
+  bottom: 1em;
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  left: 0;
+  right: 0;
 }
 
 .smilies-img {
-    width: 4em;
-    height: auto;
+  width: 4em;
+  height: auto;
 }
 
 a:hover {
-    text-decoration: underline;
-    color: $dodger-blue;
+  text-decoration: underline;
+  color: $dodger-blue;
 }

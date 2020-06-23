@@ -1,14 +1,14 @@
-import { alertConstants } from "../constants/alert.constants";
+import { alertConstants } from '../constants/alert.constants';
 
 export const alertActions = {
-    success,
-    error
+  success,
+  error,
 };
 
 function success() {
-    return { type: alertConstants.SUCCESS };
-};
+  return { type: alertConstants.SUCCESS };
+}
 
 function error(message) {
-    return { type: alertConstants.ERROR, message };
+  return { type: alertConstants.ERROR, message };
 }
