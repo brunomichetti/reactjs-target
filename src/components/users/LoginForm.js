@@ -8,6 +8,7 @@ import { userActions } from '../../actions/user.actions';
 import '../../style/App.scss';
 import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
+import UserFormInput from './UserFormInput';
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({ email: '', password: '' });
@@ -45,36 +46,33 @@ const LoginForm = () => {
 
   return (
     <form align="center" className="user-form" onSubmit={handleSubmit}>
-      <p className="user-form__text">EMAIL</p>
-      <input
-        className="user-form__input"
-        type="email"
-        name="email"
-        value={email}
-        onChange={handleChange}
+      <UserFormInput
+        inputLabel={<FormattedMessage id="userform.email.label.text" />}
+        inputType="email"
+        inputName="email"
+        inputValue={email}
+        inputOnChange={handleChange}
       />
       {isSubmitted && !email && (
         <div className="user-form__alert">
-          <FormattedMessage id="loginform.missing.email.text" />
+          <FormattedMessage id="userform.missing.email.text" />
         </div>
       )}
-      <p className="user-form__text">PASSWORD</p>
-      <input
-        className="user-form__input"
-        type="password"
-        name="password"
-        value={password}
-        onChange={handleChange}
-        autoComplete="on"
+      <UserFormInput
+        inputLabel={<FormattedMessage id="userform.password.label.text" />}
+        inputType="password"
+        inputName="password"
+        inputValue={password}
+        inputOnChange={handleChange}
       />
       {isSubmitted && !password && (
         <div className="user-form__alert">
-          <FormattedMessage id="loginform.missing.pass.text" />
+          <FormattedMessage id="userform.missing.pass.text" />
         </div>
       )}
       <div>
         <button type="submit" className="user-form__btn-text">
-          <FormattedMessage id="loginform.signin.text" />
+          <FormattedMessage id="userform.signin.text" />
         </button>
       </div>
       {loggingIn && (
@@ -86,7 +84,7 @@ const LoginForm = () => {
       {/* href="/" until de feature is done */}
       <div className="user-form__forgot-pwd">
         <a href={loginPageLink}>
-          <FormattedMessage id="loginform.forgotpwd.text" />
+          <FormattedMessage id="userform.forgotpwd.text" />
         </a>
       </div>
       <SignUpOptions />

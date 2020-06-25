@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import '../../style/App.scss';
 import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
+import UserFormInput from './UserFormInput';
 
 const SignUpForm = () => {
   const genders = [
@@ -41,37 +42,33 @@ const SignUpForm = () => {
 
   return (
     <form align="center" className="user-form" onSubmit={handleSubmit}>
-      <p className="user-form__text">NAME</p>
-      <input
-        className="user-form__input"
-        type="text"
-        name="full_name"
-        value={full_name}
-        onChange={handleChange}
+      <UserFormInput
+        inputLabel={<FormattedMessage id="userform.name.label.text" />}
+        inputType="text"
+        inputName="full_name"
+        inputValue={full_name}
+        inputOnChange={handleChange}
       />
-      <p className="user-form__text">EMAIL</p>
-      <input
-        className="user-form__input"
-        type="email"
-        name="email"
-        value={email}
-        onChange={handleChange}
+      <UserFormInput
+        inputLabel={<FormattedMessage id="userform.email.label.text" />}
+        inputType="email"
+        inputName="email"
+        inputValue={email}
+        inputOnChange={handleChange}
       />
-      <p className="user-form__text">PASSWORD</p>
-      <input
-        className="user-form__input"
-        type="password"
-        name="password"
-        value={password}
-        onChange={handleChange}
+      <UserFormInput
+        inputLabel={<FormattedMessage id="userform.password.label.text" />}
+        inputType="password"
+        inputName="password"
+        inputValue={password}
+        inputOnChange={handleChange}
       />
-      <p className="user-form__text">CONFIRM PASSWORD</p>
-      <input
-        className="user-form__input"
-        type="password"
-        name="confirm_password"
-        value={confirm_password}
-        onChange={handleChange}
+      <UserFormInput
+        inputLabel={<FormattedMessage id="userform.confirmpass.label.text" />}
+        inputType="password"
+        inputName="confirm_password"
+        inputValue={confirm_password}
+        inputOnChange={handleChange}
       />
       <p className="user-form__text">GENDER</p>
       <div align="center">
@@ -85,13 +82,13 @@ const SignUpForm = () => {
       </div>
       <div>
         <button type="submit" className="user-form__btn-text">
-          <FormattedMessage id="loginform.signup.text" />
+          <FormattedMessage id="userform.signup.text" />
         </button>
       </div>
       <hr className="user-form__hr" />
       <div className="user-form__text">
         <Link to={loginPageLink}>
-          <FormattedMessage id="loginform.signin.text" />
+          <FormattedMessage id="userform.signin.text" />
         </Link>
       </div>
     </form>
