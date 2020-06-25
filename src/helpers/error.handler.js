@@ -1,4 +1,4 @@
-import { loginErrorConstants } from '../components/users/login.error.constants';
+import { loginErrorConstants } from '../constants/login.error.constants';
 
 const handleLoginError = (error) => {
   const errorResponse = error.response;

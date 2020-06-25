@@ -5,20 +5,15 @@ import { Redirect } from 'react-router-dom';
 
 import '../style/App.scss';
 import smilies from '../assets/smilies.png';
-import i6 from '../assets/i6.png';
-import social from '../assets/social.png';
-import play from '../assets/play.png';
-import appStoreButton from '../assets/appstore_button.png';
-import menuIcon from '../assets/icons/menu_icon.png';
 import LoginForm from '../components/users/LoginForm';
+import AppStoreContainer from '../components/app-store-container/AppStoreContainer';
+import menuIcon from '../assets/icons/menu_icon.png';
 
-const Login = () => {
+const LoginPage = () => {
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
-
   if (loggedIn) {
     return <Redirect to="/home" />;
   }
-
   return (
     <div className="main-div">
       <div className="left-container">
@@ -37,22 +32,9 @@ const Login = () => {
         </p>
         <LoginForm />
       </div>
-      <div className="right-container" align="center">
-        <div className="right-container__i6-img">
-          <img src={i6} alt="i6" />
-        </div>
-        <div className="right-container__app-store-button">
-          <img src={appStoreButton} alt="app-store-button" />
-        </div>
-        <div className="right-container__social">
-          <img src={social} alt="social" />
-        </div>
-        <div className="right-container__play">
-          <img src={play} alt="play" />
-        </div>
-      </div>
+      <AppStoreContainer />
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;
