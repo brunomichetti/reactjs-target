@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import '../../style/App.scss';
 import './user-form.scss';
+import { loginPageLink } from '../../constants/link.constants';
 
 const SignUpForm = () => {
   const genders = [
@@ -31,7 +32,6 @@ const SignUpForm = () => {
 
   const handleChangeGender = (select_gender) => {
     setInputs((inputs) => ({ ...inputs, ['gender']: select_gender['value'] }));
-    debugger;
   };
 
   const handleSubmit = (e) => {
@@ -90,7 +90,7 @@ const SignUpForm = () => {
       </div>
       <hr className="user-form__hr" />
       <div className="user-form__text">
-        <Link to="/">
+        <Link to={loginPageLink}>
           <FormattedMessage id="loginform.signin.text" />
         </Link>
       </div>

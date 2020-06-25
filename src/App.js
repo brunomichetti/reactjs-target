@@ -6,14 +6,19 @@ import HomePage from './pages/HomePage';
 import SignUpPage from './pages/SignUpPage';
 import { history } from './helpers/history';
 import PrivateRoute from './helpers/private.route';
+import {
+  homePageLink,
+  loginPageLink,
+  signupPageLink,
+} from './constants/link.constants';
 
 const App = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path={['/', '/login']} component={LoginPage} />
-        <Route path="/signup" component={SignUpPage} />
-        <PrivateRoute path="/home" component={HomePage} />
+        <Route exact path={['/', loginPageLink]} component={LoginPage} />
+        <Route path={signupPageLink} component={SignUpPage} />
+        <PrivateRoute path={homePageLink} component={HomePage} />
       </Switch>
     </Router>
   );

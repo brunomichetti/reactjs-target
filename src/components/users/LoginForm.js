@@ -7,6 +7,7 @@ import SignUpOptions from './SignUpOptions.js';
 import { userActions } from '../../actions/user.actions';
 import '../../style/App.scss';
 import './user-form.scss';
+import { loginPageLink } from '../../constants/link.constants';
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({ email: '', password: '' });
@@ -84,7 +85,7 @@ const LoginForm = () => {
       )}
       {/* href="/" until de feature is done */}
       <div className="user-form__forgot-pwd">
-        <a href="/">
+        <a href={loginPageLink}>
           <FormattedMessage id="loginform.forgotpwd.text" />
         </a>
       </div>

@@ -3,6 +3,7 @@ import { userService } from '../services/user.services';
 import { history } from '../helpers/history';
 import { alertActions } from '../actions/alert.actions';
 import handleLoginError from '../helpers/error.handler';
+import { homePageLink, loginPageLink } from '../constants/link.constants';
 
 // Actions creator, the alerts will be removed
 const login = (email, password) => {
@@ -24,7 +25,7 @@ const login = (email, password) => {
       localStorage.setItem('user', JSON.stringify(user));
       dispatch(success(user));
       dispatch(alertActions.success());
-      history.push('/home');
+      history.push(homePageLink);
     } catch (error) {
       const errorMsg = handleLoginError(error);
       dispatch(failure(errorMsg));
@@ -47,7 +48,7 @@ const logout = () => {
     dispatch(logoutResult);
     dispatch(alertActions.success());
     localStorage.removeItem('user');
-    history.push('/');
+    history.push(loginPageLink);
   };
 };
 

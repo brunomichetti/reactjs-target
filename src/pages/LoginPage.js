@@ -8,11 +8,12 @@ import smilies from '../assets/smilies.png';
 import LoginForm from '../components/users/LoginForm';
 import AppStoreContainer from '../components/app-store-container/AppStoreContainer';
 import menuIcon from '../assets/icons/menu_icon.png';
+import { homePageLink } from '../constants/link.constants';
 
 const LoginPage = () => {
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
   if (loggedIn) {
-    return <Redirect to="/home" />;
+    return <Redirect to={homePageLink} />;
   }
   return (
     <div className="main-div">
