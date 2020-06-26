@@ -1,0 +1,39 @@
+@import '../../style/common/constants';
+
+.app-store-container {
+  background-color: $dodger-blue;
+  width: 50vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-store-container__i6-img {
+  margin-top: 3em;
+}
+
+/* Define this for @extend */
+%overlap-image {
+  /* This to center an image with absolute position */
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.app-store-container__app-store-button {
+  top: 42em;
+  @extend %overlap-image;
+}
+
+.app-store-container__social {
+  top: 45em;
+  @extend %overlap-image;
+  padding-bottom: 3em;
+}
+
+.app-store-container__play {
+  top: 23em;
+  @extend %overlap-image;
+}

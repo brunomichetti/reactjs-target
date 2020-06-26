@@ -1,0 +1,23 @@
+@import '../../style/common/constants';
+
+.signup-options {
+  padding-top: 1em;
+}
+
+.signup-options__facebook {
+  padding-top: 3em;
+  font-family: $font-family-bold;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+.signup-options__hr {
+  width: 11em;
+}
+
+.signup-options__sign-up {
+  font-family: $font-family-regular;
+  font-size: 1em;
+  line-height: 2em;
+  padding-bottom: 3em;
+}

@@ -10,6 +10,7 @@ import '../../style/App.scss';
 import './user-profile.scss';
 import defaultProfileImg from '../../assets/profilePicture.png';
 import { userActions } from '../../actions/user.actions';
+import { homePageLink } from '../../constants/link.constants';
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const UserProfile = () => {
       </div>
       <p className="user-profile__username">{user.email}</p>
       <div className="user-profile__edit-logout">
-        <a href="/home">
+        <a href={homePageLink}>
           <FormattedMessage id="homepage.edit.text" />
         </a>{' '}
         &nbsp; / &nbsp;

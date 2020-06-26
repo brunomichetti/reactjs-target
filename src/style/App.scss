@@ -1,8 +1,6 @@
 @import '../style/common/constants';
 
-/*------------------------------------*\
-  #MAIN-SECTION
-\*------------------------------------*/
+html,
 body {
   margin: 0;
   border: 0;
@@ -13,9 +11,6 @@ body {
   min-height: 100vh;
 }
 
-/*------------------------------------*\
-  #LEFT-SIDE
-\*------------------------------------*/
 .left-container {
   background-color: $white;
   width: 50vw;
@@ -31,7 +26,7 @@ body {
   text-align: center;
 }
 
-.left-container__app-title {
+%app-title {
   font-family: $font-family-bold;
   font-weight: bold;
   font-size: 1.5em;
@@ -39,6 +34,15 @@ body {
   letter-spacing: 0.25em;
   color: $black;
   text-align: center;
+}
+.left-container__app-title {
+  @extend %app-title;
+}
+
+.left-container__title {
+  @extend %app-title;
+  padding-top: 4em;
+  margin-bottom: 2.7em;
 }
 
 .left-container__app-subtitle {
@@ -57,44 +61,4 @@ body {
   text-align: center;
   padding-left: 12em;
   padding-right: 12em;
-}
-
-/*------------------------------------*\
-  #RIGHT-SIDE
-\*------------------------------------*/
-.right-container {
-  background-color: $dodger-blue;
-  width: 50vw;
-  position: relative;
-}
-
-.right-container__i6-img {
-  margin-top: 4em;
-}
-
-/* Define this for @extend */
-%overlap-image {
-  /* This to center an image with absolute position */
-  position: absolute;
-  text-align: center;
-  margin: auto;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-
-.right-container__app-store-button {
-  top: 43em;
-  @extend %overlap-image;
-}
-
-.right-container__social {
-  top: 46em;
-  @extend %overlap-image;
-  padding-bottom: 3em;
-}
-
-.right-container__play {
-  top: 24em;
-  @extend %overlap-image;
 }
