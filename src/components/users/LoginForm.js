@@ -9,6 +9,7 @@ import '../../style/App.scss';
 import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
 import UserFormInput from './UserFormInput';
+import UserFormInputError from './UserFormInputError';
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({ email: '', password: '' });
@@ -22,13 +23,12 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const loggingIn = useSelector((state) => state.authentication.loggingIn);
+  const userRequest = useSelector((state) => state.authentication.userRequest);
 
-  const showLoginAlert = isSubmitted && !loggingIn && !cleanAlert && alert;
+  const showLoginAlert = isSubmitted && !userRequest && !cleanAlert && alert;
 
   const handleChange = ({ target }) => {
-    setIsSubmitted(false);
-    if (!loggingIn) {
+    if (!userRequest) {
       const { name, value } = target;
       setInputs((inputs) => ({ ...inputs, [name]: value }));
       setCleanAlert(true);
@@ -53,11 +53,10 @@ const LoginForm = () => {
         inputValue={email}
         inputOnChange={handleChange}
       />
-      {isSubmitted && !email && (
-        <div className="user-form__alert">
-          <FormattedMessage id="userform.missing.email.text" />
-        </div>
-      )}
+      <UserFormInputError
+        error={isSubmitted && !email}
+        errorId="userform.missing.email.text"
+      />
       <UserFormInput
         inputLabel={<FormattedMessage id="userform.password.label.text" />}
         inputType="password"
@@ -65,17 +64,16 @@ const LoginForm = () => {
         inputValue={password}
         inputOnChange={handleChange}
       />
-      {isSubmitted && !password && (
-        <div className="user-form__alert">
-          <FormattedMessage id="userform.missing.pass.text" />
-        </div>
-      )}
+      <UserFormInputError
+        error={isSubmitted && !password}
+        errorId="userform.missing.pass.text"
+      />
       <div>
         <button type="submit" className="user-form__btn-text">
           <FormattedMessage id="userform.signin.text" />
         </button>
       </div>
-      {loggingIn && (
+      {userRequest && (
         <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
       )}
       {showLoginAlert && (
