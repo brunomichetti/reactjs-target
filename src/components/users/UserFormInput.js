@@ -8,6 +8,7 @@ const UserFormInput = ({
   inputType,
   inputName,
   inputValue,
+  inputPlaceHolder = '',
   inputOnChange,
   error = false,
   errorId = '',
@@ -21,6 +22,7 @@ const UserFormInput = ({
       value={inputValue}
       onChange={inputOnChange}
       autoComplete="on"
+      placeholder={inputPlaceHolder}
     />
     <div>
       {error && (

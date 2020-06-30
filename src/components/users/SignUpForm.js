@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,6 +8,7 @@ import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
 import UserFormInput from './UserFormInput';
 import { userActions } from '../../actions/user.actions';
+import UserSelect from './UserSelect';
 
 const SignUpForm = () => {
   const genders = [
@@ -45,7 +45,8 @@ const SignUpForm = () => {
   };
 
   const handleChangeGender = (select_gender) => {
-    setInputs((inputs) => ({ ...inputs, ['gender']: select_gender['value'] }));
+    setCleanAlert(true);
+    setInputs((inputs) => ({ ...inputs, gender: select_gender['value'] }));
   };
 
   const missingFields = !name || !email || !password1 || !password2 || !gender;
@@ -59,6 +60,7 @@ const SignUpForm = () => {
     setIsSubmitted(true);
     setCleanAlert(false);
     if (!missingFields && equalPasswords) {
+      setCleanAlert(false);
       dispatch(userActions.signup(name, email, password1, password2, gender));
     }
   };
@@ -89,6 +91,7 @@ const SignUpForm = () => {
         inputName="password1"
         inputValue={password1}
         inputOnChange={handleChange}
+        inputPlaceHolder="MIN. 8 CHARACTERS LONG"
         error={isSubmitted && !password1}
         errorId="userform.missing.pass.text"
       />
@@ -109,15 +112,12 @@ const SignUpForm = () => {
         )}
       </div>
       <p className="user-form__text">GENDER</p>
-      <div align="center">
-        <Select
-          options={genders}
-          className="user-form__text user-form__select"
-          onChange={handleChangeGender}
-          placeholder="SELECT A GENDER"
-          value={select_gender}
-        />
-      </div>
+      <UserSelect
+        optionsSet={genders}
+        onChangeFunction={handleChangeGender}
+        placeHolderId="userform.select.gender.text"
+        valueSelect={select_gender}
+      />
       <div>
         {isSubmitted && !gender && (
           <div className="user-form__alert">
@@ -125,6 +125,7 @@ const SignUpForm = () => {
           </div>
         )}
       </div>
+
       <div>
         <button type="submit" className="user-form__btn-text">
           <FormattedMessage id="userform.signup.text" />

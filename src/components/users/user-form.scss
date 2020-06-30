@@ -32,6 +32,10 @@
   font-size: 1em;
 }
 
+input::placeholder {
+  text-align: center;
+}
+
 .user-form__forgot-pwd {
   font-family: $font-family-regular;
   font-size: 0.8em;

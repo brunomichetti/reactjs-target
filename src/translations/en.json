@@ -15,9 +15,9 @@
   "userform.missing.email.text": "Email is required.",
   "userform.missing.pass.text": "Password is required.",
   "userform.missing.name.text": "Name is required.",
-  "userform.missing.pass2.text": "Password confirm is required.",
+  "userform.missing.pass2.text": "Password confirmation is required.",
   "userform.missing.gender.text": "Gender is required.",
-  "userform.not.matching.passwords.text": "Password and password confirm must be equal.",
+  "userform.not.matching.passwords.text": "Password and password confirmation must match.",
 
   "homepage.edit.text": "Edit",
   "homepage.logout.text": "Logout",
