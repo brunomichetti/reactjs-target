@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { FormattedMessage } from 'react-intl';
 
 import './user-form.scss';
-import { black, red } from 'color-name';
+import { black } from 'color-name';
 
 const customStyle = {
   control: (base) => ({
