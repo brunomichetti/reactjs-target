@@ -1,22 +1,20 @@
 import { loginErrorConstants } from '../constants/login.error.constants';
 
-export const handleLoginError = (error) => {
-  const errorResponse = error.response;
-  if (errorResponse.status === 400 && errorResponse.data.non_field_errors) {
+export const handleLoginError = ({ response: { status, data } }) => {
+  if (status === 400 && data.non_field_errors) {
     return loginErrorConstants.LOGIN_ERROR_CREDENTIALS;
   } else {
     return loginErrorConstants.SERVER_ERROR;
   }
 };
 
-export const handleSignupError = (error) => {
+export const handleSignupError = ({ response: { data } }) => {
   debugger;
-  const errorResponse = error.response;
-  if (errorResponse.data['email']) {
-    return errorResponse.data['email'];
+  if (data['email']) {
+    return data['email'];
   }
-  if (error.response.data['password1']) {
-    return error.response.data.password1[0];
+  if (data['password1']) {
+    return data.password1[0];
   }
   return loginErrorConstants.SERVER_ERROR;
 };

@@ -9,7 +9,6 @@ import '../../style/App.scss';
 import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
 import UserFormInput from './UserFormInput';
-import UserFormInputError from './UserFormInputError';
 
 const LoginForm = () => {
   const [inputs, setInputs] = useState({ email: '', password: '' });
@@ -52,8 +51,6 @@ const LoginForm = () => {
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
-      />
-      <UserFormInputError
         error={isSubmitted && !email}
         errorId="userform.missing.email.text"
       />
@@ -63,8 +60,6 @@ const LoginForm = () => {
         inputName="password"
         inputValue={password}
         inputOnChange={handleChange}
-      />
-      <UserFormInputError
         error={isSubmitted && !password}
         errorId="userform.missing.pass.text"
       />

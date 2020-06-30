@@ -33,8 +33,7 @@ const login = (email, password) => {
   return async (dispatch) => {
     dispatch(request({ email }));
     try {
-      const response = await userService.login(email, password);
-      const user = response.data.user;
+      const { data: user } = await userService.login(email, password);
       success_to_homepage(user, dispatch, success);
     } catch (error) {
       const errorMsg = handleLoginError(error);
@@ -71,14 +70,13 @@ const signup = (name, email, password1, password2, gender) => {
   return async (dispatch) => {
     dispatch(request({ email }));
     try {
-      const response = await userService.signup(
+      const { data: user } = await userService.signup(
         name,
         email,
         password1,
         password2,
         gender
       );
-      const user = response.data.user;
       success_to_homepage(user, dispatch, success);
     } catch (error) {
       const errorMsg = handleSignupError(error);

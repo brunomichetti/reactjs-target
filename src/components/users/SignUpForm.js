@@ -9,7 +9,6 @@ import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
 import UserFormInput from './UserFormInput';
 import { userActions } from '../../actions/user.actions';
-import UserFormInputError from './UserFormInputError';
 
 const SignUpForm = () => {
   const genders = [
@@ -42,6 +41,7 @@ const SignUpForm = () => {
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
+    setCleanAlert(true);
   };
 
   const handleChangeGender = (select_gender) => {
@@ -57,6 +57,7 @@ const SignUpForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
+    setCleanAlert(false);
     if (!missingFields && equalPasswords) {
       dispatch(userActions.signup(name, email, password1, password2, gender));
     }
@@ -70,8 +71,6 @@ const SignUpForm = () => {
         inputName="name"
         inputValue={name}
         inputOnChange={handleChange}
-      />
-      <UserFormInputError
         error={isSubmitted && !name}
         errorId="userform.missing.name.text"
       />
@@ -81,8 +80,6 @@ const SignUpForm = () => {
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
-      />
-      <UserFormInputError
         error={isSubmitted && !email}
         errorId="userform.missing.email.text"
       />
@@ -92,8 +89,6 @@ const SignUpForm = () => {
         inputName="password1"
         inputValue={password1}
         inputOnChange={handleChange}
-      />
-      <UserFormInputError
         error={isSubmitted && !password1}
         errorId="userform.missing.pass.text"
       />
@@ -103,15 +98,16 @@ const SignUpForm = () => {
         inputName="password2"
         inputValue={password2}
         inputOnChange={handleChange}
-      />
-      <UserFormInputError
         error={isSubmitted && !password2}
         errorId="userform.missing.pass2.text"
       />
-      <UserFormInputError
-        error={isSubmitted && password1 && password2 && !equalPasswords}
-        errorId="userform.not.matching.passwords.text"
-      />
+      <div>
+        {isSubmitted && password1 && password2 && !equalPasswords && (
+          <div className="user-form__alert">
+            <FormattedMessage id="userform.not.matching.passwords.text" />
+          </div>
+        )}
+      </div>
       <p className="user-form__text">GENDER</p>
       <div align="center">
         <Select
@@ -122,10 +118,13 @@ const SignUpForm = () => {
           value={select_gender}
         />
       </div>
-      <UserFormInputError
-        error={isSubmitted && !gender}
-        errorId="userform.missing.gender.text"
-      />
+      <div>
+        {isSubmitted && !gender && (
+          <div className="user-form__alert">
+            <FormattedMessage id="userform.missing.gender.text" />
+          </div>
+        )}
+      </div>
       <div>
         <button type="submit" className="user-form__btn-text">
           <FormattedMessage id="userform.signup.text" />
