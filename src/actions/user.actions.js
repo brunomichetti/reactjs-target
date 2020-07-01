@@ -9,14 +9,14 @@ const request = (user) => {
   return { type: userConstants.USER_REQUEST, user };
 };
 
-const success_to_homepage = (user, dispatch, success) => {
+const successToHomePage = (user, dispatch, success) => {
   localStorage.setItem('user', JSON.stringify(user));
   dispatch(success(user));
   dispatch(alertActions.success());
   history.push(homePageLink);
 };
 
-const error_from_server = (errorMsg, dispatch, failure) => {
+const errorFromServer = (errorMsg, dispatch, failure) => {
   dispatch(failure(errorMsg));
   dispatch(alertActions.error(errorMsg));
 };
@@ -34,10 +34,10 @@ const login = (email, password) => {
     dispatch(request({ email }));
     try {
       const { data: user } = await userService.login(email, password);
-      success_to_homepage(user, dispatch, success);
+      successToHomePage(user, dispatch, success);
     } catch (error) {
       const errorMsg = handleLoginError(error);
-      error_from_server(errorMsg, dispatch, failure);
+      errorFromServer(errorMsg, dispatch, failure);
     }
   };
 };
@@ -77,10 +77,10 @@ const signup = (name, email, password1, password2, gender) => {
         password2,
         gender
       );
-      success_to_homepage(user, dispatch, success);
+      successToHomePage(user, dispatch, success);
     } catch (error) {
       const errorMsg = handleSignupError(error);
-      error_from_server(errorMsg, dispatch, failure);
+      errorFromServer(errorMsg, dispatch, failure);
     }
   };
 };

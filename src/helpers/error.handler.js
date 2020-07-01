@@ -9,7 +9,6 @@ export const handleLoginError = ({ response: { status, data } }) => {
 };
 
 export const handleSignupError = ({ response: { data } }) => {
-  debugger;
   if (data['email']) {
     return data['email'];
   }
