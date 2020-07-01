@@ -23,7 +23,7 @@ const UserFormInput = ({
       autoComplete="on"
       placeholder={inputPlaceHolder}
     />
-    <div>{error && <div className="user-form__alert">{errorMsg}</div>}</div>
+    {error && <div className="user-form__alert">{errorMsg}</div>}
   </div>
 );
 
