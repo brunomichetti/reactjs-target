@@ -1,6 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-import { FormattedMessage } from 'react-intl';
 
 import './user-form.scss';
 import { black } from 'color-name';
@@ -47,8 +46,10 @@ const customStyle = {
 const UserSelect = ({
   optionsSet,
   onChangeFunction,
-  placeHolderId,
+  placeHolder,
   valueSelect,
+  error = false,
+  errorMsg = '',
 }) => (
   <div align="center">
     <Select
@@ -56,9 +57,10 @@ const UserSelect = ({
       options={optionsSet}
       className="user-form__text user-form__select"
       onChange={onChangeFunction}
-      placeholder={<FormattedMessage id={placeHolderId} />}
+      placeholder={placeHolder}
       value={valueSelect}
     />
+    {error && <div className="user-form__alert">{errorMsg}</div>}
   </div>
 );
 

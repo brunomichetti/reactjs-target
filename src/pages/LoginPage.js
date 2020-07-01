@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -11,10 +11,13 @@ import menuIcon from '../assets/icons/menu_icon.png';
 import { homePageLink } from '../constants/link.constants';
 
 const LoginPage = () => {
+  const intl = useIntl();
+
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
   if (loggedIn) {
     return <Redirect to={homePageLink} />;
   }
+
   return (
     <div className="main-div">
       <div className="left-container">
@@ -26,10 +29,14 @@ const LoginPage = () => {
         </div>
         <p className="left-container__app-title">TARGET MVD</p>
         <p className="left-container__app-subtitle">
-          <FormattedMessage id="loginpage.subtitle.text" />
+          {intl.formatMessage({
+            id: 'loginpage.subtitle.text',
+          })}
         </p>
         <p className="left-container__description-text">
-          <FormattedMessage id="loginpage.description.text" />
+          {intl.formatMessage({
+            id: 'loginpage.description.text',
+          })}
         </p>
         <LoginForm />
       </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
 import './user-form.scss';
 
@@ -11,7 +10,7 @@ const UserFormInput = ({
   inputPlaceHolder = '',
   inputOnChange,
   error = false,
-  errorId = '',
+  errorMsg = '',
 }) => (
   <div>
     <p className="user-form__text">{inputLabel}</p>
@@ -24,13 +23,7 @@ const UserFormInput = ({
       autoComplete="on"
       placeholder={inputPlaceHolder}
     />
-    <div>
-      {error && (
-        <div className="user-form__alert">
-          <FormattedMessage id={errorId} />
-        </div>
-      )}
-    </div>
+    <div>{error && <div className="user-form__alert">{errorMsg}</div>}</div>
   </div>
 );
 

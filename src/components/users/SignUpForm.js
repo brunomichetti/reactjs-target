@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 
 import '../../style/App.scss';
 import './user-form.scss';
@@ -11,6 +11,8 @@ import { userActions } from '../../actions/user.actions';
 import UserSelect from './UserSelect';
 
 const SignUpForm = () => {
+  const intl = useIntl();
+
   const genders = [
     { value: 'male', label: 'MALE' },
     { value: 'female', label: 'FEMALE' },
@@ -68,46 +70,66 @@ const SignUpForm = () => {
   return (
     <form align="center" className="user-form" onSubmit={handleSubmit}>
       <UserFormInput
-        inputLabel={<FormattedMessage id="userform.name.label.text" />}
+        inputLabel={intl.formatMessage({
+          id: 'userform.name.label.text',
+        })}
         inputType="text"
         inputName="name"
         inputValue={name}
         inputOnChange={handleChange}
         error={isSubmitted && !name}
-        errorId="userform.missing.name.text"
+        errorMsg={intl.formatMessage({
+          id: 'userform.missing.name.text',
+        })}
       />
       <UserFormInput
-        inputLabel={<FormattedMessage id="userform.email.label.text" />}
+        inputLabel={intl.formatMessage({
+          id: 'userform.email.label.text',
+        })}
         inputType="email"
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
         error={isSubmitted && !email}
-        errorId="userform.missing.email.text"
+        errorMsg={intl.formatMessage({
+          id: 'userform.missing.email.text',
+        })}
       />
       <UserFormInput
-        inputLabel={<FormattedMessage id="userform.password.label.text" />}
+        inputLabel={intl.formatMessage({
+          id: 'userform.password.label.text',
+        })}
         inputType="password"
         inputName="password1"
         inputValue={password1}
         inputOnChange={handleChange}
-        inputPlaceHolder="MIN. 8 CHARACTERS LONG"
+        inputPlaceHolder={intl.formatMessage({
+          id: 'userform.pass.placeholder.text',
+        })}
         error={isSubmitted && !password1}
-        errorId="userform.missing.pass.text"
+        errorMsg={intl.formatMessage({
+          id: 'userform.missing.pass.text',
+        })}
       />
       <UserFormInput
-        inputLabel={<FormattedMessage id="userform.confirmpass.label.text" />}
+        inputLabel={intl.formatMessage({
+          id: 'userform.confirmpass.label.text',
+        })}
         inputType="password"
         inputName="password2"
         inputValue={password2}
         inputOnChange={handleChange}
         error={isSubmitted && !password2}
-        errorId="userform.missing.pass2.text"
+        errorMsg={intl.formatMessage({
+          id: 'userform.missing.pass2.text',
+        })}
       />
       <div>
         {isSubmitted && password1 && password2 && !equalPasswords && (
           <div className="user-form__alert">
-            <FormattedMessage id="userform.not.matching.passwords.text" />
+            {intl.formatMessage({
+              id: 'userform.not.matching.passwords.text',
+            })}
           </div>
         )}
       </div>
@@ -115,20 +137,20 @@ const SignUpForm = () => {
       <UserSelect
         optionsSet={genders}
         onChangeFunction={handleChangeGender}
-        placeHolderId="userform.select.gender.text"
+        placeHolder={intl.formatMessage({
+          id: 'userform.select.gender.text',
+        })}
         valueSelect={select_gender}
+        error={isSubmitted && !gender}
+        errorMsg={intl.formatMessage({
+          id: 'userform.missing.gender.text',
+        })}
       />
       <div>
-        {isSubmitted && !gender && (
-          <div className="user-form__alert">
-            <FormattedMessage id="userform.missing.gender.text" />
-          </div>
-        )}
-      </div>
-
-      <div>
         <button type="submit" className="user-form__btn-text">
-          <FormattedMessage id="userform.signup.text" />
+          {intl.formatMessage({
+            id: 'userform.signup.text',
+          })}
         </button>
       </div>
       {showSignupAlert && (
@@ -137,7 +159,9 @@ const SignUpForm = () => {
       <hr className="user-form__hr" />
       <div className="user-form__text">
         <Link to={loginPageLink}>
-          <FormattedMessage id="userform.signin.text" />
+          {intl.formatMessage({
+            id: 'userform.signin.text',
+          })}
         </Link>
       </div>
     </form>

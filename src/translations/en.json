@@ -18,6 +18,7 @@
   "userform.missing.pass2.text": "Password confirmation is required.",
   "userform.missing.gender.text": "Gender is required.",
   "userform.not.matching.passwords.text": "Password and password confirmation must match.",
+  "userform.pass.placeholder.text": "MIN. 8 CHARACTERS LONG",
 
   "homepage.edit.text": "Edit",
   "homepage.logout.text": "Logout",
