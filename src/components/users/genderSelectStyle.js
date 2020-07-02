@@ -1,6 +1,6 @@
 import { black } from 'color-name';
 
-export const selectCustomStyle = {
+export const genderSelectStyle = {
   control: (base) => ({
     ...base,
     borderColor: 'black',

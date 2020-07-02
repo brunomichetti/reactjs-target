@@ -7,7 +7,7 @@ import '../style/App.scss';
 import smilies from '../assets/smilies.png';
 import LoginForm from '../components/users/LoginForm';
 import AppStoreContainer from '../components/app-store-container/AppStoreContainer';
-import menuIcon from '../assets/icons/menu_icon.png';
+import menuIcon from '../assets/icons/menuIcon.png';
 import { homePageLink } from '../constants/link.constants';
 
 const LoginPage = () => {

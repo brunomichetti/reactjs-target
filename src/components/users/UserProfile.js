@@ -4,8 +4,7 @@ import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
 
-import menuIcon from '../../assets/icons/menu_icon.png';
-import smilies from '../../assets/smilies.png';
+import menuIcon from '../../assets/icons/menuIcon.png';
 import '../../style/App.scss';
 import './user-profile.scss';
 import defaultProfileImg from '../../assets/profilePicture.png';
@@ -66,9 +65,6 @@ const UserProfile = () => {
           id: 'homepage.nomatches.text',
         })}
       </p>
-      <div className="user-profile__smilies">
-        <img src={smilies} alt="smilies" className="smilies-img" />
-      </div>
     </div>
   );
 };

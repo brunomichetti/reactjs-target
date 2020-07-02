@@ -1,10 +1,11 @@
 import React from 'react';
 import Select from 'react-select';
 
-import './user-form.scss';
-import { selectCustomStyle } from './selectCustomStyle';
+import '../users/user-form.scss';
 
-const UserSelect = ({
+const FormSelect = ({
+  customClassName,
+  customStyle,
   optionsSet,
   onChangeFunction,
   placeHolder,
@@ -14,9 +15,9 @@ const UserSelect = ({
 }) => (
   <div align="center">
     <Select
-      styles={selectCustomStyle}
+      styles={customStyle}
       options={optionsSet}
-      className="user-form__text user-form__select"
+      className={customClassName}
       onChange={onChangeFunction}
       placeholder={placeHolder}
       value={valueSelect}
@@ -25,4 +26,4 @@ const UserSelect = ({
   </div>
 );
 
-export default UserSelect;
+export default FormSelect;

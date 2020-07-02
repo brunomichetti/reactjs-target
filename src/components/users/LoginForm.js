@@ -8,7 +8,7 @@ import { userActions } from '../../actions/user.actions';
 import '../../style/App.scss';
 import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
-import UserFormInput from './UserFormInput';
+import FormInput from '../common/FormInput';
 
 const LoginForm = () => {
   const intl = useIntl();
@@ -47,7 +47,9 @@ const LoginForm = () => {
 
   return (
     <form align="center" className="user-form" onSubmit={handleSubmit}>
-      <UserFormInput
+      <FormInput
+        labelClassName="user-form__text"
+        inputClassName="user-form__input"
         inputLabel={intl.formatMessage({
           id: 'userform.email.label.text',
         })}
@@ -60,7 +62,9 @@ const LoginForm = () => {
           id: 'userform.missing.email.text',
         })}
       />
-      <UserFormInput
+      <FormInput
+        labelClassName="user-form__text"
+        inputClassName="user-form__input"
         inputLabel={intl.formatMessage({
           id: 'userform.password.label.text',
         })}

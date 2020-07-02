@@ -6,9 +6,11 @@ import { useIntl } from 'react-intl';
 import '../../style/App.scss';
 import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
-import UserFormInput from './UserFormInput';
 import { userActions } from '../../actions/user.actions';
-import UserSelect from './UserSelect';
+
+import FormInput from '../common/FormInput';
+import FormSelect from '../common/FormSelect';
+import { genderSelectStyle } from './genderSelectStyle';
 
 const SignUpForm = () => {
   const intl = useIntl();
@@ -69,7 +71,9 @@ const SignUpForm = () => {
 
   return (
     <form align="center" className="user-form" onSubmit={handleSubmit}>
-      <UserFormInput
+      <FormInput
+        labelClassName="user-form__text"
+        inputClassName="user-form__input"
         inputLabel={intl.formatMessage({
           id: 'userform.name.label.text',
         })}
@@ -82,7 +86,9 @@ const SignUpForm = () => {
           id: 'userform.missing.name.text',
         })}
       />
-      <UserFormInput
+      <FormInput
+        labelClassName="user-form__text"
+        inputClassName="user-form__input"
         inputLabel={intl.formatMessage({
           id: 'userform.email.label.text',
         })}
@@ -95,7 +101,9 @@ const SignUpForm = () => {
           id: 'userform.missing.email.text',
         })}
       />
-      <UserFormInput
+      <FormInput
+        labelClassName="user-form__text"
+        inputClassName="user-form__input"
         inputLabel={intl.formatMessage({
           id: 'userform.password.label.text',
         })}
@@ -111,7 +119,9 @@ const SignUpForm = () => {
           id: 'userform.missing.pass.text',
         })}
       />
-      <UserFormInput
+      <FormInput
+        labelClassName="user-form__text"
+        inputClassName="user-form__input"
         inputLabel={intl.formatMessage({
           id: 'userform.confirmpass.label.text',
         })}
@@ -133,8 +143,14 @@ const SignUpForm = () => {
           </div>
         )}
       </div>
-      <p className="user-form__text">GENDER</p>
-      <UserSelect
+      <p className="user-form__text">
+        {intl.formatMessage({
+          id: 'userform.gender.label.text',
+        })}
+      </p>
+      <FormSelect
+        customStyle={genderSelectStyle}
+        customClassName="user-form__text user-form__select"
         optionsSet={genders}
         onChangeFunction={handleChangeGender}
         placeHolder={intl.formatMessage({

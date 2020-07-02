@@ -3,12 +3,6 @@
 /*------------------------------------*\
   #USER-PROFILE
 \*------------------------------------*/
-.user-profile {
-  background-color: $white;
-  width: 30vw;
-  text-align: center;
-  position: relative;
-}
 
 .user-profile__profile-picture {
   align-content: center;
@@ -17,7 +11,7 @@
 }
 
 .user-profile__options {
-  padding-top: 2em;
+  padding-top: 1em;
   padding-left: 1.5em;
   position: absolute;
 }
