@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import SignUpOptions from './SignUpOptions.js';
 import { userActions } from '../../actions/user.actions';
@@ -11,6 +11,8 @@ import { loginPageLink } from '../../constants/link.constants';
 import UserFormInput from './UserFormInput';
 
 const LoginForm = () => {
+  const intl = useIntl();
+
   const [inputs, setInputs] = useState({ email: '', password: '' });
   const { email, password } = inputs;
 
@@ -46,26 +48,36 @@ const LoginForm = () => {
   return (
     <form align="center" className="user-form" onSubmit={handleSubmit}>
       <UserFormInput
-        inputLabel={<FormattedMessage id="userform.email.label.text" />}
+        inputLabel={intl.formatMessage({
+          id: 'userform.email.label.text',
+        })}
         inputType="email"
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
         error={isSubmitted && !email}
-        errorId="userform.missing.email.text"
+        errorMsg={intl.formatMessage({
+          id: 'userform.missing.email.text',
+        })}
       />
       <UserFormInput
-        inputLabel={<FormattedMessage id="userform.password.label.text" />}
+        inputLabel={intl.formatMessage({
+          id: 'userform.password.label.text',
+        })}
         inputType="password"
         inputName="password"
         inputValue={password}
         inputOnChange={handleChange}
         error={isSubmitted && !password}
-        errorId="userform.missing.pass.text"
+        errorMsg={intl.formatMessage({
+          id: 'userform.missing.pass.text',
+        })}
       />
       <div>
         <button type="submit" className="user-form__btn-text">
-          <FormattedMessage id="userform.signin.text" />
+          {intl.formatMessage({
+            id: 'userform.signin.text',
+          })}
         </button>
       </div>
       {userRequest && (
@@ -77,10 +89,12 @@ const LoginForm = () => {
       {/* href="/" until de feature is done */}
       <div className="user-form__forgot-pwd">
         <a href={loginPageLink}>
-          <FormattedMessage id="userform.forgotpwd.text" />
+          {intl.formatMessage({
+            id: 'userform.forgotpwd.text',
+          })}
         </a>
       </div>
-      <SignUpOptions />
+      <SignUpOptions intl={intl} />
     </form>
   );
 };
