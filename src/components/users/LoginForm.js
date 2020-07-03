@@ -22,13 +22,12 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const loggingIn = useSelector((state) => state.authentication.loggingIn);
+  const userRequest = useSelector((state) => state.authentication.userRequest);
 
-  const showLoginAlert = isSubmitted && !loggingIn && !cleanAlert && alert;
+  const showLoginAlert = isSubmitted && !userRequest && !cleanAlert && alert;
 
   const handleChange = ({ target }) => {
-    setIsSubmitted(false);
-    if (!loggingIn) {
+    if (!userRequest) {
       const { name, value } = target;
       setInputs((inputs) => ({ ...inputs, [name]: value }));
       setCleanAlert(true);
@@ -52,30 +51,24 @@ const LoginForm = () => {
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
+        error={isSubmitted && !email}
+        errorId="userform.missing.email.text"
       />
-      {isSubmitted && !email && (
-        <div className="user-form__alert">
-          <FormattedMessage id="userform.missing.email.text" />
-        </div>
-      )}
       <UserFormInput
         inputLabel={<FormattedMessage id="userform.password.label.text" />}
         inputType="password"
         inputName="password"
         inputValue={password}
         inputOnChange={handleChange}
+        error={isSubmitted && !password}
+        errorId="userform.missing.pass.text"
       />
-      {isSubmitted && !password && (
-        <div className="user-form__alert">
-          <FormattedMessage id="userform.missing.pass.text" />
-        </div>
-      )}
       <div>
         <button type="submit" className="user-form__btn-text">
           <FormattedMessage id="userform.signin.text" />
         </button>
       </div>
-      {loggingIn && (
+      {userRequest && (
         <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
       )}
       {showLoginAlert && (

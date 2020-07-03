@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import './user-form.scss';
 
@@ -8,6 +9,8 @@ const UserFormInput = ({
   inputName,
   inputValue,
   inputOnChange,
+  error = false,
+  errorId = '',
 }) => (
   <div>
     <p className="user-form__text">{inputLabel}</p>
@@ -19,6 +22,13 @@ const UserFormInput = ({
       onChange={inputOnChange}
       autoComplete="on"
     />
+    <div>
+      {error && (
+        <div className="user-form__alert">
+          <FormattedMessage id={errorId} />
+        </div>
+      )}
+    </div>
   </div>
 );
 
