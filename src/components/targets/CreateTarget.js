@@ -45,7 +45,9 @@ const CreateTarget = ({ newTargetlatlng, setNewTargetlatlng }) => {
           id: 'createtarget.new.target.text',
         })}
       </p>
-      <CreateTargetForm intl={intl} />
+      <div align="center">
+        <CreateTargetForm intl={intl} />
+      </div>
     </div>
   );
 };
