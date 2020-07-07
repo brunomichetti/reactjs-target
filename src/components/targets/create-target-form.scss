@@ -60,3 +60,18 @@
   line-height: 1em;
   text-align: left;
 }
+
+.create-target-form__alert-select {
+  margin-top: 1.6em;
+  color: $error-red-shiraz;
+  font-family: $font-family-regular;
+  font-size: 0.8em;
+  line-height: 2em;
+}
+
+// remove arrows from number input
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

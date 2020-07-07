@@ -13,6 +13,7 @@ const FormSelect = ({
   error = false,
   errorMsg = '',
   components = null,
+  alertClassName = 'user-form__alert',
 }) => (
   <div align="center">
     <Select
@@ -24,7 +25,7 @@ const FormSelect = ({
       value={valueSelect}
       components={components}
     />
-    {error && <div className="user-form__alert">{errorMsg}</div>}
+    {error && <div className={alertClassName}>{errorMsg}</div>}
   </div>
 );
 

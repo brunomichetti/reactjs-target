@@ -43,9 +43,9 @@ const SignUpForm = () => {
   const userRequest = useSelector((state) => state.authentication.userRequest);
 
   const handleChange = ({ target }) => {
+    setCleanAlert(true);
     const { name, value } = target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
-    setCleanAlert(true);
   };
 
   const handleChangeGender = (select_gender) => {
@@ -62,11 +62,10 @@ const SignUpForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-    setCleanAlert(false);
     if (!missingFields && equalPasswords) {
-      setCleanAlert(false);
       dispatch(userActions.signup(name, email, password1, password2, gender));
     }
+    setCleanAlert(false);
   };
 
   return (

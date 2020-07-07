@@ -8,6 +8,6 @@ export const alert = (state = {}, action) => {
         message: action.message,
       };
     default:
-      return state;
+      return {};
   }
 };

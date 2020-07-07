@@ -16,7 +16,6 @@ export const topicSelectStyle = {
     ...provided,
     fontSize: 12,
     textAlign: 'left',
-    overflow: 'hidden',
   }),
 
   option: (provided, state) => ({
