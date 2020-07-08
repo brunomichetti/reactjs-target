@@ -4,8 +4,6 @@ import { targetConstants } from '../constants/target.constants';
 import { alertActions } from '../actions/alert.actions';
 
 const create = (radius, title, topic, lat, lon) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-
   const request = () => {
     return { type: targetConstants.CREATE_TARGET_REQUEST };
   };
@@ -19,7 +17,7 @@ const create = (radius, title, topic, lat, lon) => {
   return async (dispatch) => {
     dispatch(request());
     try {
-      await targetService.create(radius, title, topic, lat, lon, user);
+      await targetService.create(radius, title, topic, lat, lon);
       dispatch(success());
       dispatch(alertActions.success());
     } catch (error) {

@@ -12,7 +12,6 @@ import {
 import { topics } from './topicsList';
 import './create-target-form.scss';
 import { targetActions } from '../../actions/target.actions';
-import { removeUnitNamespace } from '@formatjs/intl-utils';
 
 const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
   const { select_topic } = {};
@@ -63,11 +62,13 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
     setInputs((inputs) => ({ ...inputs, topic: select_topic['value'] }));
   };
 
+  const noMissingValues = radius && title && topic && newTargetlatlng;
+
   const handleSubmit = (e) => {
     setCleanAlert(false);
     e.preventDefault();
     setIsSubmitted(true);
-    if (radius && title && topic && newTargetlatlng) {
+    if (noMissingValues) {
       dispatch(
         targetActions.create(
           radius,
