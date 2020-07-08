@@ -11,6 +11,8 @@ export const request = (user) => {
 
 const successToHomePage = (user, dispatch, success) => {
   localStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem('refreshToken', user.refresh_token);
+  localStorage.setItem('accessToken', user.access_token);
   dispatch(success(user));
   dispatch(alertActions.success());
   history.push(homePageLink);
@@ -56,6 +58,8 @@ const logout = () => {
     dispatch(logoutResult);
     dispatch(alertActions.success());
     localStorage.removeItem('user');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('accessToken');
     history.push(loginPageLink);
   };
 };
