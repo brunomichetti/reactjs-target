@@ -57,8 +57,8 @@ client.interceptors.response.use(
           history.push(loginPageLink);
         }
       }
+      throw error;
     }
-    throw error;
   }
 );
 
