@@ -22,5 +22,14 @@
 
   "homepage.edit.text": "Edit",
   "homepage.logout.text": "Logout",
-  "homepage.nomatches.text": "There are no matches for your targets yet."
+  "homepage.nomatches.text": "There are no matches for your targets yet.",
+
+  "createtarget.title.text": "CREATE TARGET",
+  "createtarget.new.target.text": "CREATE NEW TARGET",
+  "createtarget.specify.area.text": "SPECIFY AREA LENGHT",
+  "createtarget.target.title.text": "TARGET TITLE",
+  "createtarget.select.topic.text": "SELECT A TOPIC",
+  "createtarget.save.btn.text": "SAVE TARGET",
+  "createtarget.title.placeholder.text": "Choose a title for your target.",
+  "createtarget.topic.placeholder.text": "What do you want to talk about?"
 }

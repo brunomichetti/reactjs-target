@@ -1,8 +1,10 @@
 import React from 'react';
 
-import './user-form.scss';
+import '../users/user-form.scss';
 
-const UserFormInput = ({
+const FormInput = ({
+  labelClassName,
+  inputClassName,
   inputLabel,
   inputType,
   inputName,
@@ -13,9 +15,9 @@ const UserFormInput = ({
   errorMsg = '',
 }) => (
   <div>
-    <p className="user-form__text">{inputLabel}</p>
+    <p className={labelClassName}>{inputLabel}</p>
     <input
-      className="user-form__input"
+      className={inputClassName}
       type={inputType}
       name={inputName}
       value={inputValue}
@@ -27,4 +29,4 @@ const UserFormInput = ({
   </div>
 );
 
-export default UserFormInput;
+export default FormInput;
