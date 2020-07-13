@@ -17,8 +17,8 @@ const App = () => {
     <Router history={history}>
       <Switch>
         <Route exact path={['/', loginPageLink]} component={LoginPage} />
-        <Route path={signupPageLink} component={SignUpPage} />
-        <PrivateRoute path={homePageLink} component={HomePage} />
+        <Route exact path={signupPageLink} component={SignUpPage} />
+        <PrivateRoute exact path={homePageLink} comp={HomePage} />
       </Switch>
     </Router>
   );

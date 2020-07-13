@@ -1,7 +1,7 @@
 import { targetConstants } from '../constants/target.constants';
 
-export const target = (state = {}, action) => {
-  switch (action.type) {
+export const target = (state = {}, { type, result }) => {
+  switch (type) {
     case targetConstants.CREATE_TARGET_REQUEST:
       return {
         createTargetRequest: true,
@@ -10,7 +10,12 @@ export const target = (state = {}, action) => {
       return {
         createTargetSuccess: true,
       };
+    case targetConstants.CREATE_TARGET_ERROR:
+      return {
+        createTargetError: true,
+        errorMsg: result,
+      };
     default:
-      return {};
+      return state;
   }
 };

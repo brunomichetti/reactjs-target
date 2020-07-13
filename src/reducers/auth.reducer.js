@@ -1,29 +1,21 @@
 import { userConstants } from '../constants/user.constants';
 
-let user = JSON.parse(localStorage.getItem('user'));
-const initialState = user ? { loggedIn: true, user } : {};
-
-export const authentication = (state = initialState, { type, user }) => {
+export const authentication = (state = {}, { type, result }) => {
   switch (type) {
     case userConstants.USER_REQUEST:
       return {
         userRequest: true,
-        user: user,
       };
     case userConstants.LOGIN_SUCCESS:
     case userConstants.SIGNUP_SUCCESS:
-      return {
-        loggedIn: true,
-        user: user,
-      };
-    case userConstants.LOGOUT_REQUEST:
-      return {
-        loggingOut: true,
-      };
+    case userConstants.LOGOUT_SUCCESS:
+      return {};
     case userConstants.LOGIN_FAILURE:
     case userConstants.SIGNUP_FAILURE:
-    case userConstants.LOGOUT:
-      return {};
+      return {
+        authError: true,
+        errorMsg: result,
+      };
     default:
       return state;
   }

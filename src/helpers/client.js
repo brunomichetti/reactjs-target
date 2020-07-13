@@ -1,4 +1,4 @@
-import axios, { axiosCall } from 'axios';
+import axios from 'axios';
 
 import { loginPageLink } from '../constants/link.constants';
 import { history } from '../helpers/history';
@@ -54,8 +54,8 @@ client.interceptors.response.use(
           history.push(loginPageLink);
         }
       }
-      throw error;
     }
+    throw error;
   }
 );
 

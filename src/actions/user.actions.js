@@ -1,62 +1,39 @@
 import { userConstants } from '../constants/user.constants';
 import { userService } from '../services/user.services';
 import { history } from '../helpers/history';
-import { alertActions } from '../actions/alert.actions';
 import { handleLoginError, handleSignupError } from '../helpers/error.handler';
 import { homePageLink, loginPageLink } from '../constants/link.constants';
 
-export const request = (user) => {
-  return { type: userConstants.USER_REQUEST, user };
+export const request = () => {
+  return { type: userConstants.USER_REQUEST };
 };
 
-const successToHomePage = (user, dispatch, success) => {
+const successToHomePage = (user, dispatch, successState) => {
   localStorage.setItem('user', JSON.stringify(user));
   localStorage.setItem('refreshToken', user.refresh_token);
   localStorage.setItem('accessToken', user.access_token);
-  dispatch(success(user));
-  dispatch(alertActions.success());
+  dispatch(successState);
   history.push(homePageLink);
 };
 
-const errorFromServer = (errorMsg, dispatch, failure) => {
-  dispatch(failure(errorMsg));
-  dispatch(alertActions.error(errorMsg));
-};
-
-// Actions creator, the alerts will be removed
 const login = (email, password) => {
-  const success = (user) => {
-    return { type: userConstants.LOGIN_SUCCESS, user };
-  };
-  const failure = (error) => {
-    return { type: userConstants.LOGIN_FAILURE, error };
-  };
-
   return async (dispatch) => {
-    dispatch(request({ email }));
+    dispatch(request());
     try {
       const { data: user } = await userService.login(email, password);
-      successToHomePage(user, dispatch, success);
+      successToHomePage(user, dispatch, { type: userConstants.LOGIN_SUCCESS });
     } catch (error) {
       const errorMsg = handleLoginError(error);
-      errorFromServer(errorMsg, dispatch, failure);
+      dispatch({ type: userConstants.LOGIN_FAILURE, result: errorMsg });
     }
   };
 };
 
 const logout = () => {
-  const request = () => {
-    return { type: userConstants.LOGOUT_REQUEST };
-  };
-  const logoutResult = () => {
-    return { type: userConstants.LOGOUT };
-  };
-
   return async (dispatch) => {
     dispatch(request());
     await userService.logout();
-    dispatch(logoutResult);
-    dispatch(alertActions.success());
+    dispatch({ type: userConstants.LOGOUT_SUCCESS });
     localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
@@ -65,14 +42,8 @@ const logout = () => {
 };
 
 const signup = (name, email, password1, password2, gender) => {
-  const success = (user) => {
-    return { type: userConstants.SIGNUP_SUCCESS, user };
-  };
-  const failure = (error) => {
-    return { type: userConstants.SIGNUP_FAILURE, error };
-  };
   return async (dispatch) => {
-    dispatch(request({ email }));
+    dispatch(request());
     try {
       const { data: user } = await userService.signup(
         name,
@@ -81,10 +52,10 @@ const signup = (name, email, password1, password2, gender) => {
         password2,
         gender
       );
-      successToHomePage(user, dispatch, success);
+      successToHomePage(user, dispatch, { type: userConstants.SIGNUP_SUCCESS });
     } catch (error) {
       const errorMsg = handleSignupError(error);
-      errorFromServer(errorMsg, dispatch, failure);
+      dispatch({ type: userConstants.SIGNUP_FAILURE, result: errorMsg });
     }
   };
 };

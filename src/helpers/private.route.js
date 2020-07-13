@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { loginPageLink } from '../constants/link.constants';
 
 const PrivateRoute = ({ comp: Component, ...rest }) => {
-  // Check if the user is loggedIn
-  const user = JSON.parse(localStorage.getItem('user'));
+  // Check if the user is logged in
+  const user = localStorage.getItem('user');
   return (
     <Route
       {...rest}

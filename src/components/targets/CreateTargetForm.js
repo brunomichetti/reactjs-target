@@ -18,7 +18,7 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const errorAlert = useSelector((state) => state.alert);
+  const createTargetState = useSelector((state) => state.target);
 
   const [inputs, setInputs] = useState({
     radius: '',
@@ -29,14 +29,8 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
 
   const [cleanAlert, setCleanAlert] = useState(false);
 
-  const createTargetRequest = useSelector(
-    (state) => state.target.createTargetRequest
-  );
-
-  const createTargetChange = useSelector((state) => state.target);
-
   useEffect(() => {
-    if (createTargetChange.createTargetSuccess) {
+    if (isSubmitted && createTargetState.createTargetSuccess) {
       alert(
         intl.formatMessage({
           id: 'createtarget.success.text',
@@ -44,10 +38,10 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
       );
       setNewTargetlatlng(null);
     }
-  }, [createTargetChange]);
+  }, [createTargetState]);
 
   const showCreateTargetAlert =
-    isSubmitted && !createTargetRequest && !cleanAlert && errorAlert;
+    isSubmitted && createTargetState.createTargetError && !cleanAlert;
 
   const dispatch = useDispatch();
 
@@ -145,11 +139,11 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
           id: 'createtarget.save.btn.text',
         })}
       </button>
-      {createTargetRequest && (
+      {createTargetState.createTargetRequest && (
         <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
       )}
       {showCreateTargetAlert && (
-        <div className="user-form__alert"> {errorAlert.message} </div>
+        <div className="user-form__alert"> {createTargetState.errorMsg} </div>
       )}
     </form>
   );
