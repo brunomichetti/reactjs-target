@@ -1,4 +1,4 @@
-import axios, { axiosCall } from 'axios';
+import axios from 'axios';
 
 import { loginPageLink } from '../constants/link.constants';
 import { history } from '../helpers/history';
@@ -16,11 +16,11 @@ client.interceptors.response.use(
   (res) => res,
   async (error) => {
     if (
-      error.config.url != 'rest-auth/login/' &&
-      error.config.url != 'rest-auth/registration/' &&
-      error.config.url != 'rest-auth/logout/'
+      error.config.url !== 'rest-auth/login/' &&
+      error.config.url !== 'rest-auth/registration/' &&
+      error.config.url !== 'rest-auth/logout/'
     ) {
-      if (error.response.status == 401) {
+      if (error.response.status === 401) {
         const refreshToken = localStorage.getItem('refreshToken');
         if (refreshToken) {
           try {
@@ -41,8 +41,8 @@ client.interceptors.response.use(
           }
         }
       }
-      throw error;
     }
+    throw error;
   }
 );
 

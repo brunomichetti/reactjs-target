@@ -13,23 +13,21 @@ import FormInput from '../common/FormInput';
 const LoginForm = () => {
   const intl = useIntl();
 
+  const dispatch = useDispatch();
+
   const [inputs, setInputs] = useState({ email: '', password: '' });
   const { email, password } = inputs;
-
-  const alert = useSelector((state) => state.alert);
 
   const [cleanAlert, setCleanAlert] = useState(false);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const dispatch = useDispatch();
+  const authState = useSelector((state) => state.authentication);
 
-  const userRequest = useSelector((state) => state.authentication.userRequest);
-
-  const showLoginAlert = isSubmitted && !userRequest && !cleanAlert && alert;
+  const showLoginAlert = isSubmitted && authState.authError && !cleanAlert;
 
   const handleChange = ({ target }) => {
-    if (!userRequest) {
+    if (!authState.userRequest) {
       const { name, value } = target;
       setInputs((inputs) => ({ ...inputs, [name]: value }));
       setCleanAlert(true);
@@ -84,11 +82,11 @@ const LoginForm = () => {
           })}
         </button>
       </div>
-      {userRequest && (
+      {authState.userRequest && (
         <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
       )}
-      {showLoginAlert && (
-        <div className="user-form__alert"> {alert.message} </div>
+      {authState.authError && showLoginAlert && (
+        <div className="user-form__alert"> {authState.errorMsg} </div>
       )}
       {/* href="/" until de feature is done */}
       <div className="user-form__forgot-pwd">

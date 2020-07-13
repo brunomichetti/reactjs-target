@@ -36,11 +36,9 @@ const SignUpForm = () => {
 
   const dispatch = useDispatch();
 
-  const alert = useSelector((state) => state.alert);
-
   const [cleanAlert, setCleanAlert] = useState(false);
 
-  const userRequest = useSelector((state) => state.authentication.userRequest);
+  const authState = useSelector((state) => state.authentication);
 
   const handleChange = ({ target }) => {
     setCleanAlert(true);
@@ -57,7 +55,7 @@ const SignUpForm = () => {
 
   const equalPasswords = password1 === password2;
 
-  const showSignupAlert = isSubmitted && !userRequest && !cleanAlert && alert;
+  const showSignupAlert = isSubmitted && authState.authError && !cleanAlert;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -169,7 +167,7 @@ const SignUpForm = () => {
         </button>
       </div>
       {showSignupAlert && (
-        <div className="user-form__alert"> {alert.message} </div>
+        <div className="user-form__alert"> {authState.errorMsg} </div>
       )}
       <hr className="user-form__hr" />
       <div className="user-form__text">
