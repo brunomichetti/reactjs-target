@@ -13,6 +13,8 @@ import { topics } from './topicsList';
 import './create-target-form.scss';
 import { targetActions } from '../../actions/target.actions';
 
+import NumberFormat from 'react-number-format';
+
 const CreateTargetForm = ({
   intl,
   newTargetlatlng,
@@ -43,6 +45,7 @@ const CreateTargetForm = ({
         })
       );
       setNewTargetlatlng(null);
+      setNewTargetRadius('');
     }
   }, [createTargetState]);
 
@@ -55,9 +58,6 @@ const CreateTargetForm = ({
     setCleanAlert(true);
     const { name, value } = target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
-    if (name === 'radius') {
-      setNewTargetRadius(value);
-    }
   };
 
   const handleChangeTopic = (select_topic) => {
@@ -84,23 +84,34 @@ const CreateTargetForm = ({
     }
   };
 
+  const handleRadiusChange = (e) => {
+    setInputs((inputs) => ({ ...inputs, ['radius']: e.value }));
+    setNewTargetRadius(e.value);
+  };
+
   return (
     <form className="create-target-form" onSubmit={handleSubmit}>
-      <FormInput
-        labelClassName="create-target-form__text"
-        inputClassName="create-target-form__input"
-        inputLabel={intl.formatMessage({
+      <p className="create-target-form__text">
+        {intl.formatMessage({
           id: 'createtarget.specify.area.text',
         })}
-        inputType="number"
-        inputName="radius"
-        inputValue={radius}
-        inputOnChange={handleChange}
-        error={isSubmitted && !radius}
-        errorMsg={intl.formatMessage({
-          id: 'createtarget.missing.radius.text',
-        })}
+      </p>
+      <NumberFormat
+        thousandSeparator={true}
+        suffix={' m'}
+        className="create-target-form__input"
+        inputmode="numeric"
+        name="radius"
+        value={radius}
+        onValueChange={handleRadiusChange}
       />
+      {isSubmitted && !radius && (
+        <div className="user-form__alert">
+          {intl.formatMessage({
+            id: 'createtarget.missing.radius.text',
+          })}
+        </div>
+      )}
       <FormInput
         labelClassName="create-target-form__text"
         inputClassName="create-target-form__input"
