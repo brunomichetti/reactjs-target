@@ -1,10 +1,19 @@
 import React from 'react';
-import { Map, TileLayer, Marker } from 'react-leaflet';
+import { Map, TileLayer, Marker, CircleMarker } from 'react-leaflet';
 
 import { mapConstants } from '../../constants/map.constants';
 import { newTargetIcon } from './map-icons';
+import {
+  white,
+  safron,
+  createTargetOpacity,
+} from '../../style/common/_constants.scss';
 
-const TargetsMap = ({ newTargetlatlng, setNewTargetlatlng }) => {
+const TargetsMap = ({
+  newTargetlatlng,
+  setNewTargetlatlng,
+  newTargetRadius,
+}) => {
   const createTarget = (e) => {
     setNewTargetlatlng(e.latlng);
   };
@@ -24,7 +33,16 @@ const TargetsMap = ({ newTargetlatlng, setNewTargetlatlng }) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       {newTargetlatlng && (
-        <Marker position={newTargetlatlng} icon={newTargetIcon} />
+        <div>
+          <Marker position={newTargetlatlng} icon={newTargetIcon} />
+          <CircleMarker
+            center={newTargetlatlng}
+            radius={newTargetRadius}
+            color={safron}
+            fillColor={white}
+            fillOpacity={createTargetOpacity}
+          />
+        </div>
       )}
     </Map>
   );
