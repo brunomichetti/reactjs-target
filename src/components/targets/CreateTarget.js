@@ -17,6 +17,7 @@ const CreateTarget = ({
 
   const handleGoBack = () => {
     setNewTargetlatlng(null);
+    setNewTargetRadius('');
   };
 
   return (
