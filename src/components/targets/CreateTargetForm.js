@@ -13,7 +13,13 @@ import { topics } from './topicsList';
 import './create-target-form.scss';
 import { targetActions } from '../../actions/target.actions';
 
-const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
+const CreateTargetForm = ({
+  intl,
+  newTargetlatlng,
+  setNewTargetlatlng,
+  newTargetRadius,
+  setNewTargetRadius,
+}) => {
   const { select_topic } = {};
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -21,7 +27,7 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
   const createTargetState = useSelector((state) => state.target);
 
   const [inputs, setInputs] = useState({
-    radius: '',
+    radius: newTargetRadius,
     title: '',
     topic: '',
   });
@@ -49,6 +55,9 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
     setCleanAlert(true);
     const { name, value } = target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
+    if (name === 'radius') {
+      setNewTargetRadius(value);
+    }
   };
 
   const handleChangeTopic = (select_topic) => {
