@@ -17,3 +17,13 @@ export const handleSignupError = ({ response: { data } }) => {
   }
   return loginErrorConstants.SERVER_ERROR;
 };
+
+export const handleCreateTargetError = ({ response: { data } }) => {
+  if (data['radius']) {
+    return data.radius[0];
+  }
+  if (data.length > 0) {
+    return data[0];
+  }
+  return loginErrorConstants.SERVER_ERROR;
+};

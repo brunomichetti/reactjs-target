@@ -31,5 +31,9 @@
   "createtarget.select.topic.text": "SELECT A TOPIC",
   "createtarget.save.btn.text": "SAVE TARGET",
   "createtarget.title.placeholder.text": "Choose a title for your target.",
-  "createtarget.topic.placeholder.text": "What do you want to talk about?"
+  "createtarget.topic.placeholder.text": "What do you want to talk about?",
+  "createtarget.missing.topic.text": "A topic is required.",
+  "createtarget.missing.radius.text": "Radius is required.",
+  "createtarget.missing.title.text": "Title is required.",
+  "createtarget.success.text": "The target has been created successfully!"
 }

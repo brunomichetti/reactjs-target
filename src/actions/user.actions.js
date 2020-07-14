@@ -5,7 +5,7 @@ import { alertActions } from '../actions/alert.actions';
 import { handleLoginError, handleSignupError } from '../helpers/error.handler';
 import { homePageLink, loginPageLink } from '../constants/link.constants';
 
-const request = (user) => {
+export const request = (user) => {
   return { type: userConstants.USER_REQUEST, user };
 };
 

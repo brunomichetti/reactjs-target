@@ -1,47 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from 'react-loader-spinner';
 
 import FormInput from '../common/FormInput';
-import { genderSelectStyle } from '../users/genderSelectStyle';
 import FormSelect from '../common/FormSelect';
+import { topicSelectStyle } from './topicSelectStyle';
+import {
+  CustomSelectOption,
+  CustomSelectValue,
+} from '../common/customIconOption';
+import { topics } from './topicsList';
+import './create-target-form.scss';
+import { targetActions } from '../../actions/target.actions';
 
-const CreateTargetForm = ({ intl }) => {
-  const handleSubmit = () => {};
-
+const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
   const { select_topic } = {};
 
-  const topics = [
-    { value: 'football', label: 'Football' },
-    { value: 'travel', label: 'Travel' },
-    { value: 'politics', label: 'Politics' },
-    { value: 'art', label: 'Art' },
-    { value: 'dating', label: 'Dating' },
-    { value: 'music', label: 'Music' },
-    { value: 'movies', label: 'Movies' },
-    { value: 'series', label: 'Series' },
-    { value: 'food', label: 'Food' },
-  ];
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const errorAlert = useSelector((state) => state.alert);
 
   const [inputs, setInputs] = useState({
     radius: '',
     title: '',
     topic: '',
   });
-
   const { radius, title, topic } = inputs;
 
+  const [cleanAlert, setCleanAlert] = useState(false);
+
+  const createTargetRequest = useSelector(
+    (state) => state.target.createTargetRequest
+  );
+
+  const createTargetChange = useSelector((state) => state.target);
+
+  useEffect(() => {
+    if (createTargetChange.createTargetSuccess) {
+      alert(
+        intl.formatMessage({
+          id: 'createtarget.success.text',
+        })
+      );
+      setNewTargetlatlng(null);
+    }
+  }, [createTargetChange]);
+
+  const showCreateTargetAlert =
+    isSubmitted && !createTargetRequest && !cleanAlert && errorAlert;
+
+  const dispatch = useDispatch();
+
   const handleChange = ({ target }) => {
+    setCleanAlert(true);
     const { name, value } = target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
   const handleChangeTopic = (select_topic) => {
+    setCleanAlert(true);
     setInputs((inputs) => ({ ...inputs, topic: select_topic['value'] }));
   };
+
+  const noMissingValues = radius && title && topic && newTargetlatlng;
+
+  const handleSubmit = (e) => {
+    setCleanAlert(false);
+    e.preventDefault();
+    setIsSubmitted(true);
+    if (noMissingValues) {
+      dispatch(
+        targetActions.create(
+          radius,
+          title,
+          topic,
+          newTargetlatlng.lat,
+          newTargetlatlng.lng
+        )
+      );
+    }
+  };
+
   return (
-    <form align="center" className="create-target-form" onSubmit={handleSubmit}>
+    <form className="create-target-form" onSubmit={handleSubmit}>
       <FormInput
-        labelClassName="user-form__text"
-        inputClassName="user-form__input"
+        labelClassName="create-target-form__text"
+        inputClassName="create-target-form__input"
         inputLabel={intl.formatMessage({
           id: 'createtarget.specify.area.text',
         })}
@@ -49,10 +93,14 @@ const CreateTargetForm = ({ intl }) => {
         inputName="radius"
         inputValue={radius}
         inputOnChange={handleChange}
+        error={isSubmitted && !radius}
+        errorMsg={intl.formatMessage({
+          id: 'createtarget.missing.radius.text',
+        })}
       />
       <FormInput
-        labelClassName="user-form__text"
-        inputClassName="user-form__input"
+        labelClassName="create-target-form__text"
+        inputClassName="create-target-form__input"
         inputLabel={intl.formatMessage({
           id: 'createtarget.target.title.text',
         })}
@@ -63,30 +111,46 @@ const CreateTargetForm = ({ intl }) => {
         inputPlaceHolder={intl.formatMessage({
           id: 'createtarget.title.placeholder.text',
         })}
+        error={isSubmitted && !title}
+        errorMsg={intl.formatMessage({
+          id: 'createtarget.missing.title.text',
+        })}
       />
-      <p className="user-form__text">
+      <p className="create-target-form__text">
         {intl.formatMessage({
           id: 'createtarget.select.topic.text',
         })}
       </p>
       <FormSelect
-        customStyle={genderSelectStyle}
-        customClassName="user-form__text user-form__select"
+        customStyle={topicSelectStyle}
+        customClassName="create-target-form__text create-target-form__select"
         optionsSet={topics}
         onChangeFunction={handleChangeTopic}
-        placeHolder={intl.formatMessage({
-          id: 'userform.select.gender.text',
-        })}
         valueSelect={select_topic}
         placeHolder={intl.formatMessage({
           id: 'createtarget.topic.placeholder.text',
         })}
+        components={{
+          Option: CustomSelectOption,
+          SingleValue: CustomSelectValue,
+        }}
+        error={isSubmitted && !topic}
+        errorMsg={intl.formatMessage({
+          id: 'createtarget.missing.topic.text',
+        })}
+        alertClassName="create-target-form__alert-select"
       />
-      <button type="submit" className="user-form__btn-text">
+      <button type="submit" className="create-target-form__btn-text">
         {intl.formatMessage({
           id: 'createtarget.save.btn.text',
         })}
       </button>
+      {createTargetRequest && (
+        <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
+      )}
+      {showCreateTargetAlert && (
+        <div className="user-form__alert"> {errorAlert.message} </div>
+      )}
     </form>
   );
 };

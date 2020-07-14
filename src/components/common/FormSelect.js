@@ -12,6 +12,8 @@ const FormSelect = ({
   valueSelect,
   error = false,
   errorMsg = '',
+  components = null,
+  alertClassName = 'user-form__alert',
 }) => (
   <div align="center">
     <Select
@@ -21,8 +23,9 @@ const FormSelect = ({
       onChange={onChangeFunction}
       placeholder={placeHolder}
       value={valueSelect}
+      components={components}
     />
-    {error && <div className="user-form__alert">{errorMsg}</div>}
+    {error && <div className={alertClassName}>{errorMsg}</div>}
   </div>
 );
 
