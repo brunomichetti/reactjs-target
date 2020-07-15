@@ -21,6 +21,7 @@ const create = (radius, title, topic, lat, lon) => {
       dispatch(success());
       dispatch(alertActions.success());
     } catch (error) {
+      debugger;
       const errorMsg = handleCreateTargetError(error);
       dispatch(failure());
       dispatch(alertActions.error(errorMsg));
