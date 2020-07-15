@@ -22,7 +22,6 @@ const client = axios.create({
 
 client.interceptors.request.use((req) => {
   const accessToken = localStorage.getItem('accessToken');
-  debugger;
   if (accessToken && requiresAuth(req.url)) {
     req.headers['Authorization'] = `Bearer ${accessToken}`;
   }
