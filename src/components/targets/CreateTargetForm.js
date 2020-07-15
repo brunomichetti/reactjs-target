@@ -65,6 +65,11 @@ const CreateTargetForm = ({
     setInputs((inputs) => ({ ...inputs, topic: select_topic['value'] }));
   };
 
+  const handleChangeRadius = (e) => {
+    setInputs((inputs) => ({ ...inputs, radius: e.value }));
+    setNewTargetRadius(e.value);
+  };
+
   const noMissingValues = radius && title && topic && newTargetlatlng;
 
   const handleSubmit = (e) => {
@@ -84,11 +89,6 @@ const CreateTargetForm = ({
     }
   };
 
-  const handleRadiusChange = (e) => {
-    setInputs((inputs) => ({ ...inputs, ['radius']: e.value }));
-    setNewTargetRadius(e.value);
-  };
-
   return (
     <form className="create-target-form" onSubmit={handleSubmit}>
       <p className="create-target-form__text">
@@ -103,7 +103,7 @@ const CreateTargetForm = ({
         inputmode="numeric"
         name="radius"
         value={radius}
-        onValueChange={handleRadiusChange}
+        onValueChange={handleChangeRadius}
       />
       {isSubmitted && !radius && (
         <div className="user-form__alert">
