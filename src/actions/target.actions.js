@@ -9,7 +9,6 @@ const create = (radius, title, topic, lat, lon) => {
       await targetService.create(radius, title, topic, lat, lon);
       dispatch({ type: targetConstants.CREATE_TARGET_SUCCESS });
     } catch (error) {
-      debugger;
       const errorMsg = handleCreateTargetError(error);
       dispatch({ type: targetConstants.CREATE_TARGET_ERROR, result: errorMsg });
     }
