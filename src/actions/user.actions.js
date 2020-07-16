@@ -4,21 +4,19 @@ import { history } from '../helpers/history';
 import { handleLoginError, handleSignupError } from '../helpers/error.handler';
 import { homePageLink, loginPageLink } from '../constants/link.constants';
 
-export const request = () => {
-  return { type: userConstants.USER_REQUEST };
-};
+const userRequest = () => ({ type: userConstants.USER_REQUEST });
 
-const successToHomePage = (user, dispatch, successState) => {
+const successToHomePage = (user, dispatch, sucessAction) => {
   localStorage.setItem('user', JSON.stringify(user));
   localStorage.setItem('refreshToken', user.refresh_token);
   localStorage.setItem('accessToken', user.access_token);
-  dispatch(successState);
+  dispatch(sucessAction);
   history.push(homePageLink);
 };
 
 const login = (email, password) => {
   return async (dispatch) => {
-    dispatch(request());
+    dispatch(userRequest());
     try {
       const { data: user } = await userService.login(email, password);
       successToHomePage(user, dispatch, { type: userConstants.LOGIN_SUCCESS });
@@ -31,7 +29,7 @@ const login = (email, password) => {
 
 const logout = () => {
   return async (dispatch) => {
-    dispatch(request());
+    dispatch(userRequest());
     await userService.logout();
     dispatch({ type: userConstants.LOGOUT_SUCCESS });
     localStorage.removeItem('user');
@@ -43,7 +41,7 @@ const logout = () => {
 
 const signup = (name, email, password1, password2, gender) => {
   return async (dispatch) => {
-    dispatch(request());
+    dispatch(userRequest());
     try {
       const { data: user } = await userService.signup(
         name,

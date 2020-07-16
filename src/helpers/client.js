@@ -3,15 +3,15 @@ import axios from 'axios';
 import { loginPageLink } from '../constants/link.constants';
 import { history } from '../helpers/history';
 
+const URLS_WITHOUT_AUTH = [
+  'rest-auth/login/',
+  'rest-auth/registration/',
+  'rest-auth/logout/',
+];
+
 require('dotenv').config();
 
-const requiresAuth = (url) => {
-  return (
-    url !== 'rest-auth/login/' &&
-    url !== 'rest-auth/registration/' &&
-    url !== 'rest-auth/logout/'
-  );
-};
+const requiresAuth = (url) => !URLS_WITHOUT_AUTH.includes(url);
 
 const client = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
