@@ -1,6 +1,5 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import '../style/App.scss';
@@ -13,8 +12,8 @@ import { homePageLink } from '../constants/link.constants';
 const LoginPage = () => {
   const intl = useIntl();
 
-  const loggedIn = useSelector((state) => state.authentication.loggedIn);
-  if (loggedIn) {
+  const user = localStorage.getItem('user');
+  if (user) {
     return <Redirect to={homePageLink} />;
   }
 

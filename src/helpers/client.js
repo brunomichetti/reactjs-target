@@ -5,13 +5,10 @@ import { history } from '../helpers/history';
 
 require('dotenv').config();
 
-const requiresAuth = (url) => {
-  return (
-    url !== 'rest-auth/login/' &&
-    url !== 'rest-auth/registration/' &&
-    url !== 'rest-auth/logout/'
-  );
-};
+const requiresAuth = (url) =>
+  url !== 'rest-auth/login/' &&
+  url !== 'rest-auth/registration/' &&
+  url !== 'rest-auth/logout/';
 
 const client = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,

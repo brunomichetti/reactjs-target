@@ -12,16 +12,14 @@ import {
   signupPageLink,
 } from './constants/link.constants';
 
-const App = () => {
-  return (
-    <Router history={history}>
-      <Switch>
-        <Route exact path={['/', loginPageLink]} component={LoginPage} />
-        <Route exact path={signupPageLink} component={SignUpPage} />
-        <PrivateRoute exact path={homePageLink} comp={HomePage} />
-      </Switch>
-    </Router>
-  );
-};
+const App = () => (
+  <Router history={history}>
+    <Switch>
+      <Route exact path={['/', loginPageLink]} component={LoginPage} />
+      <Route exact path={signupPageLink} component={SignUpPage} />
+      <PrivateRoute exact path={homePageLink} comp={HomePage} />
+    </Switch>
+  </Router>
+);
 
 export default App;

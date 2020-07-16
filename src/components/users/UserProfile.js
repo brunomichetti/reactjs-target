@@ -38,7 +38,7 @@ const UserProfile = () => {
           imageHeight="150"
         />
       </div>
-      <p className="user-profile__username">{user.email}</p>
+      <p className="user-profile__username">{user.name}</p>
       <div className="user-profile__edit-logout">
         <a href={homePageLink}>
           {intl.formatMessage({
