@@ -7,11 +7,17 @@ import backImage from '../../assets/back.png';
 import targetImage from '../../assets/newTarget.png';
 import CreateTargetForm from './CreateTargetForm';
 
-const CreateTarget = ({ newTargetlatlng, setNewTargetlatlng }) => {
+const CreateTarget = ({
+  newTargetlatlng,
+  setNewTargetlatlng,
+  newTargetRadius,
+  setNewTargetRadius,
+}) => {
   const intl = useIntl();
 
   const handleGoBack = () => {
     setNewTargetlatlng(null);
+    setNewTargetRadius('');
   };
 
   return (
@@ -50,6 +56,8 @@ const CreateTarget = ({ newTargetlatlng, setNewTargetlatlng }) => {
           intl={intl}
           newTargetlatlng={newTargetlatlng}
           setNewTargetlatlng={setNewTargetlatlng}
+          newTargetRadius={newTargetRadius}
+          setNewTargetRadius={setNewTargetRadius}
         />
       </div>
     </div>

@@ -8,6 +8,7 @@ import smilies from '../assets/smilies.png';
 
 const HomePage = () => {
   const [newTargetlatlng, setNewTargetlatlng] = useState(null);
+  const [newTargetRadius, setNewTargetRadius] = useState('');
   return (
     <div className="main-div">
       <div className="main-div-left-homepage">
@@ -16,6 +17,8 @@ const HomePage = () => {
           <CreateTarget
             newTargetlatlng={newTargetlatlng}
             setNewTargetlatlng={setNewTargetlatlng}
+            newTargetRadius={newTargetRadius}
+            setNewTargetRadius={setNewTargetRadius}
           />
         )}
         <div className="user-profile__smilies">
@@ -25,6 +28,7 @@ const HomePage = () => {
       <TargetsMap
         newTargetlatlng={newTargetlatlng}
         setNewTargetlatlng={setNewTargetlatlng}
+        newTargetRadius={newTargetRadius}
       />
     </div>
   );

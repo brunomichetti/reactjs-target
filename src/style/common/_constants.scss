@@ -3,6 +3,7 @@ $black: black;
 $white: #fff;
 $dodger-blue: #2fbcf7;
 $error-red-shiraz: #ad0b1d;
+$safron: #efc638;
 
 // Fonts
 @font-face {
@@ -15,3 +16,12 @@ $error-red-shiraz: #ad0b1d;
 }
 $font-family-regular: Open Sans Regular;
 $font-family-bold: Open Sans Bold;
+
+// Numbers
+$create-target-circle-opacity: 0.8;
+
+:export {
+  safron: $safron;
+  white: $white;
+  createTargetOpacity: $create-target-circle-opacity;
+}

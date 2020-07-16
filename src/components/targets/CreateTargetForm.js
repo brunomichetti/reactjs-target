@@ -13,7 +13,15 @@ import { topics } from './topicsList';
 import './create-target-form.scss';
 import { targetActions } from '../../actions/target.actions';
 
-const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
+import NumberFormat from 'react-number-format';
+
+const CreateTargetForm = ({
+  intl,
+  newTargetlatlng,
+  setNewTargetlatlng,
+  newTargetRadius,
+  setNewTargetRadius,
+}) => {
   const { select_topic } = {};
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -21,7 +29,7 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
   const createTargetState = useSelector((state) => state.target);
 
   const [inputs, setInputs] = useState({
-    radius: '',
+    radius: newTargetRadius,
     title: '',
     topic: '',
   });
@@ -37,6 +45,7 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
         })
       );
       setNewTargetlatlng(null);
+      setNewTargetRadius('');
     }
   }, [createTargetState]);
 
@@ -54,6 +63,11 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
   const handleChangeTopic = (select_topic) => {
     setCleanAlert(true);
     setInputs((inputs) => ({ ...inputs, topic: select_topic['value'] }));
+  };
+
+  const handleChangeRadius = (e) => {
+    setInputs((inputs) => ({ ...inputs, radius: e.value }));
+    setNewTargetRadius(e.value);
   };
 
   const noMissingValues = radius && title && topic && newTargetlatlng;
@@ -77,21 +91,27 @@ const CreateTargetForm = ({ intl, newTargetlatlng, setNewTargetlatlng }) => {
 
   return (
     <form className="create-target-form" onSubmit={handleSubmit}>
-      <FormInput
-        labelClassName="create-target-form__text"
-        inputClassName="create-target-form__input"
-        inputLabel={intl.formatMessage({
+      <p className="create-target-form__text">
+        {intl.formatMessage({
           id: 'createtarget.specify.area.text',
         })}
-        inputType="number"
-        inputName="radius"
-        inputValue={radius}
-        inputOnChange={handleChange}
-        error={isSubmitted && !radius}
-        errorMsg={intl.formatMessage({
-          id: 'createtarget.missing.radius.text',
-        })}
+      </p>
+      <NumberFormat
+        thousandSeparator={true}
+        suffix={' m'}
+        className="create-target-form__input"
+        inputmode="numeric"
+        name="radius"
+        value={radius}
+        onValueChange={handleChangeRadius}
       />
+      {isSubmitted && !radius && (
+        <div className="user-form__alert">
+          {intl.formatMessage({
+            id: 'createtarget.missing.radius.text',
+          })}
+        </div>
+      )}
       <FormInput
         labelClassName="create-target-form__text"
         inputClassName="create-target-form__input"

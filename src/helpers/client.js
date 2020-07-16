@@ -3,9 +3,6 @@ import axios from 'axios';
 import { loginPageLink } from '../constants/link.constants';
 import { history } from '../helpers/history';
 
-import { loginPageLink } from '../constants/link.constants';
-import { history } from '../helpers/history';
-
 require('dotenv').config();
 
 const requiresAuth = (url) => {
