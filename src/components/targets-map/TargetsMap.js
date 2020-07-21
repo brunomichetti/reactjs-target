@@ -1,5 +1,6 @@
 import React from 'react';
 import { Map, TileLayer, Marker, CircleMarker } from 'react-leaflet';
+import { useSelector } from 'react-redux';
 
 import { mapConstants } from '../../constants/map.constants';
 import { newTargetIcon } from './map-icons';
@@ -19,7 +20,7 @@ const TargetsMap = ({
     setNewTargetlatlng(e.latlng);
   };
 
-  const targets = JSON.parse(localStorage.getItem('userTargets'));
+  const targets = useSelector((state) => state.target.userTargets);
 
   return (
     <Map

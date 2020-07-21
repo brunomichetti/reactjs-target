@@ -26,6 +26,13 @@ const CreateTargetForm = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const createTargetState = useSelector((state) => state.target);
+  const createTargetError = useSelector(
+    (state) => state.authentication.errorMsg
+  );
+
+  const createTargetRequest = useSelector(
+    (state) => state.authentication.userRequest
+  );
 
   const [inputs, setInputs] = useState({
     radius: newTargetRadius,
@@ -48,8 +55,7 @@ const CreateTargetForm = ({
     }
   }, [createTargetState]);
 
-  const showCreateTargetAlert =
-    isSubmitted && createTargetState.createTargetError && !cleanAlert;
+  const showCreateTargetAlert = isSubmitted && createTargetError && !cleanAlert;
 
   const dispatch = useDispatch();
 
@@ -158,11 +164,11 @@ const CreateTargetForm = ({
           id: 'createtarget.save.btn.text',
         })}
       </button>
-      {createTargetState.createTargetRequest && (
+      {createTargetRequest && (
         <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
       )}
       {showCreateTargetAlert && (
-        <div className="user-form__alert"> {createTargetState.errorMsg} </div>
+        <div className="user-form__alert"> {createTargetError} </div>
       )}
     </form>
   );

@@ -4,6 +4,7 @@ import { history } from '../helpers/history';
 import { handleLoginError, handleSignupError } from '../helpers/error.handler';
 import { homePageLink, loginPageLink } from '../constants/link.constants';
 import { targetService } from '../services/target.services';
+import { targetConstants } from '../constants/target.constants';
 
 const userRequest = () => ({ type: userConstants.USER_REQUEST });
 
@@ -13,7 +14,8 @@ const successToHomePage = async (user, dispatch, sucessAction) => {
   localStorage.setItem('accessToken', user.access_token);
   dispatch(sucessAction);
   const { data: targets } = await targetService.getTargets();
-  localStorage.setItem('userTargets', JSON.stringify(targets));
+  dispatch({ type: targetConstants.GET_TARGETS_SUCCESS, result: targets });
+  //localStorage.setItem('userTargets', JSON.stringify(targets));
   history.push(homePageLink);
 };
 
