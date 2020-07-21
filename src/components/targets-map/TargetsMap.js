@@ -8,6 +8,7 @@ import {
   safron,
   createTargetOpacity,
 } from '../../style/common/_constants.scss';
+import MarketTarget from './MarkerTargets';
 
 const TargetsMap = ({
   newTargetlatlng,
@@ -17,6 +18,8 @@ const TargetsMap = ({
   const createTarget = (e) => {
     setNewTargetlatlng(e.latlng);
   };
+
+  const targets = JSON.parse(localStorage.getItem('userTargets'));
 
   return (
     <Map
@@ -44,6 +47,7 @@ const TargetsMap = ({
           />
         </div>
       )}
+      <MarketTarget targets={targets} />
     </Map>
   );
 };

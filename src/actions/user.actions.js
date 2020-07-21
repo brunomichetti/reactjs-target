@@ -3,14 +3,17 @@ import { userService } from '../services/user.services';
 import { history } from '../helpers/history';
 import { handleLoginError, handleSignupError } from '../helpers/error.handler';
 import { homePageLink, loginPageLink } from '../constants/link.constants';
+import { targetService } from '../services/target.services';
 
 const userRequest = () => ({ type: userConstants.USER_REQUEST });
 
-const successToHomePage = (user, dispatch, sucessAction) => {
+const successToHomePage = async (user, dispatch, sucessAction) => {
   localStorage.setItem('user', JSON.stringify(user));
   localStorage.setItem('refreshToken', user.refresh_token);
   localStorage.setItem('accessToken', user.access_token);
   dispatch(sucessAction);
+  const { data: targets } = await targetService.getTargets();
+  localStorage.setItem('userTargets', JSON.stringify(targets));
   history.push(homePageLink);
 };
 
@@ -19,7 +22,9 @@ const login = (email, password) => {
     dispatch(userRequest());
     try {
       const { data: user } = await userService.login(email, password);
-      successToHomePage(user, dispatch, { type: userConstants.LOGIN_SUCCESS });
+      successToHomePage(user, dispatch, {
+        type: userConstants.LOGIN_SUCCESS,
+      });
     } catch (error) {
       const errorMsg = handleLoginError(error);
       dispatch({ type: userConstants.LOGIN_FAILURE, result: errorMsg });
@@ -35,6 +40,7 @@ const logout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('userTargets');
     history.push(loginPageLink);
   };
 };
