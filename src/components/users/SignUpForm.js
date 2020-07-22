@@ -11,6 +11,7 @@ import { userActions } from '../../actions/user.actions';
 import FormInput from '../common/FormInput';
 import FormSelect from '../common/FormSelect';
 import { genderSelectStyle } from './genderSelectStyle';
+import { userRequest } from '../../actions/user.actions';
 
 const SignUpForm = () => {
   const intl = useIntl();
@@ -38,7 +39,7 @@ const SignUpForm = () => {
 
   const [cleanAlert, setCleanAlert] = useState(false);
 
-  const authState = useSelector((state) => state.user);
+  const { requestError, errorMsg } = useSelector((state) => state.user);
 
   const handleChange = ({ target }) => {
     setCleanAlert(true);
@@ -55,12 +56,13 @@ const SignUpForm = () => {
 
   const equalPasswords = password1 === password2;
 
-  const showSignupAlert = isSubmitted && authState.requestError && !cleanAlert;
+  const showSignupAlert = isSubmitted && requestError && !cleanAlert;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
     if (!missingFields && equalPasswords) {
+      dispatch(userRequest());
       dispatch(userActions.signup(name, email, password1, password2, gender));
     }
     setCleanAlert(false);
@@ -166,9 +168,7 @@ const SignUpForm = () => {
           })}
         </button>
       </div>
-      {showSignupAlert && (
-        <div className="user-form__alert"> {authState.errorMsg} </div>
-      )}
+      {showSignupAlert && <div className="user-form__alert"> {errorMsg} </div>}
       <hr className="user-form__hr" />
       <div className="user-form__text">
         <Link to={loginPageLink}>

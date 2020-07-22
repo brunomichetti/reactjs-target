@@ -9,6 +9,7 @@ import '../../style/App.scss';
 import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
 import FormInput from '../common/FormInput';
+import { userRequest } from '../../actions/user.actions';
 
 const LoginForm = () => {
   const intl = useIntl();
@@ -22,12 +23,14 @@ const LoginForm = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const authState = useSelector((state) => state.user);
+  const { loading, requestError, errorMsg } = useSelector(
+    (state) => state.user
+  );
 
-  const showLoginAlert = isSubmitted && authState.requestError && !cleanAlert;
+  const showLoginAlert = isSubmitted && requestError && !cleanAlert;
 
   const handleChange = ({ target }) => {
-    if (!authState.userRequest) {
+    if (!loading) {
       const { name, value } = target;
       setInputs((inputs) => ({ ...inputs, [name]: value }));
       setCleanAlert(true);
@@ -39,6 +42,7 @@ const LoginForm = () => {
     setIsSubmitted(true);
     if (email && password) {
       setCleanAlert(false);
+      dispatch(userRequest());
       dispatch(userActions.login(email, password));
     }
   };
@@ -82,11 +86,11 @@ const LoginForm = () => {
           })}
         </button>
       </div>
-      {authState.userRequest && (
+      {loading && (
         <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
       )}
-      {authState.requestError && showLoginAlert && (
-        <div className="user-form__alert"> {authState.errorMsg} </div>
+      {requestError && showLoginAlert && (
+        <div className="user-form__alert"> {errorMsg} </div>
       )}
       {/* href="/" until de feature is done */}
       <div className="user-form__forgot-pwd">

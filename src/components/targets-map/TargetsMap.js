@@ -20,7 +20,7 @@ const TargetsMap = ({
     setNewTargetlatlng(e.latlng);
   };
 
-  const targets = useSelector((state) => state.target.userTargets);
+  const { userTargets } = useSelector((state) => state.target);
 
   return (
     <Map
@@ -48,7 +48,7 @@ const TargetsMap = ({
           />
         </div>
       )}
-      <MarketTarget targets={targets} />
+      <MarketTarget targets={userTargets} />
     </Map>
   );
 };

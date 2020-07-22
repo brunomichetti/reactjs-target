@@ -13,6 +13,8 @@ import {
 import { topics } from './topicsList';
 import './create-target-form.scss';
 import { targetActions } from '../../actions/target.actions';
+import { targetConstants } from '../../constants/target.constants';
+import { userRequest } from '../../actions/user.actions';
 
 const CreateTargetForm = ({
   intl,
@@ -26,9 +28,9 @@ const CreateTargetForm = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const createTargetState = useSelector((state) => state.target);
-  const createTargetError = useSelector((state) => state.user.errorMsg);
 
-  const createTargetRequest = useSelector((state) => state.user.userRequest);
+  const createTargetError = useSelector((state) => state.user.errorMsg);
+  const createTargetRequest = useSelector((state) => state.user.loading);
 
   const [inputs, setInputs] = useState({
     radius: newTargetRadius,
@@ -39,8 +41,10 @@ const CreateTargetForm = ({
 
   const [cleanAlert, setCleanAlert] = useState(false);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (isSubmitted && createTargetState.createTargetSuccess) {
+    if (createTargetState.createTargetSuccess) {
       alert(
         intl.formatMessage({
           id: 'createtarget.success.text',
@@ -48,12 +52,17 @@ const CreateTargetForm = ({
       );
       setNewTargetlatlng(null);
       setNewTargetRadius('');
+      dispatch({ type: targetConstants.CREATE_ALERT_FINISHED });
     }
-  }, [createTargetState]);
+  }, [
+    createTargetState,
+    setNewTargetRadius,
+    setNewTargetlatlng,
+    intl,
+    dispatch,
+  ]);
 
   const showCreateTargetAlert = isSubmitted && createTargetError && !cleanAlert;
-
-  const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
     setCleanAlert(true);
@@ -78,6 +87,7 @@ const CreateTargetForm = ({
     e.preventDefault();
     setIsSubmitted(true);
     if (noMissingValues) {
+      dispatch(userRequest());
       dispatch(
         targetActions.create(
           radius,

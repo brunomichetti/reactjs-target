@@ -18,7 +18,7 @@ const UserProfile = () => {
 
   const { user } = JSON.parse(localStorage.getItem('user'));
 
-  const loggingOut = useSelector((state) => state.user.userRequest);
+  const loggingOut = useSelector((state) => state.user.loading);
 
   const handleLogout = () => {
     dispatch(userActions.logout());

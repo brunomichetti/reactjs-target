@@ -6,7 +6,7 @@ import { homePageLink, loginPageLink } from '../constants/link.constants';
 import { targetService } from '../services/target.services';
 import { targetConstants } from '../constants/target.constants';
 
-const userRequest = () => ({ type: userConstants.USER_REQUEST });
+export const userRequest = () => ({ type: userConstants.USER_REQUEST });
 
 const successToHomePage = async (user, dispatch) => {
   localStorage.setItem('user', JSON.stringify(user));
@@ -20,7 +20,6 @@ const successToHomePage = async (user, dispatch) => {
 
 const login = (email, password) => {
   return async (dispatch) => {
-    dispatch(userRequest());
     try {
       const { data: user } = await userService.login(email, password);
       successToHomePage(user, dispatch);
@@ -33,9 +32,9 @@ const login = (email, password) => {
 
 const logout = () => {
   return async (dispatch) => {
-    dispatch(userRequest());
     await userService.logout();
     dispatch({ type: userConstants.USER_REQUEST_SUCCESS });
+    dispatch({ type: targetConstants.CLEAN_TARGETS });
     localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
@@ -45,7 +44,6 @@ const logout = () => {
 
 const signup = (name, email, password1, password2, gender) => {
   return async (dispatch) => {
-    dispatch(userRequest());
     try {
       const { data: user } = await userService.signup(
         name,
@@ -57,7 +55,7 @@ const signup = (name, email, password1, password2, gender) => {
       successToHomePage(user, dispatch);
     } catch (error) {
       const errorMsg = handleSignupError(error);
-      dispatch({ type: userConstants.SIGNUP_FAILURE, result: errorMsg });
+      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
     }
   };
 };
