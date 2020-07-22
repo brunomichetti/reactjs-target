@@ -1,5 +1,6 @@
 import React from 'react';
 import { CircleMarker, Marker } from 'react-leaflet';
+import PropTypes from 'prop-types';
 
 import {
   safron,
@@ -9,7 +10,7 @@ import { getIconByTopic } from './map-icons';
 
 const MarkerTarget = ({ targets }) => (
   <div>
-    {targets.map(({ _, topic, radius, lat, lon }) => (
+    {targets.map(({ topic, radius, lat, lon }) => (
       <div>
         <Marker
           position={{ lat: lat, lng: lon }}
@@ -26,4 +27,9 @@ const MarkerTarget = ({ targets }) => (
     ))}
   </div>
 );
+
+MarkerTarget.propTypes = {
+  targets: PropTypes.array,
+};
+
 export default MarkerTarget;
