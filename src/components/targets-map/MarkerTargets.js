@@ -10,8 +10,8 @@ import { getIconByTopic } from './map-icons';
 
 const MarkerTarget = ({ targets }) => (
   <div>
-    {targets.map(({ topic, radius, lat, lon }) => (
-      <div>
+    {targets.map(({ id, topic, radius, lat, lon }) => (
+      <div key={id}>
         <Marker
           position={{ lat: lat, lng: lon }}
           icon={getIconByTopic(topic)}
