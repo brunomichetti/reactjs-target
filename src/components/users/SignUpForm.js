@@ -38,7 +38,7 @@ const SignUpForm = () => {
 
   const [cleanAlert, setCleanAlert] = useState(false);
 
-  const authState = useSelector((state) => state.authentication);
+  const authState = useSelector((state) => state.user);
 
   const handleChange = ({ target }) => {
     setCleanAlert(true);
@@ -55,7 +55,7 @@ const SignUpForm = () => {
 
   const equalPasswords = password1 === password2;
 
-  const showSignupAlert = isSubmitted && authState.authError && !cleanAlert;
+  const showSignupAlert = isSubmitted && authState.requestError && !cleanAlert;
 
   const handleSubmit = (e) => {
     e.preventDefault();

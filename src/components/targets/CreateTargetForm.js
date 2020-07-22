@@ -26,13 +26,9 @@ const CreateTargetForm = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const createTargetState = useSelector((state) => state.target);
-  const createTargetError = useSelector(
-    (state) => state.authentication.errorMsg
-  );
+  const createTargetError = useSelector((state) => state.user.errorMsg);
 
-  const createTargetRequest = useSelector(
-    (state) => state.authentication.userRequest
-  );
+  const createTargetRequest = useSelector((state) => state.user.userRequest);
 
   const [inputs, setInputs] = useState({
     radius: newTargetRadius,

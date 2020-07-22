@@ -22,9 +22,9 @@ const LoginForm = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const authState = useSelector((state) => state.authentication);
+  const authState = useSelector((state) => state.user);
 
-  const showLoginAlert = isSubmitted && authState.authError && !cleanAlert;
+  const showLoginAlert = isSubmitted && authState.requestError && !cleanAlert;
 
   const handleChange = ({ target }) => {
     if (!authState.userRequest) {
@@ -85,7 +85,7 @@ const LoginForm = () => {
       {authState.userRequest && (
         <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
       )}
-      {authState.authError && showLoginAlert && (
+      {authState.requestError && showLoginAlert && (
         <div className="user-form__alert"> {authState.errorMsg} </div>
       )}
       {/* href="/" until de feature is done */}
