@@ -1,16 +1,22 @@
 import { targetService } from '../services/target.services';
 import { handleCreateTargetError } from '../helpers/error.handler';
 import { targetConstants } from '../constants/target.constants';
+import { userConstants } from '../constants/user.constants';
 
 const create = (radius, title, topic, lat, lon) => {
   return async (dispatch) => {
-    dispatch({ type: targetConstants.CREATE_TARGET_REQUEST });
+    dispatch({ type: userConstants.USER_REQUEST });
     try {
       await targetService.create(radius, title, topic, lat, lon);
-      dispatch({ type: targetConstants.CREATE_TARGET_SUCCESS });
+      const { data: targets } = await targetService.getTargets();
+      dispatch({
+        type: targetConstants.CREATE_TARGET_SUCCESS,
+        result: targets,
+      });
+      dispatch({ type: userConstants.USER_REQUEST_SUCCESS });
     } catch (error) {
       const errorMsg = handleCreateTargetError(error);
-      dispatch({ type: targetConstants.CREATE_TARGET_ERROR, result: errorMsg });
+      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
     }
   };
 };
