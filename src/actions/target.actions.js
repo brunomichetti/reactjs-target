@@ -5,7 +5,6 @@ import { userConstants } from '../constants/user.constants';
 
 const create = (radius, title, topic, lat, lon) => {
   return async (dispatch) => {
-    dispatch({ type: userConstants.USER_REQUEST });
     try {
       await targetService.create(radius, title, topic, lat, lon);
       const { data: targets } = await targetService.getTargets();
