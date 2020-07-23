@@ -1,11 +1,12 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import PropTypes from 'prop-types';
 
 import '../users/user-form.scss';
 import './create-target.scss';
-import backImage from '../../assets/back.png';
 import targetImage from '../../assets/newTarget.png';
 import CreateTargetForm from './CreateTargetForm';
+import UpperBar from '../common/UpperBar';
 
 const CreateTarget = ({
   newTargetlatlng,
@@ -22,25 +23,12 @@ const CreateTarget = ({
 
   return (
     <div className="create-target">
-      <div className="create-target__title-bar">
-        <div className="create-target__title-bar-back">
-          <input
-            type="image"
-            src={backImage}
-            onClick={handleGoBack}
-            width="12"
-            height="22"
-            alt="Back button"
-          />
-        </div>
-        <div className="create-target__title-text">
-          <p>
-            {intl.formatMessage({
-              id: 'createtarget.title.text',
-            })}
-          </p>
-        </div>
-      </div>
+      <UpperBar
+        goBackFunction={handleGoBack}
+        titleText={intl.formatMessage({
+          id: 'createtarget.title.text',
+        })}
+      />
       <img
         src={targetImage}
         className="create-target__new-target-img"
@@ -62,6 +50,13 @@ const CreateTarget = ({
       </div>
     </div>
   );
+};
+
+CreateTarget.propTypes = {
+  newTargetlatlng: PropTypes.object,
+  setNewTargetlatlng: PropTypes.func,
+  newTargetRadius: PropTypes.object,
+  setNewTargetRadius: PropTypes.func,
 };
 
 export default CreateTarget;

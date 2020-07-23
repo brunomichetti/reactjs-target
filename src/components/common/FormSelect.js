@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
 import '../users/user-form.scss';
 
@@ -28,5 +29,18 @@ const FormSelect = ({
     {error && <div className={alertClassName}>{errorMsg}</div>}
   </div>
 );
+
+FormSelect.propTypes = {
+  customClassName: PropTypes.object,
+  customStyle: PropTypes.object,
+  optionsSet: PropTypes.object,
+  onChangeFunction: PropTypes.object,
+  placeHolder: PropTypes.object,
+  valueSelect: PropTypes.object,
+  error: PropTypes.object,
+  errorMsg: PropTypes.object,
+  components: PropTypes.object,
+  alertClassName: PropTypes.object,
+};
 
 export default FormSelect;

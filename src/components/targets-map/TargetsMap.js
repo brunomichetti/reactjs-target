@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, TileLayer, Marker, CircleMarker } from 'react-leaflet';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { mapConstants } from '../../constants/map.constants';
 import { newTargetIcon } from './map-icons';
@@ -51,6 +52,12 @@ const TargetsMap = ({
       <MarketTarget targets={userTargets} />
     </Map>
   );
+};
+
+TargetsMap.propTypes = {
+  newTargetlatlng: PropTypes.object,
+  setNewTargetlatlng: PropTypes.func,
+  newTargetRadius: PropTypes.object,
 };
 
 export default TargetsMap;

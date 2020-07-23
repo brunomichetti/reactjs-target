@@ -1,5 +1,4 @@
 import React from 'react';
-import ExampleComponent from 'react-rounded-image';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
@@ -7,21 +6,23 @@ import Loader from 'react-loader-spinner';
 import menuIcon from '../../assets/icons/menuIcon.png';
 import '../../style/App.scss';
 import './user-profile.scss';
-import defaultProfileImg from '../../assets/profilePicture.png';
 import { userActions } from '../../actions/user.actions';
-import { homePageLink } from '../../constants/link.constants';
+import UserImageName from './UserImageName';
+import PropTypes from 'prop-types';
 
-const UserProfile = () => {
+const UserProfile = ({ user, setEditProfile }) => {
   const intl = useIntl();
 
   const dispatch = useDispatch();
-
-  const { user } = JSON.parse(localStorage.getItem('user'));
 
   const loggingOut = useSelector((state) => state.user.loading);
 
   const handleLogout = () => {
     dispatch(userActions.logout());
+  };
+
+  const handleEditProfile = () => {
+    setEditProfile(true);
   };
 
   return (
@@ -30,21 +31,17 @@ const UserProfile = () => {
         <img src={menuIcon} alt="menu_button" />
       </div>
       <p className="user-profile__app-title">TARGET</p>
-      <div className="user-profile__profile-picture">
-        <ExampleComponent
-          image={defaultProfileImg}
-          roundedSize="0"
-          imageWidth="150"
-          imageHeight="150"
-        />
-      </div>
-      <p className="user-profile__username">{user.name}</p>
-      <div className="user-profile__edit-logout">
-        <a href={homePageLink}>
+      <UserImageName user={user} />
+      <div className="user-profile__button-link">
+        <button
+          type="button"
+          className="logout__btn-text"
+          onClick={handleEditProfile}
+        >
           {intl.formatMessage({
             id: 'homepage.edit.text',
           })}
-        </a>{' '}
+        </button>{' '}
         &nbsp; / &nbsp;
         <button
           type="button"
@@ -67,6 +64,11 @@ const UserProfile = () => {
       </p>
     </div>
   );
+};
+
+UserProfile.propTypes = {
+  user: PropTypes.object,
+  setEditProfile: PropTypes.func,
 };
 
 export default UserProfile;

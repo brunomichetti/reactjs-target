@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import '../users/user-form.scss';
 
@@ -28,5 +29,18 @@ const FormInput = ({
     {error && <div className="user-form__alert">{errorMsg}</div>}
   </div>
 );
+
+FormInput.propTypes = {
+  labelClassName: PropTypes.object,
+  inputClassName: PropTypes.object,
+  inputLabel: PropTypes.object,
+  inputType: PropTypes.object,
+  inputName: PropTypes.object,
+  inputValue: PropTypes.object,
+  inputPlaceHolder: PropTypes.object,
+  inputOnChange: PropTypes.object,
+  error: PropTypes.object,
+  errorMsg: PropTypes.object,
+};
 
 export default FormInput;

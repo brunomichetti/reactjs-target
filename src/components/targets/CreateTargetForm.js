@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
+import PropTypes from 'prop-types';
 
 import FormInput from '../common/FormInput';
 import FormSelect from '../common/FormSelect';
@@ -178,6 +179,14 @@ const CreateTargetForm = ({
       )}
     </form>
   );
+};
+
+CreateTargetForm.propTypes = {
+  intl: PropTypes.func,
+  newTargetlatlng: PropTypes.object,
+  setNewTargetlatlng: PropTypes.func,
+  newTargetRadius: PropTypes.object,
+  setNewTargetRadius: PropTypes.func,
 };
 
 export default CreateTargetForm;
