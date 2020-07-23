@@ -1,4 +1,5 @@
 import React from 'react';
+import { string, func, bool, number, oneOfType } from 'prop-types';
 
 import '../users/user-form.scss';
 
@@ -28,5 +29,18 @@ const FormInput = ({
     {error && <div className="user-form__alert">{errorMsg}</div>}
   </div>
 );
+
+FormInput.propTypes = {
+  labelClassName: string.isRequired,
+  inputClassName: string.isRequired,
+  inputLabel: string.isRequired,
+  inputType: string.isRequired,
+  inputName: string.isRequired,
+  inputValue: oneOfType([string, number]),
+  inputPlaceHolder: string.isRequired,
+  inputOnChange: func.isRequired,
+  error: bool,
+  errorMsg: string,
+};
 
 export default FormInput;

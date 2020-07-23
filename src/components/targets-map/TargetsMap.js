@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, TileLayer, Marker, CircleMarker } from 'react-leaflet';
 import { useSelector } from 'react-redux';
+import { func, string } from 'prop-types';
 
 import { mapConstants } from '../../constants/map.constants';
 import { newTargetIcon } from './map-icons';
@@ -10,6 +11,7 @@ import {
   createTargetOpacity,
 } from '../../style/common/_constants.scss';
 import MarketTarget from './MarkerTargets';
+import { latLngShape } from '../../constants/shapes';
 
 const TargetsMap = ({
   newTargetlatlng,
@@ -51,6 +53,12 @@ const TargetsMap = ({
       <MarketTarget targets={userTargets} />
     </Map>
   );
+};
+
+TargetsMap.propTypes = {
+  newTargetlatlng: latLngShape,
+  setNewTargetlatlng: func,
+  newTargetRadius: string,
 };
 
 export default TargetsMap;

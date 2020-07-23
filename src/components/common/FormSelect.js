@@ -1,6 +1,12 @@
 import React from 'react';
 import Select from 'react-select';
 
+import { string, func, bool, oneOfType } from 'prop-types';
+import {
+  topicSelectArrayShape,
+  genderSelectArrayShape,
+  componentSelectShape,
+} from '../../constants/shapes';
 import '../users/user-form.scss';
 
 const FormSelect = ({
@@ -28,5 +34,18 @@ const FormSelect = ({
     {error && <div className={alertClassName}>{errorMsg}</div>}
   </div>
 );
+
+FormSelect.propTypes = {
+  customClassName: string.isRequired,
+  customStyle: string.isRequired,
+  optionsSet: oneOfType([topicSelectArrayShape, genderSelectArrayShape]),
+  onChangeFunction: func.isRequired,
+  placeHolder: string.isRequired,
+  valueSelect: string.isRequired,
+  error: bool,
+  errorMsg: string,
+  components: componentSelectShape,
+  alertClassName: string,
+};
 
 export default FormSelect;

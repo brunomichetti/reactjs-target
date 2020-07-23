@@ -35,5 +35,7 @@
   "createtarget.missing.topic.text": "A topic is required.",
   "createtarget.missing.radius.text": "Radius is required.",
   "createtarget.missing.title.text": "Title is required.",
-  "createtarget.success.text": "The target has been created successfully!"
+  "createtarget.success.text": "The target has been created successfully!",
+
+  "editprofile.title.text": "EDIT PROFILE"
 }

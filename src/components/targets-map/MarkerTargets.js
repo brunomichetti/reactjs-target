@@ -1,6 +1,7 @@
 import React from 'react';
 import { CircleMarker, Marker } from 'react-leaflet';
-import PropTypes from 'prop-types';
+
+import { targetsArrayShape } from '../../constants/shapes';
 
 import {
   safron,
@@ -29,7 +30,7 @@ const MarkerTarget = ({ targets }) => (
 );
 
 MarkerTarget.propTypes = {
-  targets: PropTypes.array,
+  targets: targetsArrayShape,
 };
 
 export default MarkerTarget;
