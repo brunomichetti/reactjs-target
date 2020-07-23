@@ -1,9 +1,9 @@
 import React from 'react';
 import ExampleComponent from 'react-rounded-image';
-import PropTypes from 'prop-types';
 
 import defaultProfileImg from '../../assets/profilePicture.png';
 import './user-profile.scss';
+import { userShape } from '../../constants/shapes';
 
 const UserImageName = ({ user }) => {
   return (
@@ -22,7 +22,7 @@ const UserImageName = ({ user }) => {
 };
 
 UserImageName.propTypes = {
-  user: PropTypes.object,
+  user: userShape,
 };
 
 export default UserImageName;

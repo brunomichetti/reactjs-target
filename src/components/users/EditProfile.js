@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 
 import UpperBar from '../common/UpperBar';
 
@@ -25,7 +25,7 @@ const EditProfile = ({ setEditProfile }) => {
 };
 
 EditProfile.propTypes = {
-  setEditProfile: PropTypes.func,
+  setEditProfile: func,
 };
 
 export default EditProfile;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { func, string } from 'prop-types';
 
 import backImage from '../../assets/back.png';
 import './upper-bar.scss';
@@ -23,8 +23,8 @@ const UpperBar = ({ goBackFunction, titleText }) => (
 );
 
 UpperBar.propTypes = {
-  goBackFunction: PropTypes.func,
-  titleText: PropTypes.object,
+  goBackFunction: func,
+  titleText: string,
 };
 
 export default UpperBar;

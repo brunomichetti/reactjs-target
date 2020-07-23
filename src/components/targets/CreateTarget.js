@@ -1,12 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 
 import '../users/user-form.scss';
 import './create-target.scss';
 import targetImage from '../../assets/newTarget.png';
 import CreateTargetForm from './CreateTargetForm';
 import UpperBar from '../common/UpperBar';
+import { latLngShape } from '../../constants/shapes';
 
 const CreateTarget = ({
   newTargetlatlng,
@@ -53,10 +54,10 @@ const CreateTarget = ({
 };
 
 CreateTarget.propTypes = {
-  newTargetlatlng: PropTypes.object,
-  setNewTargetlatlng: PropTypes.func,
-  newTargetRadius: PropTypes.object,
-  setNewTargetRadius: PropTypes.func,
+  newTargetlatlng: latLngShape,
+  setNewTargetlatlng: func,
+  newTargetRadius: latLngShape,
+  setNewTargetRadius: func,
 };
 
 export default CreateTarget;

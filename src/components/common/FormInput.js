@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, func, bool, number, oneOfType } from 'prop-types';
 
 import '../users/user-form.scss';
 
@@ -31,16 +31,16 @@ const FormInput = ({
 );
 
 FormInput.propTypes = {
-  labelClassName: PropTypes.object,
-  inputClassName: PropTypes.object,
-  inputLabel: PropTypes.object,
-  inputType: PropTypes.object,
-  inputName: PropTypes.object,
-  inputValue: PropTypes.object,
-  inputPlaceHolder: PropTypes.object,
-  inputOnChange: PropTypes.object,
-  error: PropTypes.object,
-  errorMsg: PropTypes.object,
+  labelClassName: string.isRequired,
+  inputClassName: string.isRequired,
+  inputLabel: string.isRequired,
+  inputType: string.isRequired,
+  inputName: string.isRequired,
+  inputValue: oneOfType([string, number]),
+  inputPlaceHolder: string.isRequired,
+  inputOnChange: func.isRequired,
+  error: bool,
+  errorMsg: string,
 };
 
 export default FormInput;

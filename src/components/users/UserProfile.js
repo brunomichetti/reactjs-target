@@ -2,13 +2,14 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
+import { userShape } from '../../constants/shapes';
 
 import menuIcon from '../../assets/icons/menuIcon.png';
 import '../../style/App.scss';
 import './user-profile.scss';
 import { userActions } from '../../actions/user.actions';
 import UserImageName from './UserImageName';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 
 const UserProfile = ({ user, setEditProfile }) => {
   const intl = useIntl();
@@ -67,8 +68,8 @@ const UserProfile = ({ user, setEditProfile }) => {
 };
 
 UserProfile.propTypes = {
-  user: PropTypes.object,
-  setEditProfile: PropTypes.func,
+  user: userShape,
+  setEditProfile: func,
 };
 
 export default UserProfile;

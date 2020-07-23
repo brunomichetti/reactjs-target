@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 
 import { loginPageLink } from '../constants/link.constants';
 
@@ -18,7 +18,7 @@ const PrivateRoute = ({ comp: Component, ...rest }) => {
 };
 
 PrivateRoute.propTypes = {
-  comp: PropTypes.node,
+  comp: func,
 };
 
 export default PrivateRoute;
