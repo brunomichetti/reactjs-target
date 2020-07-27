@@ -1,8 +1,10 @@
 import React from 'react';
 import Select from 'react-select';
 
-import { string, func, bool, oneOfType } from 'prop-types';
+import { string, func, bool, oneOfType, object } from 'prop-types';
 import {
+  topicSelectShape,
+  genderSelectShape,
   topicSelectArrayShape,
   genderSelectArrayShape,
   componentSelectShape,
@@ -14,7 +16,7 @@ const FormSelect = ({
   customStyle,
   optionsSet,
   onChangeFunction,
-  placeHolder,
+  placeHolder = '',
   valueSelect,
   error = false,
   errorMsg = '',
@@ -37,11 +39,11 @@ const FormSelect = ({
 
 FormSelect.propTypes = {
   customClassName: string.isRequired,
-  customStyle: string.isRequired,
+  customStyle: object.isRequired,
   optionsSet: oneOfType([topicSelectArrayShape, genderSelectArrayShape]),
   onChangeFunction: func.isRequired,
-  placeHolder: string.isRequired,
-  valueSelect: string.isRequired,
+  placeHolder: string,
+  valueSelect: oneOfType([topicSelectShape, genderSelectShape]),
   error: bool,
   errorMsg: string,
   components: componentSelectShape,

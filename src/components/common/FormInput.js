@@ -37,7 +37,7 @@ FormInput.propTypes = {
   inputType: string.isRequired,
   inputName: string.isRequired,
   inputValue: oneOfType([string, number]),
-  inputPlaceHolder: string.isRequired,
+  inputPlaceHolder: string,
   inputOnChange: func.isRequired,
   error: bool,
   errorMsg: string,

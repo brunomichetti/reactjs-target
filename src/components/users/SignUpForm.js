@@ -12,15 +12,10 @@ import FormInput from '../common/FormInput';
 import FormSelect from '../common/FormSelect';
 import { genderSelectStyle } from './genderSelectStyle';
 import { userRequest } from '../../actions/user.actions';
+import { genders } from './gendersList';
 
 const SignUpForm = () => {
   const intl = useIntl();
-
-  const genders = [
-    { value: 'male', label: 'MALE' },
-    { value: 'female', label: 'FEMALE' },
-    { value: 'not_specified', label: 'NOT SPECIFIED' },
-  ];
 
   const { select_gender } = {};
 

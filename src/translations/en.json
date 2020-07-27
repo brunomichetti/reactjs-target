@@ -37,5 +37,12 @@
   "createtarget.missing.title.text": "Title is required.",
   "createtarget.success.text": "The target has been created successfully!",
 
-  "editprofile.title.text": "EDIT PROFILE"
+  "editprofile.title.text": "EDIT PROFILE",
+  "editprofile.update.name.text": "UPDATE NAME",
+  "editprofile.update.gender.text": "UPDATE GENDER",
+  "editprofile.update.password.text": "UPDATE PASSWORD",
+  "editprofile.update.password.confirm.text": "CONFIRM NEW PASSWORD",
+  "editprofile.save.changes.text": "SAVE CHANGES",
+  "editprofile.empty.name.text": "Name can't be empty.",
+  "editprofile.success.text": "Info updated successfully!"
 }
