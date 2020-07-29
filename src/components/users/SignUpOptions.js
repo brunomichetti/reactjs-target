@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { func } from 'prop-types';
+import { object } from 'prop-types';
 
 import { signupPageLink, loginPageLink } from '../../constants/link.constants';
 
@@ -27,7 +27,7 @@ const SignUpOptions = ({ intl }) => (
 );
 
 SignUpOptions.propTypes = {
-  intl: func,
+  intl: object,
 };
 
 export default SignUpOptions;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
-import { func, string } from 'prop-types';
+import { func, string, object } from 'prop-types';
 
 import FormInput from '../common/FormInput';
 import FormSelect from '../common/FormSelect';
@@ -112,7 +112,7 @@ const CreateTargetForm = ({
         thousandSeparator={true}
         suffix={' m'}
         className="create-target-form__input"
-        inputmode="numeric"
+        inputMode="numeric"
         name="radius"
         value={radius}
         onValueChange={handleChangeRadius}
@@ -182,7 +182,7 @@ const CreateTargetForm = ({
 };
 
 CreateTargetForm.propTypes = {
-  intl: func,
+  intl: object,
   newTargetlatlng: latLngShape,
   setNewTargetlatlng: func,
   newTargetRadius: string,
