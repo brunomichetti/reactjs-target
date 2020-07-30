@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 
 import '../users/user-form.scss';
 import './create-target.scss';
@@ -56,7 +56,7 @@ const CreateTarget = ({
 CreateTarget.propTypes = {
   newTargetlatlng: latLngShape,
   setNewTargetlatlng: func,
-  newTargetRadius: latLngShape,
+  newTargetRadius: string,
   setNewTargetRadius: func,
 };
 

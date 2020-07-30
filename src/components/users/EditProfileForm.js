@@ -92,7 +92,7 @@ const EditProfileForm = ({ user, setEditProfile }) => {
         inputLabel={intl.formatMessage({
           id: 'editprofile.update.name.text',
         })}
-        inputType="name"
+        inputType="text"
         inputName="name"
         inputValue={name}
         inputOnChange={handleChange}
