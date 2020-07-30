@@ -12,15 +12,10 @@ import FormInput from '../common/FormInput';
 import FormSelect from '../common/FormSelect';
 import { genderSelectStyle } from './genderSelectStyle';
 import { userRequest } from '../../actions/user.actions';
+import { genders } from './gendersList';
 
 const SignUpForm = () => {
   const intl = useIntl();
-
-  const genders = [
-    { value: 'male', label: 'MALE' },
-    { value: 'female', label: 'FEMALE' },
-    { value: 'not_specified', label: 'NOT SPECIFIED' },
-  ];
 
   const { select_gender } = {};
 
@@ -41,9 +36,8 @@ const SignUpForm = () => {
 
   const { requestError, errorMsg } = useSelector((state) => state.user);
 
-  const handleChange = ({ target }) => {
+  const handleChange = ({ target: { name, value } }) => {
     setCleanAlert(true);
-    const { name, value } = target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 

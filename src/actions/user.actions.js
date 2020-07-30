@@ -1,7 +1,11 @@
 import { userConstants } from '../constants/user.constants';
 import { userService } from '../services/user.services';
 import { history } from '../helpers/history';
-import { handleLoginError, handleSignupError } from '../helpers/error.handler';
+import {
+  handleLoginError,
+  handleSignupError,
+  handleChangePasswordError,
+} from '../helpers/error.handler';
 import { homePageLink, loginPageLink } from '../constants/link.constants';
 import { targetService } from '../services/target.services';
 import { targetConstants } from '../constants/target.constants';
@@ -60,8 +64,36 @@ const signup = (name, email, password1, password2, gender) => {
   };
 };
 
+const update = (
+  name,
+  gender,
+  password,
+  confirmNewPassword,
+  changedNameOrGender
+) => {
+  return async (dispatch) => {
+    try {
+      if (password) {
+        await userService.changePassword(password, confirmNewPassword);
+      }
+      if (changedNameOrGender) {
+        const { data: user } = await userService.update(name, gender);
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        storedUser.user = user;
+        localStorage.setItem('user', JSON.stringify(storedUser));
+      }
+      dispatch({ type: userConstants.USER_UPDATE_SUCCESS });
+      history.push(homePageLink);
+    } catch (error) {
+      const errorMsg = handleChangePasswordError(error);
+      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
+    }
+  };
+};
+
 export const userActions = {
   login,
   logout,
   signup,
+  update,
 };

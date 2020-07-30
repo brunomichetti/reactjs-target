@@ -27,3 +27,10 @@ export const handleCreateTargetError = ({ response: { data } }) => {
   }
   return loginErrorConstants.SERVER_ERROR;
 };
+
+export const handleChangePasswordError = ({ response: { data } }) => {
+  if (data['new_password2']) {
+    return data.new_password2[0];
+  }
+  return loginErrorConstants.SERVER_ERROR;
+};
