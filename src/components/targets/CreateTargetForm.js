@@ -66,9 +66,8 @@ const CreateTargetForm = ({
 
   const showCreateTargetAlert = isSubmitted && createTargetError && !cleanAlert;
 
-  const handleChange = ({ target }) => {
+  const handleChange = ({ target: { name, value } }) => {
     setCleanAlert(true);
-    const { name, value } = target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 

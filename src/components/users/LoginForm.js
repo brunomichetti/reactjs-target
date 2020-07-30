@@ -29,9 +29,8 @@ const LoginForm = () => {
 
   const showLoginAlert = isSubmitted && requestError && !cleanAlert;
 
-  const handleChange = ({ target }) => {
+  const handleChange = ({ target: { name, value } }) => {
     if (!loading) {
-      const { name, value } = target;
       setInputs((inputs) => ({ ...inputs, [name]: value }));
       setCleanAlert(true);
     }

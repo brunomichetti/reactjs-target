@@ -48,9 +48,8 @@ const EditProfileForm = ({ user, setEditProfile }) => {
     }
   }, [updated, setEditProfile, intl, dispatch]);
 
-  const handleChange = ({ target }) => {
+  const handleChange = ({ target: { name, value } }) => {
     setIsSubmitted(false);
-    const { name, value } = target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
