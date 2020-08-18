@@ -34,4 +34,9 @@ describe('Test home page', () => {
       cy.expect(passwordAlert.textContent).to.equal('Password is required.');
     });
   });
+
+  it('Test links', () => {
+    cy.get('a[href="/signup"]').click();
+    cy.url().should('eq', 'http://localhost:3000/signup');
+  });
 });
