@@ -40,11 +40,13 @@ describe('Test signup page', () => {
   it('Test empty inputs', () => {
     cy.get('button[type="submit"]').click();
     cy.get('.user-form__alert').then((alerts) => {
-      const nameAlert = alerts[0];
-      const emailAlert = alerts[1];
-      const passwordAlert = alerts[2];
-      const passwordConfirmAlert = alerts[3];
-      const genderAlert = alerts[4];
+      const [
+        nameAlert,
+        emailAlert,
+        passwordAlert,
+        passwordConfirmAlert,
+        genderAlert,
+      ] = alerts;
       cy.expect(nameAlert.textContent).to.equal('Name is required.');
       cy.expect(emailAlert.textContent).to.equal('Email is required.');
       cy.expect(passwordAlert.textContent).to.equal('Password is required.');
