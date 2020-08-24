@@ -44,5 +44,10 @@
   "editprofile.update.password.confirm.text": "CONFIRM NEW PASSWORD",
   "editprofile.save.changes.text": "SAVE CHANGES",
   "editprofile.empty.name.text": "Name can't be empty.",
-  "editprofile.success.text": "Info updated successfully!"
+  "editprofile.success.text": "Info updated successfully!",
+
+  "forgot.pwd.text": "Please enter your email address and click on RESET PASSWORD to receive the instructions.",
+  "reset.pwd.btn.text": "RESET PASSWORD",
+  "back.text": "Back",
+  "forgot.pwd.email.sent.text": "Please check your inbox. An email has been sent to you with the instructions to reset your password."
 }

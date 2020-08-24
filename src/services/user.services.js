@@ -23,10 +23,19 @@ const changePassword = (password, confirmNewPassword) =>
     })
   );
 
+const resetPassword = (email) =>
+  client.post(
+    'rest-auth/password/reset/',
+    JSON.stringify({
+      email: email,
+    })
+  );
+
 export const userService = {
   login,
   logout,
   signup,
   update,
   changePassword,
+  resetPassword,
 };

@@ -34,3 +34,10 @@ export const handleChangePasswordError = ({ response: { data } }) => {
   }
   return loginErrorConstants.SERVER_ERROR;
 };
+
+export const handleResetPwdError = ({ response: { data } }) => {
+  if (data['email']) {
+    return data.email[0];
+  }
+  return loginErrorConstants.SERVER_ERROR;
+};

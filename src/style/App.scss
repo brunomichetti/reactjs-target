@@ -11,17 +11,17 @@ body {
   min-height: 100vh;
 }
 
-.left-container {
+.login-page-container {
   background-color: $white;
   width: 50vw;
 }
 
-.left-container__menu {
+.login-page-container__menu {
   padding-top: 2em;
   padding-left: 1.5em;
 }
 
-.left-container__smilies {
+.login-page-container__smilies {
   padding-top: 3em;
   text-align: center;
 }
@@ -35,17 +35,17 @@ body {
   color: $black;
   text-align: center;
 }
-.left-container__app-title {
+.login-page-container__app-title {
   @extend %app-title;
 }
 
-.left-container__title {
+.login-page-container__title {
   @extend %app-title;
   padding-top: 4em;
   margin-bottom: 2.7em;
 }
 
-.left-container__app-subtitle {
+.login-page-container__app-subtitle {
   font-family: $font-family-bold;
   font-style: normal;
   font-weight: 600;
@@ -54,13 +54,14 @@ body {
   text-align: center;
 }
 
-.left-container__description-text {
+.login-page-container__description-text {
   font-family: $font-family-regular;
   font-size: 1em;
   line-height: 2em;
   text-align: center;
   padding-left: 12em;
   padding-right: 12em;
+  width: 20em;
 }
 
 .main-div-left-homepage {
@@ -70,4 +71,31 @@ body {
   text-align: center;
   position: relative;
   box-shadow: 0 2px 4px $black;
+}
+
+.forgot_pwd__btn-text {
+  font-family: $font-family-regular;
+  font-size: 1em;
+  line-height: 1em;
+  letter-spacing: 0.1em;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.forgot_pwd__btn-text:hover {
+  // Underline and turn the button blue on hover
+  text-decoration: underline;
+  color: $dodger-blue;
+}
+
+.forgot_pwd__btn-text:focus {
+  // Eliminate border when the button is clicked
+  border-color: transparent;
+  outline: none;
+}
+
+.login-page-container__forgot_pwd {
+  margin-top: 4em;
 }
