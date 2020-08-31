@@ -30,11 +30,23 @@ describe('Test signup page', () => {
     cy.get('input[name="password2"]')
       .type('fakepassword')
       .should('have.value', 'fakepassword');
+
     cy.get('#react-select-2-input').type('MALE{enter}', { force: true });
+    cy.get('div[class=" css-1uccc91-singleValue"]').should('have.text', 'MALE');
+
     cy.get('#react-select-2-input').type('FEMALE{enter}', { force: true });
+    cy.get('div[class=" css-1uccc91-singleValue"]').should(
+      'have.text',
+      'FEMALE'
+    );
+
     cy.get('#react-select-2-input').type('NOT SPECIFIED{enter}', {
       force: true,
     });
+    cy.get('div[class=" css-1uccc91-singleValue"]').should(
+      'have.text',
+      'NOT SPECIFIED'
+    );
   });
 
   it('Test empty inputs', () => {

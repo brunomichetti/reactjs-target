@@ -25,7 +25,6 @@ const FormSelect = ({
 }) => (
   <div align="center">
     <Select
-      id="prueba"
       styles={customStyle}
       options={optionsSet}
       className={customClassName}
