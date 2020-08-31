@@ -4,12 +4,14 @@ import { Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import SignUpPage from './pages/SignUpPage';
+import ResetPwdPage from './pages/ResetPwdPage';
 import { history } from './helpers/history';
 import PrivateRoute from './helpers/private.route';
 import {
   homePageLink,
   loginPageLink,
   signupPageLink,
+  resetPwdLink,
 } from './constants/link.constants';
 
 const App = () => (
@@ -17,6 +19,7 @@ const App = () => (
     <Switch>
       <Route exact path={['/', loginPageLink]} component={LoginPage} />
       <Route exact path={signupPageLink} component={SignUpPage} />
+      <Route exact path={resetPwdLink} component={ResetPwdPage} />
       <PrivateRoute exact path={homePageLink} comp={HomePage} />
     </Switch>
   </Router>

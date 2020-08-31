@@ -49,5 +49,9 @@
   "forgot.pwd.text": "Please enter your email address and click on RESET PASSWORD to receive the instructions.",
   "reset.pwd.btn.text": "RESET PASSWORD",
   "back.text": "Back",
-  "forgot.pwd.email.sent.text": "Please check your inbox. An email has been sent to you with the instructions to reset your password."
+  "forgot.pwd.email.sent.text": "Please check your inbox. An email has been sent to you with the instructions to reset your password.",
+
+  "new.pwd.label.text": "NEW PASSWORD",
+  "enter.new.pwd.text": "Please enter and confirm the new password.",
+  "reset.pwd.completed.text": "Reset password completed successfuly!!"
 }

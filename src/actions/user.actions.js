@@ -6,6 +6,7 @@ import {
   handleSignupError,
   handleChangePasswordError,
   handleResetPwdError,
+  handleResetPwdConfirmError,
 } from '../helpers/error.handler';
 import { homePageLink, loginPageLink } from '../constants/link.constants';
 import { targetService } from '../services/target.services';
@@ -105,10 +106,29 @@ const resetPwd = (email) => {
   };
 };
 
+const resetPwdConfirm = (new_password1, new_password2, uid, token) => {
+  return async (dispatch) => {
+    try {
+      await userService.resetPasswordConfirm(
+        new_password1,
+        new_password2,
+        uid,
+        token
+      );
+      dispatch({ type: userConstants.USER_UPDATE_SUCCESS });
+      history.push(loginPageLink);
+    } catch (error) {
+      const errorMsg = handleResetPwdConfirmError(error);
+      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
+    }
+  };
+};
+
 export const userActions = {
   login,
   logout,
   signup,
   update,
   resetPwd,
+  resetPwdConfirm,
 };

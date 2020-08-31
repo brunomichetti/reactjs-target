@@ -1,4 +1,7 @@
-import { loginErrorConstants } from '../constants/login.error.constants';
+import {
+  loginErrorConstants,
+  resetPwdErrorConstants,
+} from '../constants/login.error.constants';
 
 export const handleLoginError = ({ response: { status, data } }) => {
   if (status === 400 && data.non_field_errors) {
@@ -38,6 +41,16 @@ export const handleChangePasswordError = ({ response: { data } }) => {
 export const handleResetPwdError = ({ response: { data } }) => {
   if (data['email']) {
     return data.email[0];
+  }
+  return loginErrorConstants.SERVER_ERROR;
+};
+
+export const handleResetPwdConfirmError = ({ response: { data } }) => {
+  if (data['token']) {
+    return resetPwdErrorConstants.RESET_PWD_INVALID_TOKEN_ERROR;
+  }
+  if (data['new_password2']) {
+    return data.new_password2[0];
   }
   return loginErrorConstants.SERVER_ERROR;
 };
