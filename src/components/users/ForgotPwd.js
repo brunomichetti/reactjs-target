@@ -55,7 +55,7 @@ const ForgotPwd = ({ intl, setForgotPwd }) => {
       <p className="login-page-container__app-subtitle">
         {intl.formatMessage({ id: 'userform.forgotpwd.text' })}
       </p>
-      {!success && (
+      {!success ? (
         <div>
           <p className="login-page-container__description-text">
             {intl.formatMessage({ id: 'forgot.pwd.text' })}
@@ -93,8 +93,7 @@ const ForgotPwd = ({ intl, setForgotPwd }) => {
             </div>
           </form>
         </div>
-      )}
-      {success && (
+      ) : (
         <div>
           <p className="login-page-container__description-text">
             {intl.formatMessage({ id: 'forgot.pwd.email.sent.text' })}

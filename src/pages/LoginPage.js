@@ -40,7 +40,7 @@ const LoginPage = () => {
             id: 'loginpage.subtitle.text',
           })}
         </p>
-        {!forgotPwd && (
+        {!forgotPwd ? (
           <div align="center">
             <p className="login-page-container__description-text">
               {intl.formatMessage({
@@ -61,10 +61,10 @@ const LoginPage = () => {
             </div>
             <SignUpOptions intl={intl} />
           </div>
+        ) : (
+          <ForgotPwd intl={intl} setForgotPwd={setForgotPwd} />
         )}
-        {forgotPwd && <ForgotPwd intl={intl} setForgotPwd={setForgotPwd} />}
       </div>
-
       <AppStoreContainer />
     </div>
   );
