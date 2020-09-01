@@ -16,10 +16,18 @@ const HomePage = () => {
     <div className="main-div">
       <div className="main-div-left-homepage">
         {editProfile && (
-          <EditProfile user={user} setEditProfile={setEditProfile} />
+          <EditProfile
+            user={user}
+            editProfile={editProfile}
+            setEditProfile={setEditProfile}
+          />
         )}
         {!newTargetlatlng && !editProfile && (
-          <UserProfile user={user} setEditProfile={setEditProfile} />
+          <UserProfile
+            user={user}
+            editProfile={editProfile}
+            setEditProfile={setEditProfile}
+          />
         )}
         {newTargetlatlng && !editProfile && (
           <CreateTarget
