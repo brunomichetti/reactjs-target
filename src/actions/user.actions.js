@@ -71,6 +71,7 @@ const update = (
   gender,
   password,
   confirmNewPassword,
+  newImg,
   changedNameOrGender
 ) => {
   return async (dispatch) => {
@@ -78,8 +79,8 @@ const update = (
       if (password) {
         await userService.changePassword(password, confirmNewPassword);
       }
-      if (changedNameOrGender) {
-        const { data: user } = await userService.update(name, gender);
+      if (changedNameOrGender || newImg) {
+        const { data: user } = await userService.update(name, gender, newImg);
         const storedUser = JSON.parse(localStorage.getItem('user'));
         storedUser.user = user;
         localStorage.setItem('user', JSON.stringify(storedUser));
