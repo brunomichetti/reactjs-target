@@ -16,10 +16,6 @@ const LoginPage = () => {
 
   const [forgotPassword, setForgotPassword] = useState(false);
 
-  const handleForgotPassword = () => {
-    setForgotPassword(true);
-  };
-
   const user = localStorage.getItem('user');
   if (user) {
     return <Redirect to={homePageLink} />;
@@ -52,7 +48,7 @@ const LoginPage = () => {
               <button
                 type="button"
                 className="forgot_password__btn-text"
-                onClick={handleForgotPassword}
+                onClick={() => setForgotPassword(true)}
               >
                 {intl.formatMessage({
                   id: 'userform.forgotpassword.text',
