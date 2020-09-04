@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 import { func, string, object } from 'prop-types';
 
@@ -17,6 +16,7 @@ import { targetActions } from '../../actions/target.actions';
 import { targetConstants } from '../../constants/target.constants';
 import { userRequest } from '../../actions/user.actions';
 import { latLngShape } from '../../constants/shapes';
+import CustomLoader from '../../components/common/CustomLoader';
 
 const CreateTargetForm = ({
   intl,
@@ -171,9 +171,7 @@ const CreateTargetForm = ({
           id: 'createtarget.save.btn.text',
         })}
       </button>
-      {createTargetRequest && (
-        <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
-      )}
+      {createTargetRequest && <CustomLoader />}
       {showCreateTargetAlert && (
         <div className="user-form__alert"> {createTargetError} </div>
       )}

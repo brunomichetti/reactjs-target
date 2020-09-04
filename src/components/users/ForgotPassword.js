@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { func, object } from 'prop-types';
-import Loader from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 
 import '../../style/App.scss';
@@ -8,6 +7,7 @@ import './user-form.scss';
 import FormInput from '../common/FormInput';
 import { userRequest, userActions } from '../../actions/user.actions';
 import { userConstants } from '../../constants/user.constants';
+import CustomLoader from '../../components/common/CustomLoader';
 
 const ForgotPassword = ({ intl, setForgotPassword }) => {
   const dispatch = useDispatch();
@@ -80,9 +80,7 @@ const ForgotPassword = ({ intl, setForgotPassword }) => {
                 id: 'userform.missing.email.text',
               })}
             />
-            {loading && (
-              <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
-            )}
+            {loading && <CustomLoader />}
             {showError && <div className="user-form__alert"> {errorMsg} </div>}
             <div>
               <button type="submit" className="reset_password__btn-text">

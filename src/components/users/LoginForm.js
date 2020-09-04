@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'react-loader-spinner';
 import { object } from 'prop-types';
 
 import { userActions } from '../../actions/user.actions';
@@ -8,6 +7,7 @@ import '../../style/App.scss';
 import './user-form.scss';
 import FormInput from '../common/FormInput';
 import { userRequest } from '../../actions/user.actions';
+import CustomLoader from '../../components/common/CustomLoader';
 
 const LoginForm = ({ intl }) => {
   const dispatch = useDispatch();
@@ -81,9 +81,7 @@ const LoginForm = ({ intl }) => {
           })}
         </button>
       </div>
-      {loading && (
-        <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
-      )}
+      {loading && <CustomLoader />}
       {requestError && showLoginAlert && (
         <div className="user-form__alert"> {errorMsg} </div>
       )}

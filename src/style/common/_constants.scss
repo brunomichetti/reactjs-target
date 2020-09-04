@@ -20,8 +20,15 @@ $font-family-bold: Open Sans Bold;
 // Numbers
 $create-target-circle-opacity: 0.8;
 
+// Loader style
+$loader-height: 80;
+$loader-width: 50;
+
 :export {
   safron: $safron;
   white: $white;
+  dodgerBlue: $dodger-blue;
   createTargetOpacity: $create-target-circle-opacity;
+  loaderHeight: $loader-height;
+  loaderWidth: $loader-width;
 }

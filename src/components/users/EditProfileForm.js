@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { func } from 'prop-types';
 import { useIntl } from 'react-intl';
-import Loader from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { userShape } from '../../constants/shapes';
@@ -13,6 +12,7 @@ import './edit-profile.scss';
 import { userActions } from '../../actions/user.actions';
 import { userRequest } from '../../actions/user.actions';
 import { userConstants } from '../../constants/user.constants';
+import CustomLoader from '../../components/common/CustomLoader';
 
 const EditProfileForm = ({ user, setEditProfile }) => {
   const intl = useIntl();
@@ -141,9 +141,7 @@ const EditProfileForm = ({ user, setEditProfile }) => {
           id: 'userform.not.matching.passwords.text',
         })}
       />
-      {loading && (
-        <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
-      )}
+      {loading && <CustomLoader />}
       {password && equalPasswords && requestError && isSubmitted && (
         <div className="user-form__alert"> {errorMsg} </div>
       )}
