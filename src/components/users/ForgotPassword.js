@@ -9,7 +9,7 @@ import FormInput from '../common/FormInput';
 import { userRequest, userActions } from '../../actions/user.actions';
 import { userConstants } from '../../constants/user.constants';
 
-const ForgotPwd = ({ intl, setForgotPwd }) => {
+const ForgotPassword = ({ intl, setForgotPassword }) => {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({ email: '' });
   const { email } = inputs;
@@ -35,7 +35,7 @@ const ForgotPwd = ({ intl, setForgotPwd }) => {
   };
 
   const handleGoBack = () => {
-    setForgotPwd(false);
+    setForgotPassword(false);
     setSuccess(false);
     setInputs((inputs) => ({ ...inputs, email: '' }));
     dispatch({ type: userConstants.USER_REQUEST_SUCCESS });
@@ -46,23 +46,23 @@ const ForgotPwd = ({ intl, setForgotPwd }) => {
     setIsSubmitted(true);
     if (email) {
       dispatch(userRequest());
-      dispatch(userActions.resetPwd(email));
+      dispatch(userActions.resetPassword(email));
     }
   };
 
   return (
-    <div align="center" className="login-page-container__forgot_pwd">
+    <div align="center" className="login-page-container__forgot_password">
       <p className="login-page-container__app-subtitle">
-        {intl.formatMessage({ id: 'userform.forgotpwd.text' })}
+        {intl.formatMessage({ id: 'userform.forgotpassword.text' })}
       </p>
       {!success ? (
         <div>
           <p className="login-page-container__description-text">
-            {intl.formatMessage({ id: 'forgot.pwd.text' })}
+            {intl.formatMessage({ id: 'forgot.password.text' })}
           </p>
           <form
             align="center"
-            className="login-page-container__forgot_pwd__form"
+            className="login-page-container__forgot_password__form"
             onSubmit={handleSubmit}
           >
             <FormInput
@@ -85,9 +85,9 @@ const ForgotPwd = ({ intl, setForgotPwd }) => {
             )}
             {showError && <div className="user-form__alert"> {errorMsg} </div>}
             <div>
-              <button type="submit" className="reset_pwd__btn-text">
+              <button type="submit" className="reset_password__btn-text">
                 {intl.formatMessage({
-                  id: 'reset.pwd.btn.text',
+                  id: 'reset.password.btn.text',
                 })}
               </button>
             </div>
@@ -96,7 +96,7 @@ const ForgotPwd = ({ intl, setForgotPwd }) => {
       ) : (
         <div>
           <p className="login-page-container__description-text">
-            {intl.formatMessage({ id: 'forgot.pwd.email.sent.text' })}
+            {intl.formatMessage({ id: 'forgot.password.email.sent.text' })}
           </p>
         </div>
       )}
@@ -104,7 +104,7 @@ const ForgotPwd = ({ intl, setForgotPwd }) => {
       <div>
         <button
           type="button"
-          className="forgot_pwd__btn-text"
+          className="forgot_password__btn-text"
           onClick={handleGoBack}
         >
           {intl.formatMessage({
@@ -116,9 +116,9 @@ const ForgotPwd = ({ intl, setForgotPwd }) => {
   );
 };
 
-ForgotPwd.propTypes = {
+ForgotPassword.propTypes = {
   intl: object,
-  setForgotPwd: func,
+  setForgotPassword: func,
 };
 
-export default ForgotPwd;
+export default ForgotPassword;

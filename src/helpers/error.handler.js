@@ -35,7 +35,8 @@ export const handleChangePasswordError = ({ response: { data } }) => {
   return loginErrorConstants.SERVER_ERROR;
 };
 
-export const handleResetPwdError = ({ response: { data } }) => {
+export const handleResetPasswordError = ({ response: { data } }) => {
+  debugger;
   if (data['email']) {
     return data.email[0];
   }

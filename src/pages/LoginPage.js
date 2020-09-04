@@ -9,15 +9,15 @@ import AppStoreContainer from '../components/app-store-container/AppStoreContain
 import menuIcon from '../assets/icons/menuIcon.png';
 import { homePageLink } from '../constants/link.constants';
 import SignUpOptions from '../components/users/SignUpOptions';
-import ForgotPwd from '../components/users/ForgotPwd';
+import ForgotPassword from '../components/users/ForgotPassword';
 
 const LoginPage = () => {
   const intl = useIntl();
 
-  const [forgotPwd, setForgotPwd] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
 
-  const handleForgotPwd = () => {
-    setForgotPwd(true);
+  const handleForgotPassword = () => {
+    setForgotPassword(true);
   };
 
   const user = localStorage.getItem('user');
@@ -40,7 +40,7 @@ const LoginPage = () => {
             id: 'loginpage.subtitle.text',
           })}
         </p>
-        {!forgotPwd ? (
+        {!forgotPassword ? (
           <div align="center">
             <p className="login-page-container__description-text">
               {intl.formatMessage({
@@ -48,21 +48,21 @@ const LoginPage = () => {
               })}
             </p>
             <LoginForm intl={intl} />
-            <div className="user-form__forgot-pwd">
+            <div className="user-form__forgot-password">
               <button
                 type="button"
-                className="forgot_pwd__btn-text"
-                onClick={handleForgotPwd}
+                className="forgot_password__btn-text"
+                onClick={handleForgotPassword}
               >
                 {intl.formatMessage({
-                  id: 'userform.forgotpwd.text',
+                  id: 'userform.forgotpassword.text',
                 })}
               </button>
             </div>
             <SignUpOptions intl={intl} />
           </div>
         ) : (
-          <ForgotPwd intl={intl} setForgotPwd={setForgotPwd} />
+          <ForgotPassword intl={intl} setForgotPassword={setForgotPassword} />
         )}
       </div>
       <AppStoreContainer />

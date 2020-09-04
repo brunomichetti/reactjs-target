@@ -73,7 +73,7 @@ body {
   box-shadow: 0 2px 4px $black;
 }
 
-.forgot_pwd__btn-text {
+.forgot_password__btn-text {
   font-family: $font-family-regular;
   font-size: 1em;
   line-height: 1em;
@@ -84,18 +84,18 @@ body {
   cursor: pointer;
 }
 
-.forgot_pwd__btn-text:hover {
+.forgot_password__btn-text:hover {
   // Underline and turn the button blue on hover
   text-decoration: underline;
   color: $dodger-blue;
 }
 
-.forgot_pwd__btn-text:focus {
+.forgot_password__btn-text:focus {
   // Eliminate border when the button is clicked
   border-color: transparent;
   outline: none;
 }
 
-.login-page-container__forgot_pwd {
+.login-page-container__forgot_password {
   margin-top: 4em;
 }

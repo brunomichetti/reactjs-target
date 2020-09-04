@@ -1,7 +1,7 @@
 {
   "loginpage.subtitle.text": "Find people near you & connect",
   "loginpage.description.text": "Create a  target wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.",
-  "userform.forgotpwd.text": "Forgot your password?",
+  "userform.forgotpassword.text": "Forgot your password?",
   "userform.connectfb.text": "CONNECT WITH FACEBOOK",
   "userform.signin.text": "SIGN IN",
   "userform.signup.text": "SIGN UP",
@@ -46,8 +46,8 @@
   "editprofile.empty.name.text": "Name can't be empty.",
   "editprofile.success.text": "Info updated successfully!",
 
-  "forgot.pwd.text": "Please enter your email address and click on RESET PASSWORD to receive the instructions.",
-  "reset.pwd.btn.text": "RESET PASSWORD",
+  "forgot.password.text": "Please enter your email address and click on RESET PASSWORD to receive the instructions.",
+  "reset.password.btn.text": "RESET PASSWORD",
   "back.text": "Back",
-  "forgot.pwd.email.sent.text": "Please check your inbox. An email has been sent to you with the instructions to reset your password."
+  "forgot.password.email.sent.text": "Please check your inbox. An email has been sent to you with the instructions to reset your password."
 }

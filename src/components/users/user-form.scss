@@ -46,7 +46,7 @@
   @extend %button-text;
 }
 
-.reset_pwd__btn-text {
+.reset_password__btn-text {
   width: 10em;
   height: 2em;
   border: 0;
@@ -56,11 +56,11 @@
 }
 
 .user-form__btn-text:active,
-.reset_pwd__btn-text:active {
+.reset_password__btn-text:active {
   box-shadow: none;
 }
 
-.user-form__forgot-pwd {
+.user-form__forgot-password {
   font-family: $font-family-regular;
   font-size: 0.8em;
   line-height: 2em;

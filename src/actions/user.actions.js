@@ -5,7 +5,7 @@ import {
   handleLoginError,
   handleSignupError,
   handleChangePasswordError,
-  handleResetPwdError,
+  handleResetPasswordError,
 } from '../helpers/error.handler';
 import { homePageLink, loginPageLink } from '../constants/link.constants';
 import { targetService } from '../services/target.services';
@@ -92,14 +92,14 @@ const update = (
   };
 };
 
-const resetPwd = (email) => {
+const resetPassword = (email) => {
   return async (dispatch) => {
     try {
       await userService.resetPassword(email);
       dispatch({ type: userConstants.USER_RESET_PASSWORD_EMAIL_SENT });
       history.push(loginPageLink);
     } catch (error) {
-      const errorMsg = handleResetPwdError(error);
+      const errorMsg = handleResetPasswordError(error);
       dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
     }
   };
@@ -110,5 +110,5 @@ export const userActions = {
   logout,
   signup,
   update,
-  resetPwd,
+  resetPassword,
 };
