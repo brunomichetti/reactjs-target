@@ -23,22 +23,22 @@ const LoginPage = () => {
 
   return (
     <div className="main-div">
-      <div className="login-page-container">
-        <div className="login-page-container__menu">
+      <div className="initial-page-container">
+        <div className="initial-page-container__menu">
           <img src={menuIcon} alt="menu_button" />
         </div>
-        <div className="login-page-container__smilies">
+        <div className="initial-page-container__smilies">
           <img src={smilies} alt="smilies" />
         </div>
-        <p className="login-page-container__app-title">TARGET MVD</p>
-        <p className="login-page-container__app-subtitle">
+        <p className="initial-page-container__app-title">TARGET MVD</p>
+        <p className="initial-page-container__app-subtitle">
           {intl.formatMessage({
             id: 'loginpage.subtitle.text',
           })}
         </p>
         {!forgotPassword ? (
-          <div align="center">
-            <p className="login-page-container__description-text">
+          <div className="initial-page-container__login">
+            <p className="initial-page-container__description-text">
               {intl.formatMessage({
                 id: 'loginpage.description.text',
               })}

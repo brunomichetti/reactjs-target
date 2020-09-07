@@ -58,11 +58,7 @@ const ResetPasswordForm = ({ intl, urlUid, urlToken }) => {
   };
 
   return (
-    <form
-      align="center"
-      className="user-form reset-password-form"
-      onSubmit={handleSubmit}
-    >
+    <form className="user-form reset-password-form" onSubmit={handleSubmit}>
       <FormInput
         labelClassName="user-form__text"
         inputClassName="user-form__input"

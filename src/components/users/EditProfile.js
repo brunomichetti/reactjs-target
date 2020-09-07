@@ -22,7 +22,6 @@ const EditProfile = ({ user, editProfile, setEditProfile }) => {
         goBackFunction={handleGoBack}
         titleText={intl.formatMessage({ id: 'editprofile.title.text' })}
       />
-
       <div className="edit-profile__user-image-name">
         <UserImageName
           user={user}
@@ -31,7 +30,6 @@ const EditProfile = ({ user, editProfile, setEditProfile }) => {
           setNewImg={setNewImg}
         />
       </div>
-
       <EditProfileForm
         user={user}
         setEditProfile={setEditProfile}

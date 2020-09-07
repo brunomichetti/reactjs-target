@@ -12,6 +12,7 @@ import {
 } from '../../style/common/_constants.scss';
 import MarketTarget from './MarkerTargets';
 import { latLngShape } from '../../constants/shapes';
+import './targets-map.scss';
 
 const TargetsMap = ({
   newTargetlatlng,
@@ -26,17 +27,17 @@ const TargetsMap = ({
 
   return (
     <Map
+      className="targets-map"
       center={{
         lat: mapConstants.INTIAL_LAT,
         lng: mapConstants.INITIAL_LONG,
       }}
       zoom={mapConstants.INITIAL_ZOOM}
-      style={{ width: '70vw', height: '100vh' }}
       onClick={createTarget}
     >
       <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url={mapConstants.TILE_LAYER_URL}
+        attribution={mapConstants.TILE_LAYER_ATTRIBUTION}
       />
       {newTargetlatlng && (
         <div>

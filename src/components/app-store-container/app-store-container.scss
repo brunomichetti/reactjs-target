@@ -5,6 +5,7 @@
   width: 50vw;
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
 .app-store-container__i6-img {
@@ -23,17 +24,17 @@
 }
 
 .app-store-container__app-store-button {
-  top: 42em;
   @extend %overlap-image;
+  top: 42em;
 }
 
 .app-store-container__social {
-  top: 45em;
   @extend %overlap-image;
+  top: 45em;
   padding-bottom: 3em;
 }
 
 .app-store-container__play {
-  top: 23em;
   @extend %overlap-image;
+  top: 23em;
 }

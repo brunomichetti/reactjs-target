@@ -15,12 +15,12 @@ const ResetPasswordPage = () => {
 
   return (
     <div className="main-div">
-      <div className="login-page-container" align="center">
-        <div className="login-page-container__reset-password-smilies">
+      <div className="initial-page-container initial-page-container__reset-password-text">
+        <div className="initial-page-container__reset-password-smilies">
           <img src={smilies} alt="smilies" />
         </div>
-        <p className="login-page-container__app-title">TARGET MVD</p>
-        <p className="login-page-container__description-text">
+        <p className="initial-page-container__app-title">TARGET MVD</p>
+        <p className="initial-page-container__description-text">
           {intl.formatMessage({
             id: 'enter.new.password.text',
           })}
