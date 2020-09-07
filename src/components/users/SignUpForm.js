@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 
-import '../../style/App.scss';
-import './user-form.scss';
-import { loginPageLink } from '../../constants/link.constants';
-import { userActions } from '../../actions/user.actions';
-import FormInput from '../common/FormInput';
-import FormSelect from '../common/FormSelect';
-import { genderSelectStyle } from './genderSelectStyle';
-import { userRequest } from '../../actions/user.actions';
-import { genders } from './gendersList';
+import 'style/App.scss';
+import 'components/users/user-form.scss';
+import { loginPageLink } from 'constants/link.constants';
+import { userActions } from 'actions/user.actions';
+import FormInput from 'components/common/FormInput';
+import FormSelect from 'components/common/FormSelect';
+import { genderSelectStyle } from 'components/users/genderSelectStyle';
+import { userRequest } from 'actions/user.actions';
+import { genders } from 'components/users/gendersList';
 
 const SignUpForm = () => {
   const intl = useIntl();

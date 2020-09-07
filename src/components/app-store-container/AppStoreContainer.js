@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './app-store-container.scss';
-import i6 from '../../assets/i6.png';
-import social from '../../assets/social.png';
-import play from '../../assets/play.png';
-import appStoreButton from '../../assets/appstore_button.png';
+import 'components/app-store-container/app-store-container.scss';
+import i6 from 'assets/i6.png';
+import social from 'assets/social.png';
+import play from 'assets/play.png';
+import appStoreButton from 'assets/appstore_button.png';
 
 const AppStoreContainer = () => (
   <div className="app-store-container">

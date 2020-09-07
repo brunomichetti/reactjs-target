@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import '../style/App.scss';
-import UserProfile from '../components/users/UserProfile';
-import CreateTarget from '../components/targets/CreateTarget';
-import TargetsMap from '../components/targets-map/TargetsMap';
-import smilies from '../assets/smilies.png';
-import EditProfile from '../components/users/EditProfile';
+import 'style/App.scss';
+import UserProfile from 'components/users/UserProfile';
+import CreateTarget from 'components/targets/CreateTarget';
+import TargetsMap from 'components/targets-map/TargetsMap';
+import smilies from 'assets/smilies.png';
+import EditProfile from 'components/users/EditProfile';
 
 const HomePage = () => {
   const { user } = JSON.parse(localStorage.getItem('user'));

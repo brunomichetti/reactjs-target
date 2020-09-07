@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
-import '../style/App.scss';
-import smilies from '../assets/smilies.png';
-import LoginForm from '../components/users/LoginForm';
-import AppStoreContainer from '../components/app-store-container/AppStoreContainer';
-import menuIcon from '../assets/icons/menuIcon.png';
-import { homePageLink } from '../constants/link.constants';
-import SignUpOptions from '../components/users/SignUpOptions';
-import ForgotPassword from '../components/users/ForgotPassword';
+import 'style/App.scss';
+import smilies from 'assets/smilies.png';
+import LoginForm from 'components/users/LoginForm';
+import AppStoreContainer from 'components/app-store-container/AppStoreContainer';
+import menuIcon from 'assets/icons/menuIcon.png';
+import { homePageLink } from 'constants/link.constants';
+import SignUpOptions from 'components/users/SignUpOptions';
+import ForgotPassword from 'components/users/ForgotPassword';
 
 const LoginPage = () => {
   const intl = useIntl();

@@ -1,16 +1,16 @@
 import React from 'react';
 import Select from 'react-select';
-
 import { string, func, bool, oneOfType, object } from 'prop-types';
+
+import 'components/users/user-form.scss';
+import 'components/common/form-select.scss';
 import {
   topicSelectShape,
   genderSelectShape,
   topicSelectArrayShape,
   genderSelectArrayShape,
   componentSelectShape,
-} from '../../constants/shapes';
-import '../users/user-form.scss';
-import './form-select.scss';
+} from 'constants/shapes';
 
 const FormSelect = ({
   customClassName,

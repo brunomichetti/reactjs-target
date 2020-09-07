@@ -2,12 +2,12 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { func, string } from 'prop-types';
 
-import '../users/user-form.scss';
-import './create-target.scss';
-import targetImage from '../../assets/newTarget.png';
-import CreateTargetForm from './CreateTargetForm';
-import UpperBar from '../common/UpperBar';
-import { latLngShape } from '../../constants/shapes';
+import 'components/users/user-form.scss';
+import 'components/targets/create-target.scss';
+import targetImage from 'assets/newTarget.png';
+import CreateTargetForm from 'components/targets/CreateTargetForm';
+import UpperBar from 'components/common/UpperBar';
+import { latLngShape } from 'constants/shapes';
 
 const CreateTarget = ({
   newTargetlatlng,

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { func, bool } from 'prop-types';
 
-import UpperBar from '../common/UpperBar';
-import UserImageName from './UserImageName';
-import { userShape } from '../../constants/shapes';
-import './edit-profile.scss';
-import EditProfileForm from './EditProfileForm';
+import 'components/users/edit-profile.scss';
+import UpperBar from 'components/common/UpperBar';
+import UserImageName from 'components/users/UserImageName';
+import { userShape } from 'constants/shapes';
+import EditProfileForm from 'components/users/EditProfileForm';
 
 const EditProfile = ({ user, editProfile, setEditProfile }) => {
   const intl = useIntl();

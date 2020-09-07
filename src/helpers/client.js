@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { loginPageLink } from '../constants/link.constants';
-import { history } from '../helpers/history';
+import { loginPageLink } from 'constants/link.constants';
+import { history } from 'helpers/history';
 
 const URLS_WITHOUT_AUTH = [
   'rest-auth/login/',

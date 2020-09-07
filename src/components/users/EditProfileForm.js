@@ -3,16 +3,16 @@ import { func } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { userShape } from '../../constants/shapes';
-import FormInput from '../common/FormInput';
-import { genders, getGenderByValue } from './gendersList';
-import FormSelect from '../common/FormSelect';
-import { genderSelectStyle } from './genderSelectStyle';
-import './edit-profile.scss';
-import { userActions } from '../../actions/user.actions';
-import { userRequest } from '../../actions/user.actions';
-import { userConstants } from '../../constants/user.constants';
-import CustomLoader from '../../components/common/CustomLoader';
+import 'components/users/edit-profile.scss';
+import { userShape } from 'constants/shapes';
+import FormInput from 'components/common/FormInput';
+import { genders, getGenderByValue } from 'components/users/gendersList';
+import FormSelect from 'components/common/FormSelect';
+import { genderSelectStyle } from 'components/users/genderSelectStyle';
+import { userActions } from 'actions/user.actions';
+import { userRequest } from 'actions/user.actions';
+import { userConstants } from 'constants/user.constants';
+import CustomLoader from 'components/common/CustomLoader';
 
 const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const intl = useIntl();

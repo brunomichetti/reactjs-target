@@ -2,10 +2,10 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 
-import '../style/App.scss';
-import AppStoreContainer from '../components/app-store-container/AppStoreContainer';
-import ResetPasswordForm from '../components/users/ResetPasswordForm';
-import smilies from '../assets/smilies.png';
+import 'style/App.scss';
+import AppStoreContainer from 'components/app-store-container/AppStoreContainer';
+import ResetPasswordForm from 'components/users/ResetPasswordForm';
+import smilies from 'assets/smilies.png';
 
 const ResetPasswordPage = () => {
   const { uid, token } = useParams();

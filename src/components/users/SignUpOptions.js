@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 
-import { signupPageLink, loginPageLink } from '../../constants/link.constants';
-import './sign-up-options.scss';
+import 'components/users/sign-up-options.scss';
+import { signupPageLink, loginPageLink } from 'constants/link.constants';
 
 const SignUpOptions = () => {
   const intl = useIntl();

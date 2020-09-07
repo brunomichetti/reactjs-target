@@ -1,4 +1,4 @@
-import { targetConstants } from '../constants/target.constants';
+import { targetConstants } from 'constants/target.constants';
 
 export const target = (
   state = { createTargetSuccess: false, userTargets: [] },

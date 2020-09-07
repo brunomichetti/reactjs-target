@@ -1,16 +1,16 @@
-import { userConstants } from '../constants/user.constants';
-import { userService } from '../services/user.services';
-import { history } from '../helpers/history';
+import { userConstants } from 'constants/user.constants';
+import { userService } from 'services/user.services';
+import { history } from 'helpers/history';
 import {
   handleLoginError,
   handleSignupError,
   handleChangePasswordError,
   handleResetPasswordError,
   handleResetPasswordConfirmError,
-} from '../helpers/error.handler';
-import { homePageLink, loginPageLink } from '../constants/link.constants';
-import { targetService } from '../services/target.services';
-import { targetConstants } from '../constants/target.constants';
+} from 'helpers/error.handler';
+import { homePageLink, loginPageLink } from 'constants/link.constants';
+import { targetService } from 'services/target.services';
+import { targetConstants } from 'constants/target.constants';
 
 export const userRequest = () => ({ type: userConstants.USER_REQUEST });
 

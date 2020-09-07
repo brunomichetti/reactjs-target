@@ -1,7 +1,7 @@
 import {
   loginErrorConstants,
   resetPasswordErrorConstants,
-} from '../constants/login.error.constants';
+} from 'constants/login.error.constants';
 
 export const handleLoginError = ({ response: { status, data } }) => {
   if (status === 400 && data.non_field_errors) {

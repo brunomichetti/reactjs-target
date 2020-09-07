@@ -1,10 +1,10 @@
 import React from 'react';
 
-import defaultProfileImg from '../../assets/profilePicture.png';
-import './user-profile.scss';
-import { userShape } from '../../constants/shapes';
+import 'components/users/user-profile.scss';
+import defaultProfileImg from 'assets/profilePicture.png';
+import { userShape } from 'constants/shapes';
 import { bool, func } from 'prop-types';
-import UserImageEdit from './UserImageEdit';
+import UserImageEdit from 'components/users/UserImageEdit';
 
 const UserImageName = ({
   user: { name, profile_picture },

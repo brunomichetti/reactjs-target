@@ -4,20 +4,20 @@ import NumberFormat from 'react-number-format';
 import { func, string } from 'prop-types';
 import { useIntl } from 'react-intl';
 
-import FormInput from '../common/FormInput';
-import FormSelect from '../common/FormSelect';
-import { topicSelectStyle } from './topicSelectStyle';
+import 'components/targets/create-target-form.scss';
+import FormInput from 'components/common/FormInput';
+import FormSelect from 'components/common/FormSelect';
+import { topicSelectStyle } from 'components/targets/topicSelectStyle';
 import {
   CustomSelectOption,
   CustomSelectValue,
-} from '../common/customIconOption';
-import { topics } from './topicsList';
-import './create-target-form.scss';
-import { targetActions } from '../../actions/target.actions';
-import { targetConstants } from '../../constants/target.constants';
-import { userRequest } from '../../actions/user.actions';
-import { latLngShape } from '../../constants/shapes';
-import CustomLoader from '../../components/common/CustomLoader';
+} from 'components/common/customIconOption';
+import { topics } from 'components/targets/topicsList';
+import { targetActions } from 'actions/target.actions';
+import { targetConstants } from 'constants/target.constants';
+import { userRequest } from 'actions/user.actions';
+import { latLngShape } from 'constants/shapes';
+import CustomLoader from 'components/common/CustomLoader';
 
 const CreateTargetForm = ({
   newTargetlatlng,

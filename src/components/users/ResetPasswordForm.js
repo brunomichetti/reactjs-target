@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { string } from 'prop-types';
 import { useIntl } from 'react-intl';
 
-import { userActions } from '../../actions/user.actions';
-import '../../style/App.scss';
-import './user-form.scss';
-import FormInput from '../common/FormInput';
-import { userRequest } from '../../actions/user.actions';
-import CustomLoader from '../common/CustomLoader';
+import 'style/App.scss';
+import 'components/users/user-form.scss';
+import { userActions } from 'actions/user.actions';
+import FormInput from 'components/common/FormInput';
+import { userRequest } from 'actions/user.actions';
+import CustomLoader from 'components/common/CustomLoader';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const intl = useIntl();

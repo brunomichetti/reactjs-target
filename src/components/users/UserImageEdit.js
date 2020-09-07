@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
-import defaultProfileImg from '../../assets/profilePicture.png';
 import { string, func } from 'prop-types';
+
+import defaultProfileImg from 'assets/profilePicture.png';
 
 const UserImageEdit = ({ profilePicture, setNewImg }) => {
   const [imagePreview, setImagePreview] = useState(null);

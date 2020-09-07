@@ -3,12 +3,12 @@ import { func } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 
-import '../../style/App.scss';
-import './user-form.scss';
-import FormInput from '../common/FormInput';
-import { userRequest, userActions } from '../../actions/user.actions';
-import { userConstants } from '../../constants/user.constants';
-import CustomLoader from '../../components/common/CustomLoader';
+import 'style/App.scss';
+import 'components/users/user-form.scss';
+import FormInput from 'components/common/FormInput';
+import { userRequest, userActions } from 'actions/user.actions';
+import { userConstants } from 'constants/user.constants';
+import CustomLoader from 'components/common/CustomLoader';
 
 const ForgotPassword = ({ setForgotPassword }) => {
   const intl = useIntl();

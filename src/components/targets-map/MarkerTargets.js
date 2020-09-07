@@ -1,13 +1,9 @@
 import React from 'react';
 import { CircleMarker, Marker } from 'react-leaflet';
 
-import { targetsArrayShape } from '../../constants/shapes';
-
-import {
-  safron,
-  createTargetOpacity,
-} from '../../style/common/_constants.scss';
-import { getIconByTopic } from './map-icons';
+import { safron, createTargetOpacity } from 'style/common/_constants.scss';
+import { targetsArrayShape } from 'constants/shapes';
+import { getIconByTopic } from 'components/targets-map/map-icons';
 
 const MarkerTarget = ({ targets }) => (
   <div>

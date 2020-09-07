@@ -1,4 +1,4 @@
-import client from '../helpers/client';
+import client from 'helpers/client';
 
 const login = (email, password) =>
   client.post('rest-auth/login/', JSON.stringify({ email, password }));

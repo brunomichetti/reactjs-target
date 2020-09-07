@@ -5,7 +5,7 @@ import {
   dodgerBlue,
   loaderHeight,
   loaderWidth,
-} from '../../style/common/_constants.scss';
+} from 'style/common/_constants.scss';
 
 const CustomLoader = () => (
   <Loader
