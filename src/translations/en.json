@@ -49,5 +49,10 @@
   "forgot.password.text": "Please enter your email address and click on RESET PASSWORD to receive the instructions.",
   "reset.password.btn.text": "RESET PASSWORD",
   "back.text": "Back",
-  "forgot.password.email.sent.text": "Please check your inbox. An email has been sent to you with the instructions to reset your password."
+
+  "forgot.password.email.sent.text": "Please check your inbox. An email has been sent to you with the instructions to reset your password.",
+
+  "new.password.label.text": "NEW PASSWORD",
+  "enter.new.password.text": "Please enter and confirm the new password.",
+  "reset.password.completed.text": "Reset password completed successfuly!!"
 }

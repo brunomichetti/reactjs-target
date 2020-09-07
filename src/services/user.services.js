@@ -31,6 +31,17 @@ const resetPassword = (email) =>
     })
   );
 
+const resetPasswordConfirm = (newPassword1, newPassword2, uid, token) =>
+  client.post(
+    'rest-auth/password/reset/confirm/',
+    JSON.stringify({
+      new_password1: newPassword1,
+      new_password2: newPassword2,
+      uid: uid,
+      token: token,
+    })
+  );
+
 export const userService = {
   login,
   logout,
@@ -38,4 +49,5 @@ export const userService = {
   update,
   changePassword,
   resetPassword,
+  resetPasswordConfirm,
 };
