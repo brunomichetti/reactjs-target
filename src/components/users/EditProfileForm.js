@@ -14,7 +14,7 @@ import { userRequest } from '../../actions/user.actions';
 import { userConstants } from '../../constants/user.constants';
 import CustomLoader from '../../components/common/CustomLoader';
 
-const EditProfileForm = ({ user, setEditProfile }) => {
+const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const intl = useIntl();
 
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ const EditProfileForm = ({ user, setEditProfile }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-    if (changedNameOrGender || changedPassword) {
+    if (changedNameOrGender || changedPassword || newImg) {
       dispatch(userRequest());
       dispatch(
         userActions.update(
@@ -78,6 +78,7 @@ const EditProfileForm = ({ user, setEditProfile }) => {
           gender,
           password,
           confirmNewPassword,
+          newImg,
           changedNameOrGender
         )
       );

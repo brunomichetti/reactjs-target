@@ -11,8 +11,19 @@ const signup = (name, email, password1, password2, gender) =>
     JSON.stringify({ name, email, password1, password2, gender })
   );
 
-const update = (name, gender) =>
-  client.put('rest-auth/user/', JSON.stringify({ name, gender }));
+const update = (name, gender, newImg) => {
+  const formdata = new FormData();
+  if (name) {
+    formdata.append('name', name);
+  }
+  if (gender) {
+    formdata.append('gender', gender);
+  }
+  if (newImg) {
+    formdata.append('profile_picture', newImg);
+  }
+  return client.put('rest-auth/user/', formdata);
+};
 
 const changePassword = (password, confirmNewPassword) =>
   client.post(

@@ -11,7 +11,7 @@ import UserImageName from './UserImageName';
 import { func } from 'prop-types';
 import CustomLoader from '../../components/common/CustomLoader';
 
-const UserProfile = ({ user, setEditProfile }) => {
+const UserProfile = ({ user, editProfile, setEditProfile }) => {
   const intl = useIntl();
 
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const UserProfile = ({ user, setEditProfile }) => {
         <img src={menuIcon} alt="menu_button" />
       </div>
       <p className="user-profile__app-title">TARGET</p>
-      <UserImageName user={user} />
+      <UserImageName user={user} editProfile={editProfile} />
       <div className="user-profile__button-link">
         <button
           type="button"
@@ -67,6 +67,7 @@ const UserProfile = ({ user, setEditProfile }) => {
 
 UserProfile.propTypes = {
   user: userShape,
+  editProfile: bool,
   setEditProfile: func,
 };
 
