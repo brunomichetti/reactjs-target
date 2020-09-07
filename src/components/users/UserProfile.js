@@ -1,7 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'react-loader-spinner';
 import { userShape } from '../../constants/shapes';
 
 import menuIcon from '../../assets/icons/menuIcon.png';
@@ -10,6 +9,7 @@ import './user-profile.scss';
 import { userActions } from '../../actions/user.actions';
 import UserImageName from './UserImageName';
 import { func } from 'prop-types';
+import CustomLoader from '../../components/common/CustomLoader';
 
 const UserProfile = ({ user, setEditProfile }) => {
   const intl = useIntl();
@@ -53,9 +53,7 @@ const UserProfile = ({ user, setEditProfile }) => {
             id: 'homepage.logout.text',
           })}
         </button>
-        {loggingOut && (
-          <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
-        )}
+        {loggingOut && <CustomLoader />}
       </div>
       <hr className="user-profile__hr" />
       <p className="user-profile__matches">

@@ -1,7 +1,13 @@
 import { userConstants } from '../constants/user.constants';
 
 export const user = (
-  state = { loading: false, requestError: false, errorMsg: '', updated: false },
+  state = {
+    loading: false,
+    requestError: false,
+    errorMsg: '',
+    updated: false,
+    emailSent: false,
+  },
   { type, result }
 ) => {
   switch (type) {
@@ -12,7 +18,13 @@ export const user = (
         loading: true,
       };
     case userConstants.USER_REQUEST_SUCCESS:
-      return { ...state, loading: false, requestError: false, errorMsg: '' };
+      return {
+        ...state,
+        loading: false,
+        requestError: false,
+        errorMsg: '',
+        emailSent: false,
+      };
     case userConstants.USER_REQUEST_ERROR:
       return {
         loading: false,
@@ -30,6 +42,12 @@ export const user = (
       return {
         ...state,
         updated: false,
+      };
+    case userConstants.USER_RESET_PASSWORD_EMAIL_SENT:
+      return {
+        ...state,
+        loading: false,
+        emailSent: true,
       };
     default:
       return state;

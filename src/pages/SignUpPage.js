@@ -10,8 +10,8 @@ const SignUpPage = () => {
 
   return (
     <div className="main-div">
-      <div className="left-container">
-        <p className="left-container__title">
+      <div className="login-page-container">
+        <p className="login-page-container__title">
           {intl.formatMessage({
             id: 'userform.signup.text',
           })}

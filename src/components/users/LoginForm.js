@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'react-loader-spinner';
-import { useIntl } from 'react-intl';
+import { object } from 'prop-types';
 
-import SignUpOptions from './SignUpOptions.js';
 import { userActions } from '../../actions/user.actions';
 import '../../style/App.scss';
 import './user-form.scss';
-import { loginPageLink } from '../../constants/link.constants';
 import FormInput from '../common/FormInput';
 import { userRequest } from '../../actions/user.actions';
+import CustomLoader from '../../components/common/CustomLoader';
 
-const LoginForm = () => {
-  const intl = useIntl();
-
+const LoginForm = ({ intl }) => {
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({ email: '', password: '' });
@@ -85,23 +81,16 @@ const LoginForm = () => {
           })}
         </button>
       </div>
-      {loading && (
-        <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
-      )}
+      {loading && <CustomLoader />}
       {requestError && showLoginAlert && (
         <div className="user-form__alert"> {errorMsg} </div>
       )}
-      {/* href="/" until de feature is done */}
-      <div className="user-form__forgot-pwd">
-        <a href={loginPageLink}>
-          {intl.formatMessage({
-            id: 'userform.forgotpwd.text',
-          })}
-        </a>
-      </div>
-      <SignUpOptions intl={intl} />
     </form>
   );
+};
+
+LoginForm.propTypes = {
+  intl: object,
 };
 
 export default LoginForm;
