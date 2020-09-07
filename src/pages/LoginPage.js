@@ -43,7 +43,7 @@ const LoginPage = () => {
                 id: 'loginpage.description.text',
               })}
             </p>
-            <LoginForm intl={intl} />
+            <LoginForm />
             <div className="user-form__forgot-password">
               <button
                 type="button"
@@ -55,10 +55,10 @@ const LoginPage = () => {
                 })}
               </button>
             </div>
-            <SignUpOptions intl={intl} />
+            <SignUpOptions />
           </div>
         ) : (
-          <ForgotPassword intl={intl} setForgotPassword={setForgotPassword} />
+          <ForgotPassword setForgotPassword={setForgotPassword} />
         )}
       </div>
       <AppStoreContainer />

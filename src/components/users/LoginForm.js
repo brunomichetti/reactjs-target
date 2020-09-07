@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { object } from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import { userActions } from '../../actions/user.actions';
 import '../../style/App.scss';
@@ -9,7 +9,9 @@ import FormInput from '../common/FormInput';
 import { userRequest } from '../../actions/user.actions';
 import CustomLoader from '../../components/common/CustomLoader';
 
-const LoginForm = ({ intl }) => {
+const LoginForm = () => {
+  const intl = useIntl();
+
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({ email: '', password: '' });
@@ -87,10 +89,6 @@ const LoginForm = ({ intl }) => {
       )}
     </form>
   );
-};
-
-LoginForm.propTypes = {
-  intl: object,
 };
 
 export default LoginForm;

@@ -161,7 +161,6 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
 };
 
 EditProfileForm.propTypes = {
-  intl: func,
   user: userShape,
   setEditProfile: func,
 };
