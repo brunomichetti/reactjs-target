@@ -7,7 +7,7 @@ import play from '../../assets/play.png';
 import appStoreButton from '../../assets/appstore_button.png';
 
 const AppStoreContainer = () => (
-  <div className="app-store-container" align="center">
+  <div className="app-store-container">
     <div className="app-store-container__i6-img">
       <img src={i6} alt="i6" />
     </div>

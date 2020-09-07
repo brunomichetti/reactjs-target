@@ -86,7 +86,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   };
 
   return (
-    <form align="center" className="edit-profile-form" onSubmit={handleSubmit}>
+    <form className="edit-profile-form" onSubmit={handleSubmit}>
       <FormInput
         labelClassName="user-form__text"
         inputClassName="user-form__input"

@@ -43,7 +43,7 @@ const LoginForm = ({ intl }) => {
   };
 
   return (
-    <form align="center" className="user-form" onSubmit={handleSubmit}>
+    <form className="user-form" onSubmit={handleSubmit}>
       <FormInput
         labelClassName="user-form__text"
         inputClassName="user-form__input"

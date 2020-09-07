@@ -5,9 +5,7 @@
 \*------------------------------------*/
 
 .user-profile__profile-picture {
-  align-content: center;
-  align-items: center;
-  display: inline-block;
+  text-align: -webkit-center;
 }
 
 .user-profile__options {
@@ -114,7 +112,8 @@ a:hover {
   color: $dodger-blue;
 }
 
-.login-page-container__forgot_password__form {
+.initial-page-container__forgot_password__form {
+  text-align: -webkit-center;
   margin-top: 2em;
 }
 

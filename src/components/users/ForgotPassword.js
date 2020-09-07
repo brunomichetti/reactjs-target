@@ -51,18 +51,17 @@ const ForgotPassword = ({ intl, setForgotPassword }) => {
   };
 
   return (
-    <div align="center" className="login-page-container__forgot_password">
-      <p className="login-page-container__app-subtitle">
+    <div className="initial-page-container__forgot_password">
+      <p className="initial-page-container__app-subtitle">
         {intl.formatMessage({ id: 'userform.forgotpassword.text' })}
       </p>
       {!success ? (
         <div>
-          <p className="login-page-container__description-text">
+          <p className="initial-page-container__description-text">
             {intl.formatMessage({ id: 'forgot.password.text' })}
           </p>
           <form
-            align="center"
-            className="login-page-container__forgot_password__form"
+            className="initial-page-container__forgot_password__form"
             onSubmit={handleSubmit}
           >
             <FormInput
@@ -93,7 +92,7 @@ const ForgotPassword = ({ intl, setForgotPassword }) => {
         </div>
       ) : (
         <div>
-          <p className="login-page-container__description-text">
+          <p className="initial-page-container__description-text">
             {intl.formatMessage({ id: 'forgot.password.email.sent.text' })}
           </p>
         </div>

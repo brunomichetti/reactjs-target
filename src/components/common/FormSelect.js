@@ -10,6 +10,7 @@ import {
   componentSelectShape,
 } from '../../constants/shapes';
 import '../users/user-form.scss';
+import './form-select.scss';
 
 const FormSelect = ({
   customClassName,
@@ -23,7 +24,7 @@ const FormSelect = ({
   components = null,
   alertClassName = 'user-form__alert',
 }) => (
-  <div align="center">
+  <div className="form-select">
     <Select
       styles={customStyle}
       options={optionsSet}

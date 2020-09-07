@@ -8,20 +8,6 @@
   justify-content: center;
 }
 
-.create-target__title-bar-back {
-  margin-left: 1em;
-  margin-top: 0.2em;
-}
-
-.create-target__title-text {
-  width: 99vw;
-  color: $white;
-  font-family: $font-family-bold;
-  font-size: 1.5em;
-  line-height: 1.8em;
-  letter-spacing: 0.2em;
-}
-
 .create-target__new-target-img {
   margin-top: 1.5em;
 }
@@ -44,4 +30,8 @@
   height: 1em;
   font-size: 1em;
   line-height: 1em;
+}
+
+.create-target__form-container {
+  text-align: -webkit-center;
 }

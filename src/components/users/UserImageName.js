@@ -12,7 +12,7 @@ const UserImageName = ({
   setNewImg,
 }) => {
   return (
-    <div className="user-profile__profile-picture" align="center">
+    <div className="user-profile__profile-picture">
       {editProfile ? (
         <UserImageEdit profilePicture={profile_picture} setNewImg={setNewImg} />
       ) : (

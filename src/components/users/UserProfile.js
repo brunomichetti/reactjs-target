@@ -2,13 +2,13 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { userShape } from '../../constants/shapes';
+import { func, bool } from 'prop-types';
 
 import menuIcon from '../../assets/icons/menuIcon.png';
 import '../../style/App.scss';
 import './user-profile.scss';
 import { userActions } from '../../actions/user.actions';
 import UserImageName from './UserImageName';
-import { func } from 'prop-types';
 import CustomLoader from '../../components/common/CustomLoader';
 
 const UserProfile = ({ user, editProfile, setEditProfile }) => {

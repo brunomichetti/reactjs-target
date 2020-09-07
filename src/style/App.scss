@@ -11,22 +11,22 @@ body {
   min-height: 100vh;
 }
 
-.login-page-container {
+.initial-page-container {
   background-color: $white;
   width: 50vw;
 }
 
-.login-page-container__menu {
+.initial-page-container__menu {
   padding-top: 2em;
   padding-left: 1.5em;
 }
 
-.login-page-container__smilies {
+.initial-page-container__smilies {
   padding-top: 3em;
   text-align: center;
 }
 
-.login-page-container__reset-password-smilies {
+.initial-page-container__reset-password-smilies {
   padding-top: 7em;
   text-align: center;
 }
@@ -40,17 +40,17 @@ body {
   color: $black;
   text-align: center;
 }
-.login-page-container__app-title {
+.initial-page-container__app-title {
   @extend %app-title;
 }
 
-.login-page-container__title {
+.initial-page-container__title {
   @extend %app-title;
   padding-top: 4em;
   margin-bottom: 2.7em;
 }
 
-.login-page-container__app-subtitle {
+.initial-page-container__app-subtitle {
   font-family: $font-family-bold;
   font-style: normal;
   font-weight: 600;
@@ -59,7 +59,7 @@ body {
   text-align: center;
 }
 
-.login-page-container__description-text {
+.initial-page-container__description-text {
   font-family: $font-family-regular;
   font-size: 1em;
   line-height: 2em;
@@ -101,6 +101,12 @@ body {
   outline: none;
 }
 
-.login-page-container__forgot_password {
+.initial-page-container__forgot_password {
+  text-align: -webkit-center;
   margin-top: 4em;
+}
+
+.initial-page-container__login,
+.initial-page-container__reset-password-text {
+  text-align: -webkit-center;
 }

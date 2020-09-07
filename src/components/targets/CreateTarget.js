@@ -40,7 +40,7 @@ const CreateTarget = ({
           id: 'createtarget.new.target.text',
         })}
       </p>
-      <div align="center">
+      <div className="create-target__form-container">
         <CreateTargetForm
           intl={intl}
           newTargetlatlng={newTargetlatlng}
