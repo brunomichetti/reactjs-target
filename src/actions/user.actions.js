@@ -106,12 +106,12 @@ const resetPassword = (email) => {
   };
 };
 
-const resetPasswordConfirm = (new_password1, new_password2, uid, token) => {
+const resetPasswordConfirm = (newPassword1, newPassword2, uid, token) => {
   return async (dispatch) => {
     try {
       await userService.resetPasswordConfirm(
-        new_password1,
-        new_password2,
+        newPassword1,
+        newPassword2,
         uid,
         token
       );

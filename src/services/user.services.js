@@ -31,12 +31,12 @@ const resetPassword = (email) =>
     })
   );
 
-const resetPasswordConfirm = (new_password1, new_password2, uid, token) =>
+const resetPasswordConfirm = (newPassword1, newPassword2, uid, token) =>
   client.post(
     'rest-auth/password/reset/confirm/',
     JSON.stringify({
-      new_password1: new_password1,
-      new_password2: new_password2,
+      new_password1: newPassword1,
+      new_password2: newPassword2,
       uid: uid,
       token: token,
     })

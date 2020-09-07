@@ -1,5 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { useParams } from 'react-router-dom';
 
 import '../style/App.scss';
 import AppStoreContainer from '../components/app-store-container/AppStoreContainer';
@@ -7,10 +8,8 @@ import ResetPasswordForm from '../components/users/ResetPasswordForm';
 import smilies from '../assets/smilies.png';
 
 const ResetPasswordPage = () => {
-  const [uid, token] = [
-    window.location.href.split('/')[4],
-    window.location.href.split('/')[5],
-  ];
+  const { uid, token } = useParams();
+  debugger;
 
   const intl = useIntl();
 
@@ -26,7 +25,7 @@ const ResetPasswordPage = () => {
             id: 'enter.new.password.text',
           })}
         </p>
-        <ResetPasswordForm intl={intl} url_uid={uid} url_token={token} />
+        <ResetPasswordForm intl={intl} urlUid={uid} urlToken={token} />
       </div>
       <AppStoreContainer />
     </div>

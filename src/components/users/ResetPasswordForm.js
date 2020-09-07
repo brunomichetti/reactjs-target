@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'react-loader-spinner';
 import { object, string } from 'prop-types';
 
 import { userActions } from '../../actions/user.actions';
@@ -8,18 +7,19 @@ import '../../style/App.scss';
 import './user-form.scss';
 import FormInput from '../common/FormInput';
 import { userRequest } from '../../actions/user.actions';
+import CustomLoader from '../common/CustomLoader';
 
-const ResetPasswordForm = ({ intl, url_uid, url_token }) => {
+const ResetPasswordForm = ({ intl, urlUid, urlToken }) => {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
-    new_password1: '',
-    new_password2: '',
+    newPassword1: '',
+    newPassword2: '',
   });
-  const { new_password1, new_password2 } = inputs;
+  const { newPassword1, newPassword2 } = inputs;
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const equalPasswords = new_password1 === new_password2;
+  const equalPasswords = newPassword1 === newPassword2;
 
   const { loading, requestError, errorMsg, updated } = useSelector(
     (state) => state.user
@@ -44,14 +44,14 @@ const ResetPasswordForm = ({ intl, url_uid, url_token }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-    if (new_password1 && new_password2 && equalPasswords) {
+    if (newPassword1 && newPassword2 && equalPasswords) {
       dispatch(userRequest());
       dispatch(
         userActions.resetPasswordConfirm(
-          new_password1,
-          new_password2,
-          url_uid,
-          url_token
+          newPassword1,
+          newPassword2,
+          urlUid,
+          urlToken
         )
       );
     }
@@ -70,10 +70,10 @@ const ResetPasswordForm = ({ intl, url_uid, url_token }) => {
           id: 'new.password.label.text',
         })}
         inputType="password"
-        inputName="new_password1"
-        inputValue={new_password1}
+        inputName="newPassword1"
+        inputValue={newPassword1}
         inputOnChange={handleChange}
-        error={isSubmitted && !new_password1}
+        error={isSubmitted && !newPassword1}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -85,16 +85,16 @@ const ResetPasswordForm = ({ intl, url_uid, url_token }) => {
           id: 'userform.confirmpass.label.text',
         })}
         inputType="password"
-        inputName="new_password2"
-        inputValue={new_password2}
+        inputName="newPassword2"
+        inputValue={newPassword2}
         inputOnChange={handleChange}
-        error={isSubmitted && !new_password2}
+        error={isSubmitted && !newPassword2}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass2.text',
         })}
       />
       <div>
-        {isSubmitted && new_password1 && new_password2 && !equalPasswords && (
+        {isSubmitted && newPassword1 && newPassword2 && !equalPasswords && (
           <div className="user-form__alert">
             {intl.formatMessage({
               id: 'userform.not.matching.passwords.text',
@@ -102,9 +102,7 @@ const ResetPasswordForm = ({ intl, url_uid, url_token }) => {
           </div>
         )}
       </div>
-      {loading && (
-        <Loader type="ThreeDots" color="#2FBCF7" height={80} width={50} />
-      )}
+      {loading && <CustomLoader />}
       {isSubmitted && requestError && (
         <div className="user-form__alert"> {errorMsg} </div>
       )}
@@ -121,8 +119,8 @@ const ResetPasswordForm = ({ intl, url_uid, url_token }) => {
 
 ResetPasswordForm.propTypes = {
   intl: object,
-  url_uid: string,
-  url_token: string,
+  urlUid: string,
+  urlToken: string,
 };
 
 export default ResetPasswordForm;
