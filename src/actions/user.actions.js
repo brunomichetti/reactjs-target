@@ -48,14 +48,14 @@ const logout = () => {
   };
 };
 
-const signup = (name, email, password1, password2, gender) => {
+const signup = (name, email, password, passwordConfirm, gender) => {
   return async (dispatch) => {
     try {
       const { data: user } = await userService.signup(
         name,
         email,
-        password1,
-        password2,
+        password,
+        passwordConfirm,
         gender
       );
       successToHomePage(user, dispatch);
@@ -70,14 +70,14 @@ const update = (
   name,
   gender,
   password,
-  confirmNewPassword,
+  passwordConfirm,
   newImg,
   changedNameOrGender
 ) => {
   return async (dispatch) => {
     try {
       if (password) {
-        await userService.changePassword(password, confirmNewPassword);
+        await userService.changePassword(password, passwordConfirm);
       }
       if (changedNameOrGender || newImg) {
         const { data: user } = await userService.update(name, gender, newImg);
@@ -107,14 +107,14 @@ const resetPassword = (email) => {
   };
 };
 
-const resetPasswordConfirm = (newPassword1, newPassword2, uid, token) => {
+const resetPasswordConfirm = (password, passwordConfirm, urlUid, urlToken) => {
   return async (dispatch) => {
     try {
       await userService.resetPasswordConfirm(
-        newPassword1,
-        newPassword2,
-        uid,
-        token
+        password,
+        passwordConfirm,
+        urlUid,
+        urlToken
       );
       dispatch({ type: userConstants.USER_UPDATE_SUCCESS });
       history.push(loginPageLink);

@@ -8,6 +8,13 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
+import {
+  validate,
+  emailConstraints,
+  passwordConstraints,
+  loginConstraints,
+} from 'helpers/constraints';
+import { userConstants } from 'constants/user.constants';
 
 const LoginForm = () => {
   const intl = useIntl();
@@ -17,28 +24,25 @@ const LoginForm = () => {
   const [inputs, setInputs] = useState({ email: '', password: '' });
   const { email, password } = inputs;
 
-  const [cleanAlert, setCleanAlert] = useState(false);
-
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { loading, requestError, errorMsg } = useSelector(
     (state) => state.user
   );
 
-  const showLoginAlert = isSubmitted && requestError && !cleanAlert;
-
   const handleChange = ({ target: { name, value } }) => {
-    if (!loading) {
-      setInputs((inputs) => ({ ...inputs, [name]: value }));
-      setCleanAlert(true);
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
+    setInputs((inputs) => ({ ...inputs, [name]: value }));
+    setIsSubmitted(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-    if (email && password) {
-      setCleanAlert(false);
+    var errors = validate(inputs, loginConstraints);
+    if (!errors) {
       dispatch(userRequest());
       dispatch(userActions.login(email, password));
     }
@@ -56,7 +60,7 @@ const LoginForm = () => {
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
-        error={isSubmitted && !email}
+        error={isSubmitted && validate(inputs, emailConstraints)}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.email.text',
         })}
@@ -71,7 +75,7 @@ const LoginForm = () => {
         inputName="password"
         inputValue={password}
         inputOnChange={handleChange}
-        error={isSubmitted && !password}
+        error={isSubmitted && validate(inputs, passwordConstraints)}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -84,7 +88,7 @@ const LoginForm = () => {
         </button>
       </div>
       {loading && <CustomLoader />}
-      {requestError && showLoginAlert && (
+      {isSubmitted && requestError && (
         <div className="user-form__alert"> {errorMsg} </div>
       )}
     </form>

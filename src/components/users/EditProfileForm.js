@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,6 +13,11 @@ import { userActions } from 'actions/user.actions';
 import { userRequest } from 'actions/user.actions';
 import { userConstants } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
+import {
+  validate,
+  equalPasswordsConstraints,
+  nameConstraints,
+} from 'helpers/constraints';
 
 const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const intl = useIntl();
@@ -29,12 +34,10 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
     name: user.name,
     gender: user.gender,
     password: '',
-    confirmNewPassword: '',
+    passwordConfirm: '',
     selectGender: getGenderByValue(user.gender),
   });
-  const { name, gender, password, confirmNewPassword, selectGender } = inputs;
-
-  const equalPasswords = password === confirmNewPassword;
+  const { name, gender, password, passwordConfirm, selectGender } = inputs;
 
   useEffect(() => {
     if (updated) {
@@ -49,11 +52,17 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   }, [updated, setEditProfile, intl, dispatch]);
 
   const handleChange = ({ target: { name, value } }) => {
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
     setIsSubmitted(false);
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
   const handleChangeGender = (selectGender) => {
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
     setIsSubmitted(false);
     setInputs((inputs) => ({
       ...inputs,
@@ -65,7 +74,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const changedNameOrGender =
     (name && name !== user.name) || gender !== user.gender;
 
-  const changedPassword = password && equalPasswords;
+  const changedPassword = password && password === passwordConfirm;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,7 +86,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
           name,
           gender,
           password,
-          confirmNewPassword,
+          passwordConfirm,
           newImg,
           changedNameOrGender
         )
@@ -97,7 +106,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
         inputName="name"
         inputValue={name}
         inputOnChange={handleChange}
-        error={isSubmitted && !name}
+        error={isSubmitted && validate(inputs, nameConstraints)}
         errorMsg={intl.formatMessage({
           id: 'editprofile.empty.name.text',
         })}
@@ -134,16 +143,22 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
           id: 'editprofile.update.password.confirm.text',
         })}
         inputType="password"
-        inputName="confirmNewPassword"
-        inputValue={confirmNewPassword}
+        inputName="passwordConfirm"
+        inputValue={passwordConfirm}
         inputOnChange={handleChange}
-        error={!!(isSubmitted && password && !equalPasswords)}
+        error={
+          !!(
+            isSubmitted &&
+            password &&
+            validate(inputs, equalPasswordsConstraints)
+          )
+        }
         errorMsg={intl.formatMessage({
           id: 'userform.not.matching.passwords.text',
         })}
       />
       {loading && <CustomLoader />}
-      {password && equalPasswords && requestError && isSubmitted && (
+      {isSubmitted && requestError && (
         <div className="user-form__alert"> {errorMsg} </div>
       )}
       <div>
@@ -163,6 +178,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
 EditProfileForm.propTypes = {
   user: userShape,
   setEditProfile: func,
+  newImg: object,
 };
 
 export default EditProfileForm;

@@ -9,6 +9,7 @@ import FormInput from 'components/common/FormInput';
 import { userRequest, userActions } from 'actions/user.actions';
 import { userConstants } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
+import { validate, emailConstraints } from 'helpers/constraints';
 
 const ForgotPassword = ({ setForgotPassword }) => {
   const intl = useIntl();
@@ -22,9 +23,9 @@ const ForgotPassword = ({ setForgotPassword }) => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const { loading, emailSent, errorMsg } = useSelector((state) => state.user);
-
-  const showError = isSubmitted && errorMsg;
+  const { loading, emailSent, errorMsg, requestError } = useSelector(
+    (state) => state.user
+  );
 
   useEffect(() => {
     if (emailSent) {
@@ -34,6 +35,9 @@ const ForgotPassword = ({ setForgotPassword }) => {
   }, [emailSent, setSuccess, setIsSubmitted]);
 
   const handleChange = ({ target: { name, value } }) => {
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
     setIsSubmitted(false);
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
@@ -42,7 +46,8 @@ const ForgotPassword = ({ setForgotPassword }) => {
     setForgotPassword(false);
     setSuccess(false);
     setInputs((inputs) => ({ ...inputs, email: '' }));
-    dispatch({ type: userConstants.USER_REQUEST_SUCCESS });
+    setIsSubmitted(false);
+    dispatch({ type: userConstants.USER_CLEAN_ALERT });
   };
 
   const handleSubmit = (e) => {
@@ -78,13 +83,15 @@ const ForgotPassword = ({ setForgotPassword }) => {
               inputName="email"
               inputValue={email}
               inputOnChange={handleChange}
-              error={isSubmitted && !email}
+              error={isSubmitted && validate(inputs, emailConstraints)}
               errorMsg={intl.formatMessage({
                 id: 'userform.missing.email.text',
               })}
             />
             {loading && <CustomLoader />}
-            {showError && <div className="user-form__alert"> {errorMsg} </div>}
+            {isSubmitted && requestError && (
+              <div className="user-form__alert"> {errorMsg} </div>
+            )}
             <div>
               <button type="submit" className="reset_password__btn-text">
                 {intl.formatMessage({

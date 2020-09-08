@@ -9,6 +9,14 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
+import { userConstants } from 'constants/user.constants';
+import {
+  validate,
+  passwordConstraints,
+  passwordConfirmConstraints,
+  equalPasswordsConstraints,
+  changePasswordConstraints,
+} from 'helpers/constraints';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const intl = useIntl();
@@ -16,14 +24,12 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
-    newPassword1: '',
-    newPassword2: '',
+    password: '',
+    passwordConfirm: '',
   });
-  const { newPassword1, newPassword2 } = inputs;
+  const { password, passwordConfirm } = inputs;
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const equalPasswords = newPassword1 === newPassword2;
 
   const { loading, requestError, errorMsg, updated } = useSelector(
     (state) => state.user
@@ -41,6 +47,9 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
   }, [updated, intl, setIsSubmitted]);
 
   const handleChange = ({ target: { name, value } }) => {
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
     setIsSubmitted(false);
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
@@ -48,12 +57,13 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-    if (newPassword1 && newPassword2 && equalPasswords) {
+    var errors = validate(inputs, changePasswordConstraints);
+    if (!errors) {
       dispatch(userRequest());
       dispatch(
         userActions.resetPasswordConfirm(
-          newPassword1,
-          newPassword2,
+          password,
+          passwordConfirm,
           urlUid,
           urlToken
         )
@@ -70,10 +80,10 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
           id: 'new.password.label.text',
         })}
         inputType="password"
-        inputName="newPassword1"
-        inputValue={newPassword1}
+        inputName="password"
+        inputValue={password}
         inputOnChange={handleChange}
-        error={isSubmitted && !newPassword1}
+        error={isSubmitted && validate(inputs, passwordConstraints)}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -85,16 +95,16 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
           id: 'userform.confirmpass.label.text',
         })}
         inputType="password"
-        inputName="newPassword2"
-        inputValue={newPassword2}
+        inputName="passwordConfirm"
+        inputValue={passwordConfirm}
         inputOnChange={handleChange}
-        error={isSubmitted && !newPassword2}
+        error={isSubmitted && validate(inputs, passwordConfirmConstraints)}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass2.text',
         })}
       />
       <div>
-        {isSubmitted && newPassword1 && newPassword2 && !equalPasswords && (
+        {isSubmitted && validate(inputs, equalPasswordsConstraints) && (
           <div className="user-form__alert">
             {intl.formatMessage({
               id: 'userform.not.matching.passwords.text',
