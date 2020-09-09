@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { isEmpty, omit } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -9,7 +10,7 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
-import { validate, loginConstraints } from 'helpers/constraints';
+import { loginConstraints } from 'helpers/constraints';
 import { userConstants } from 'constants/user.constants';
 
 const LoginForm = () => {
@@ -36,7 +37,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var currentErrors = validate(inputs, loginConstraints) || {};
+    const currentErrors = validate(inputs, loginConstraints) || {};
     if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(userActions.login(email, password));

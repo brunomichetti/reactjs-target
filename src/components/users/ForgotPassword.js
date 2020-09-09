@@ -3,6 +3,7 @@ import { func } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { isEmpty, omit } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -10,7 +11,7 @@ import FormInput from 'components/common/FormInput';
 import { userRequest, userActions } from 'actions/user.actions';
 import { userConstants } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
-import { validate, emailConstraints } from 'helpers/constraints';
+import { emailConstraints } from 'helpers/constraints';
 
 const ForgotPassword = ({ setForgotPassword }) => {
   const intl = useIntl();
@@ -53,7 +54,7 @@ const ForgotPassword = ({ setForgotPassword }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var currentErrors = validate(inputs, emailConstraints) || {};
+    const currentErrors = validate(inputs, emailConstraints) || {};
     if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(userActions.resetPassword(email));

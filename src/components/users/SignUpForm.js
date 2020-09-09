@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { isEmpty, omit } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -14,7 +15,7 @@ import { genderSelectStyle } from 'components/users/genderSelectStyle';
 import { userRequest } from 'actions/user.actions';
 import { genders } from 'components/users/gendersList';
 import { userConstants } from 'constants/user.constants';
-import { validate, signupConstraints } from 'helpers/constraints';
+import { signupConstraints } from 'helpers/constraints';
 
 const SignUpForm = () => {
   const intl = useIntl();
@@ -54,7 +55,7 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var currentErrors = validate(inputs, signupConstraints) || {}; // Set empty errors if validate returns undefined
+    const currentErrors = validate(inputs, signupConstraints) || {}; // Set empty errors if validate returns undefined
     if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(

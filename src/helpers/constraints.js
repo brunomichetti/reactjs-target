@@ -1,6 +1,4 @@
-export var validate = require('validate.js');
-
-export var passwordConstraints = {
+export const passwordConstraints = {
   password: {
     presence: true,
     exclusion: {
@@ -9,7 +7,7 @@ export var passwordConstraints = {
   },
 };
 
-export var emailConstraints = {
+export const emailConstraints = {
   email: {
     presence: true,
     exclusion: {
@@ -18,7 +16,7 @@ export var emailConstraints = {
   },
 };
 
-export var nameConstraints = {
+export const nameConstraints = {
   name: {
     presence: true,
     exclusion: {
@@ -27,7 +25,7 @@ export var nameConstraints = {
   },
 };
 
-export var passwordConfirmConstraints = {
+export const passwordConfirmConstraints = {
   passwordConfirm: {
     presence: true,
     exclusion: {
@@ -37,7 +35,7 @@ export var passwordConfirmConstraints = {
   },
 };
 
-export var genderConstraints = {
+export const genderConstraints = {
   gender: {
     presence: true,
     exclusion: {
@@ -46,7 +44,7 @@ export var genderConstraints = {
   },
 };
 
-export var signupConstraints = {
+export const signupConstraints = {
   name: nameConstraints.name,
   email: emailConstraints.email,
   password: passwordConstraints.password,
@@ -54,19 +52,17 @@ export var signupConstraints = {
   gender: genderConstraints.gender,
 };
 
-export var changePasswordConstraints = {
+export const changePasswordConstraints = {
   password: passwordConstraints.password,
   passwordConfirm: passwordConfirmConstraints.passwordConfirm,
 };
 
-export var loginConstraints = {
+export const loginConstraints = {
   email: emailConstraints.email,
   password: passwordConstraints.password,
 };
 
-export var equalPasswordsConstraints = {};
-
-export var editProfileConstraints = {
+export const editProfileConstraints = {
   name: nameConstraints.name,
   passwordConfirm: { equality: 'password' },
 };

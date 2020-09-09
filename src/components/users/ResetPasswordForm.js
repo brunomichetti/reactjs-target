@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { string } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { isEmpty, omit } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -11,7 +12,7 @@ import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
 import { userConstants } from 'constants/user.constants';
-import { validate, changePasswordConstraints } from 'helpers/constraints';
+import { changePasswordConstraints } from 'helpers/constraints';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const intl = useIntl();
@@ -51,7 +52,7 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var currentErrors = validate(inputs, changePasswordConstraints) || {};
+    const currentErrors = validate(inputs, changePasswordConstraints) || {};
     if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(

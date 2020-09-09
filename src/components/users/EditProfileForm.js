@@ -3,6 +3,7 @@ import { func, object } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { omit, isEmpty } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'components/users/edit-profile.scss';
 import { userShape } from 'constants/shapes';
@@ -14,7 +15,7 @@ import { userActions } from 'actions/user.actions';
 import { userRequest } from 'actions/user.actions';
 import { userConstants } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
-import { validate, editProfileConstraints } from 'helpers/constraints';
+import { editProfileConstraints } from 'helpers/constraints';
 
 const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const intl = useIntl();
@@ -71,7 +72,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var currentErrors = validate(inputs, editProfileConstraints) || {};
+    const currentErrors = validate(inputs, editProfileConstraints) || {};
     if (isEmpty(currentErrors) && (password || changedNameOrGender || newImg)) {
       dispatch(userRequest());
       dispatch(
