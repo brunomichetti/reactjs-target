@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
+import _ from 'underscore';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -8,12 +9,7 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
-import {
-  validate,
-  emailConstraints,
-  passwordConstraints,
-  loginConstraints,
-} from 'helpers/constraints';
+import { validate, loginConstraints } from 'helpers/constraints';
 import { userConstants } from 'constants/user.constants';
 
 const LoginForm = () => {
@@ -24,7 +20,7 @@ const LoginForm = () => {
   const [inputs, setInputs] = useState({ email: '', password: '' });
   const { email, password } = inputs;
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const { loading, requestError, errorMsg } = useSelector(
     (state) => state.user
@@ -34,18 +30,18 @@ const LoginForm = () => {
     if (requestError) {
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
+    setErrors(_.omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
-    setIsSubmitted(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    var errors = validate(inputs, loginConstraints);
-    if (!errors) {
+    var currentErrors = validate(inputs, loginConstraints) || {};
+    if (_.isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(userActions.login(email, password));
     }
+    setErrors(currentErrors);
   };
 
   return (
@@ -60,7 +56,7 @@ const LoginForm = () => {
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
-        error={isSubmitted && validate(inputs, emailConstraints)}
+        error={'email' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.email.text',
         })}
@@ -75,7 +71,7 @@ const LoginForm = () => {
         inputName="password"
         inputValue={password}
         inputOnChange={handleChange}
-        error={isSubmitted && validate(inputs, passwordConstraints)}
+        error={'password' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -88,9 +84,7 @@ const LoginForm = () => {
         </button>
       </div>
       {loading && <CustomLoader />}
-      {isSubmitted && requestError && (
-        <div className="user-form__alert"> {errorMsg} </div>
-      )}
+      {requestError && <div className="user-form__alert"> {errorMsg} </div>}
     </form>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { string } from 'prop-types';
 import { useIntl } from 'react-intl';
+import _ from 'underscore';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -10,13 +11,7 @@ import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
 import { userConstants } from 'constants/user.constants';
-import {
-  validate,
-  passwordConstraints,
-  passwordConfirmConstraints,
-  equalPasswordsConstraints,
-  changePasswordConstraints,
-} from 'helpers/constraints';
+import { validate, changePasswordConstraints } from 'helpers/constraints';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const intl = useIntl();
@@ -29,7 +24,7 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
   });
   const { password, passwordConfirm } = inputs;
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const { loading, requestError, errorMsg, updated } = useSelector(
     (state) => state.user
@@ -37,28 +32,27 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
 
   useEffect(() => {
     if (updated) {
-      setIsSubmitted(false);
+      setErrors({});
       alert(
         intl.formatMessage({
           id: 'reset.password.completed.text',
         })
       );
     }
-  }, [updated, intl, setIsSubmitted]);
+  }, [updated, intl, setErrors]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
-    setIsSubmitted(false);
+    setErrors(_.omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    var errors = validate(inputs, changePasswordConstraints);
-    if (!errors) {
+    var currentErrors = validate(inputs, changePasswordConstraints) || {};
+    if (_.isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(
         userActions.resetPasswordConfirm(
@@ -69,6 +63,7 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
         )
       );
     }
+    setErrors(currentErrors);
   };
 
   return (
@@ -83,7 +78,7 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
         inputName="password"
         inputValue={password}
         inputOnChange={handleChange}
-        error={isSubmitted && validate(inputs, passwordConstraints)}
+        error={'password' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -98,24 +93,26 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
         inputName="passwordConfirm"
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
-        error={isSubmitted && validate(inputs, passwordConfirmConstraints)}
+        error={
+          'passwordConfirm' in errors &&
+          errors.passwordConfirm[0].includes('restricted')
+        }
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass2.text',
         })}
       />
       <div>
-        {isSubmitted && validate(inputs, equalPasswordsConstraints) && (
-          <div className="user-form__alert">
-            {intl.formatMessage({
-              id: 'userform.not.matching.passwords.text',
-            })}
-          </div>
-        )}
+        {'passwordConfirm' in errors &&
+          errors.passwordConfirm[0].includes('not equal') && (
+            <div className="user-form__alert">
+              {intl.formatMessage({
+                id: 'userform.not.matching.passwords.text',
+              })}
+            </div>
+          )}
       </div>
       {loading && <CustomLoader />}
-      {isSubmitted && requestError && (
-        <div className="user-form__alert"> {errorMsg} </div>
-      )}
+      {requestError && <div className="user-form__alert"> {errorMsg} </div>}
       <div>
         <button type="submit" className="user-form__btn-text">
           {intl.formatMessage({

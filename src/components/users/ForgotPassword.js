@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { func } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
+import _ from 'underscore';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -19,9 +20,9 @@ const ForgotPassword = ({ setForgotPassword }) => {
   const [inputs, setInputs] = useState({ email: '' });
   const { email } = inputs;
 
-  const [success, setSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const { loading, emailSent, errorMsg, requestError } = useSelector(
     (state) => state.user
@@ -30,15 +31,15 @@ const ForgotPassword = ({ setForgotPassword }) => {
   useEffect(() => {
     if (emailSent) {
       setSuccess(true);
-      setIsSubmitted(false);
+      setErrors({});
     }
-  }, [emailSent, setSuccess, setIsSubmitted]);
+  }, [emailSent, setSuccess, setErrors]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
-    setIsSubmitted(false);
+    setErrors(_.omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
@@ -46,17 +47,18 @@ const ForgotPassword = ({ setForgotPassword }) => {
     setForgotPassword(false);
     setSuccess(false);
     setInputs((inputs) => ({ ...inputs, email: '' }));
-    setIsSubmitted(false);
+    setErrors({});
     dispatch({ type: userConstants.USER_CLEAN_ALERT });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    if (email) {
+    var currentErrors = validate(inputs, emailConstraints) || {};
+    if (_.isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(userActions.resetPassword(email));
     }
+    setErrors(currentErrors);
   };
 
   return (
@@ -83,13 +85,13 @@ const ForgotPassword = ({ setForgotPassword }) => {
               inputName="email"
               inputValue={email}
               inputOnChange={handleChange}
-              error={isSubmitted && validate(inputs, emailConstraints)}
+              error={'email' in errors}
               errorMsg={intl.formatMessage({
                 id: 'userform.missing.email.text',
               })}
             />
             {loading && <CustomLoader />}
-            {isSubmitted && requestError && (
+            {requestError && (
               <div className="user-form__alert"> {errorMsg} </div>
             )}
             <div>

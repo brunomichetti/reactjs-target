@@ -9,7 +9,6 @@ import smilies from 'assets/smilies.png';
 
 const ResetPasswordPage = () => {
   const { uid, token } = useParams();
-  debugger;
 
   const intl = useIntl();
 

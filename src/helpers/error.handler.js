@@ -39,7 +39,6 @@ export const handleChangePasswordError = ({ response: { data } }) => {
 };
 
 export const handleResetPasswordError = ({ response: { data } }) => {
-  debugger;
   if (data['email']) {
     return data.email[0];
   }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { func, object } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
+import _ from 'underscore';
 
 import 'components/users/edit-profile.scss';
 import { userShape } from 'constants/shapes';
@@ -13,18 +14,14 @@ import { userActions } from 'actions/user.actions';
 import { userRequest } from 'actions/user.actions';
 import { userConstants } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
-import {
-  validate,
-  equalPasswordsConstraints,
-  nameConstraints,
-} from 'helpers/constraints';
+import { validate, editProfileConstraints } from 'helpers/constraints';
 
 const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const intl = useIntl();
 
   const dispatch = useDispatch();
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const { loading, requestError, errorMsg, updated } = useSelector(
     (state) => state.user
@@ -55,7 +52,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
     if (requestError) {
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
-    setIsSubmitted(false);
+    setErrors(_.omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
@@ -63,7 +60,6 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
     if (requestError) {
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
-    setIsSubmitted(false);
     setInputs((inputs) => ({
       ...inputs,
       gender: selectGender['value'],
@@ -78,7 +74,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    var currentErrors = validate(inputs, editProfileConstraints) || {};
     if (changedNameOrGender || changedPassword || newImg) {
       dispatch(userRequest());
       dispatch(
@@ -92,6 +88,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
         )
       );
     }
+    setErrors(currentErrors);
   };
 
   return (
@@ -106,7 +103,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
         inputName="name"
         inputValue={name}
         inputOnChange={handleChange}
-        error={isSubmitted && validate(inputs, nameConstraints)}
+        error={'name' in errors}
         errorMsg={intl.formatMessage({
           id: 'editprofile.empty.name.text',
         })}
@@ -147,20 +144,27 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
         error={
-          !!(
-            isSubmitted &&
-            password &&
-            validate(inputs, equalPasswordsConstraints)
-          )
+          password &&
+          'passwordConfirm' in errors &&
+          errors.passwordConfirm[0].includes('restricted')
         }
         errorMsg={intl.formatMessage({
-          id: 'userform.not.matching.passwords.text',
+          id: 'userform.missing.pass2.text',
         })}
       />
+      <div>
+        {password &&
+          'passwordConfirm' in errors &&
+          errors.passwordConfirm[0].includes('not equal') && (
+            <div className="user-form__alert">
+              {intl.formatMessage({
+                id: 'userform.not.matching.passwords.text',
+              })}
+            </div>
+          )}
+      </div>
       {loading && <CustomLoader />}
-      {isSubmitted && requestError && (
-        <div className="user-form__alert"> {errorMsg} </div>
-      )}
+      {requestError && <div className="user-form__alert"> {errorMsg} </div>}
       <div>
         <button
           type="submit"
