@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { func, object } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import _ from 'underscore';
+import { omit } from 'lodash';
 
 import 'components/users/edit-profile.scss';
 import { userShape } from 'constants/shapes';
@@ -52,7 +52,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
     if (requestError) {
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
-    setErrors(_.omit(errors, name));
+    setErrors(omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 

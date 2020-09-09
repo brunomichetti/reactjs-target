@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
-import _ from 'underscore';
+import { isEmpty, omit } from 'lodash';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -30,14 +30,14 @@ const LoginForm = () => {
     if (requestError) {
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
-    setErrors(_.omit(errors, name));
+    setErrors(omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     var currentErrors = validate(inputs, loginConstraints) || {};
-    if (_.isEmpty(currentErrors)) {
+    if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(userActions.login(email, password));
     }
