@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { func, object } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import { omit } from 'lodash';
+import { omit, isEmpty } from 'lodash';
 
 import 'components/users/edit-profile.scss';
 import { userShape } from 'constants/shapes';
@@ -67,15 +67,12 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
     }));
   };
 
-  const changedNameOrGender =
-    (name && name !== user.name) || gender !== user.gender;
-
-  const changedPassword = password && password === passwordConfirm;
+  const changedNameOrGender = name !== user.name || gender !== user.gender;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     var currentErrors = validate(inputs, editProfileConstraints) || {};
-    if (changedNameOrGender || changedPassword || newImg) {
+    if (isEmpty(currentErrors) && (password || changedNameOrGender || newImg)) {
       dispatch(userRequest());
       dispatch(
         userActions.update(
@@ -143,26 +140,11 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
         inputName="passwordConfirm"
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
-        error={
-          password &&
-          'passwordConfirm' in errors &&
-          errors.passwordConfirm[0].includes('restricted')
-        }
+        error={'passwordConfirm' in errors}
         errorMsg={intl.formatMessage({
-          id: 'userform.missing.pass2.text',
+          id: 'userform.not.matching.passwords.text',
         })}
       />
-      <div>
-        {password &&
-          'passwordConfirm' in errors &&
-          errors.passwordConfirm[0].includes('not equal') && (
-            <div className="user-form__alert">
-              {intl.formatMessage({
-                id: 'userform.not.matching.passwords.text',
-              })}
-            </div>
-          )}
-      </div>
       {loading && <CustomLoader />}
       {requestError && <div className="user-form__alert"> {errorMsg} </div>}
       <div>

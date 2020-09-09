@@ -68,6 +68,5 @@ export var equalPasswordsConstraints = {};
 
 export var editProfileConstraints = {
   name: nameConstraints.name,
-  password: passwordConstraints.password,
-  passwordConfirm: passwordConfirmConstraints.passwordConfirm,
+  passwordConfirm: { equality: 'password' },
 };
