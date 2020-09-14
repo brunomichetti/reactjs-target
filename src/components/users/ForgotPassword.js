@@ -11,7 +11,7 @@ import FormInput from 'components/common/FormInput';
 import { userRequest, userActions } from 'actions/user.actions';
 import { userConstants } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
-import { emailConstraints } from 'helpers/constraints';
+import { emailConstraints } from 'helpers/users-constraints';
 
 const ForgotPassword = ({ setForgotPassword }) => {
   const intl = useIntl();

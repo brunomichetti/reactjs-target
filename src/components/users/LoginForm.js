@@ -10,7 +10,7 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
-import { loginConstraints } from 'helpers/constraints';
+import { loginConstraints } from 'helpers/users-constraints';
 import { userConstants } from 'constants/user.constants';
 
 const LoginForm = () => {

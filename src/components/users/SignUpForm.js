@@ -15,7 +15,7 @@ import { genderSelectStyle } from 'components/users/genderSelectStyle';
 import { userRequest } from 'actions/user.actions';
 import { genders } from 'components/users/gendersList';
 import { userConstants } from 'constants/user.constants';
-import { signupConstraints } from 'helpers/constraints';
+import { signupConstraints } from 'helpers/users-constraints';
 
 const SignUpForm = () => {
   const intl = useIntl();
