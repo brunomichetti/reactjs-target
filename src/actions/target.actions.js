@@ -1,7 +1,7 @@
-import { targetService } from '../services/target.services';
-import { handleCreateTargetError } from '../helpers/error.handler';
-import { targetConstants } from '../constants/target.constants';
-import { userConstants } from '../constants/user.constants';
+import { targetService } from 'services/target.services';
+import { handleCreateTargetError } from 'helpers/error.handler';
+import { targetConstants } from 'constants/target.constants';
+import { userConstants } from 'constants/user.constants';
 
 const create = (radius, title, topic, lat, lon) => {
   return async (dispatch) => {

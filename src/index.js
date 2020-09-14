@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
-import { store } from './helpers/store';
-import App from './App';
-import locale_en from './translations/en';
+import { store } from 'helpers/store';
+import App from 'App';
+import locale_en from 'translations/en';
 
 const data = {
   en: locale_en,

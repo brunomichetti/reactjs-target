@@ -1,13 +1,13 @@
 import React from 'react';
-import footballIcon from '../../assets/icons/footballIcon.png';
-import travelIcon from '../../assets/icons/travelIcon.png';
-import politicsIcon from '../../assets/icons/politicsIcon.png';
-import artIcon from '../../assets/icons/artIcon.png';
-import datingIcon from '../../assets/icons/datingIcon.png';
-import musicIcon from '../../assets/icons/musicIcon.png';
-import moviesIcon from '../../assets/icons/moviesIcon.png';
-import seriesIcon from '../../assets/icons/seriesIcon.png';
-import foodIcon from '../../assets/icons/foodIcon.png';
+import footballIcon from 'assets/icons/footballIcon.png';
+import travelIcon from 'assets/icons/travelIcon.png';
+import politicsIcon from 'assets/icons/politicsIcon.png';
+import artIcon from 'assets/icons/artIcon.png';
+import datingIcon from 'assets/icons/datingIcon.png';
+import musicIcon from 'assets/icons/musicIcon.png';
+import moviesIcon from 'assets/icons/moviesIcon.png';
+import seriesIcon from 'assets/icons/seriesIcon.png';
+import foodIcon from 'assets/icons/foodIcon.png';
 
 export const topics = [
   {

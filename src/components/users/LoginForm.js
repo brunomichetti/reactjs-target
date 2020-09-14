@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 
-import { userActions } from '../../actions/user.actions';
-import '../../style/App.scss';
-import './user-form.scss';
-import FormInput from '../common/FormInput';
-import { userRequest } from '../../actions/user.actions';
-import CustomLoader from '../../components/common/CustomLoader';
+import 'style/App.scss';
+import 'components/users/user-form.scss';
+import { userActions } from 'actions/user.actions';
+import FormInput from 'components/common/FormInput';
+import { userRequest } from 'actions/user.actions';
+import CustomLoader from 'components/common/CustomLoader';
 
 const LoginForm = () => {
   const intl = useIntl();

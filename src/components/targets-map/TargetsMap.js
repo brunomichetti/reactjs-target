@@ -3,16 +3,16 @@ import { Map, TileLayer, Marker, CircleMarker } from 'react-leaflet';
 import { useSelector } from 'react-redux';
 import { func, string } from 'prop-types';
 
-import { mapConstants } from '../../constants/map.constants';
-import { newTargetIcon } from './map-icons';
+import 'components/targets-map/targets-map.scss';
 import {
   white,
   safron,
   createTargetOpacity,
-} from '../../style/common/_constants.scss';
-import MarketTarget from './MarkerTargets';
-import { latLngShape } from '../../constants/shapes';
-import './targets-map.scss';
+} from 'style/common/_constants.scss';
+import { mapConstants } from 'constants/map.constants';
+import { newTargetIcon } from 'components/targets-map/map-icons';
+import MarketTarget from 'components/targets-map/MarkerTargets';
+import { latLngShape } from 'constants/shapes';
 
 const TargetsMap = ({
   newTargetlatlng,

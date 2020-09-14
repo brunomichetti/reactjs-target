@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { func } from 'prop-types';
 
-import { loginPageLink } from '../constants/link.constants';
+import { loginPageLink } from 'constants/link.constants';
 
 const PrivateRoute = ({ comp: Component, ...rest }) => {
   // Check if the user is logged in

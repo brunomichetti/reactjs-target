@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, func, bool, number, oneOfType } from 'prop-types';
 
-import '../users/user-form.scss';
+import 'components/users/user-form.scss';
 
 const FormInput = ({
   labelClassName,
