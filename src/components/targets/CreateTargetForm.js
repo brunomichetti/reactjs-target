@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import NumberFormat from 'react-number-format';
-import { func, string, object } from 'prop-types';
+import { func, string } from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import FormInput from '../common/FormInput';
 import FormSelect from '../common/FormSelect';
@@ -19,12 +20,13 @@ import { latLngShape } from '../../constants/shapes';
 import CustomLoader from '../../components/common/CustomLoader';
 
 const CreateTargetForm = ({
-  intl,
   newTargetlatlng,
   setNewTargetlatlng,
   newTargetRadius,
   setNewTargetRadius,
 }) => {
+  const intl = useIntl();
+
   const { select_topic } = {};
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -180,7 +182,6 @@ const CreateTargetForm = ({
 };
 
 CreateTargetForm.propTypes = {
-  intl: object,
   newTargetlatlng: latLngShape,
   setNewTargetlatlng: func,
   newTargetRadius: string,

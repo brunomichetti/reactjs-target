@@ -42,7 +42,6 @@ const CreateTarget = ({
       </p>
       <div className="create-target__form-container">
         <CreateTargetForm
-          intl={intl}
           newTargetlatlng={newTargetlatlng}
           setNewTargetlatlng={setNewTargetlatlng}
           newTargetRadius={newTargetRadius}

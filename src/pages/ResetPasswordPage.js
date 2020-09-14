@@ -25,7 +25,7 @@ const ResetPasswordPage = () => {
             id: 'enter.new.password.text',
           })}
         </p>
-        <ResetPasswordForm intl={intl} urlUid={uid} urlToken={token} />
+        <ResetPasswordForm urlUid={uid} urlToken={token} />
       </div>
       <AppStoreContainer />
     </div>

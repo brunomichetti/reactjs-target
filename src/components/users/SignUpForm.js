@@ -7,7 +7,6 @@ import '../../style/App.scss';
 import './user-form.scss';
 import { loginPageLink } from '../../constants/link.constants';
 import { userActions } from '../../actions/user.actions';
-
 import FormInput from '../common/FormInput';
 import FormSelect from '../common/FormSelect';
 import { genderSelectStyle } from './genderSelectStyle';

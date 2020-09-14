@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { object, string } from 'prop-types';
+import { string } from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import { userActions } from '../../actions/user.actions';
 import '../../style/App.scss';
@@ -9,8 +10,11 @@ import FormInput from '../common/FormInput';
 import { userRequest } from '../../actions/user.actions';
 import CustomLoader from '../common/CustomLoader';
 
-const ResetPasswordForm = ({ intl, urlUid, urlToken }) => {
+const ResetPasswordForm = ({ urlUid, urlToken }) => {
+  const intl = useIntl();
+
   const dispatch = useDispatch();
+
   const [inputs, setInputs] = useState({
     newPassword1: '',
     newPassword2: '',
@@ -114,7 +118,6 @@ const ResetPasswordForm = ({ intl, urlUid, urlToken }) => {
 };
 
 ResetPasswordForm.propTypes = {
-  intl: object,
   urlUid: string,
   urlToken: string,
 };
