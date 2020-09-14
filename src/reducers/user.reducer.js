@@ -18,6 +18,7 @@ export const user = (
         loading: true,
       };
     case userConstants.USER_REQUEST_SUCCESS:
+    case userConstants.USER_CLEAN_ALERT:
       return {
         ...state,
         loading: false,

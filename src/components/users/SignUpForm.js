@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
+import { isEmpty, omit } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -12,53 +14,55 @@ import FormSelect from 'components/common/FormSelect';
 import { genderSelectStyle } from 'components/users/genderSelectStyle';
 import { userRequest } from 'actions/user.actions';
 import { genders } from 'components/users/gendersList';
+import { userConstants } from 'constants/user.constants';
+import { signupConstraints } from 'helpers/constraints';
 
 const SignUpForm = () => {
   const intl = useIntl();
 
-  const { select_gender } = {};
+  const { selectGender } = {};
 
   const [inputs, setInputs] = useState({
     name: '',
     email: '',
-    password1: '',
-    password2: '',
+    password: '',
+    passwordConfirm: '',
     gender: '',
   });
-  const { name, email, password1, password2, gender } = inputs;
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { name, email, password, passwordConfirm, gender } = inputs;
 
   const dispatch = useDispatch();
 
-  const [cleanAlert, setCleanAlert] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const { requestError, errorMsg } = useSelector((state) => state.user);
 
   const handleChange = ({ target: { name, value } }) => {
-    setCleanAlert(true);
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
+    setErrors(omit(errors, name)); // Return same object with deleted field
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
-  const handleChangeGender = (select_gender) => {
-    setCleanAlert(true);
-    setInputs((inputs) => ({ ...inputs, gender: select_gender['value'] }));
+  const handleChangeGender = (selectGender) => {
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
+    setErrors(omit(errors, 'gender'));
+    setInputs((inputs) => ({ ...inputs, gender: selectGender['value'] }));
   };
-
-  const missingFields = !name || !email || !password1 || !password2 || !gender;
-
-  const equalPasswords = password1 === password2;
-
-  const showSignupAlert = isSubmitted && requestError && !cleanAlert;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    if (!missingFields && equalPasswords) {
+    const currentErrors = validate(inputs, signupConstraints) || {}; // Set empty errors if validate returns undefined
+    if (isEmpty(currentErrors)) {
       dispatch(userRequest());
-      dispatch(userActions.signup(name, email, password1, password2, gender));
+      dispatch(
+        userActions.signup(name, email, password, passwordConfirm, gender)
+      );
     }
-    setCleanAlert(false);
+    setErrors(currentErrors);
   };
 
   return (
@@ -73,7 +77,7 @@ const SignUpForm = () => {
         inputName="name"
         inputValue={name}
         inputOnChange={handleChange}
-        error={isSubmitted && !name}
+        error={'name' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.name.text',
         })}
@@ -88,7 +92,7 @@ const SignUpForm = () => {
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
-        error={isSubmitted && !email}
+        error={'email' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.email.text',
         })}
@@ -100,13 +104,13 @@ const SignUpForm = () => {
           id: 'userform.password.label.text',
         })}
         inputType="password"
-        inputName="password1"
-        inputValue={password1}
+        inputName="password"
+        inputValue={password}
         inputOnChange={handleChange}
         inputPlaceHolder={intl.formatMessage({
           id: 'userform.pass.placeholder.text',
         })}
-        error={isSubmitted && !password1}
+        error={'password' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -118,22 +122,26 @@ const SignUpForm = () => {
           id: 'userform.confirmpass.label.text',
         })}
         inputType="password"
-        inputName="password2"
-        inputValue={password2}
+        inputName="passwordConfirm"
+        inputValue={passwordConfirm}
         inputOnChange={handleChange}
-        error={isSubmitted && !password2}
+        error={
+          'passwordConfirm' in errors &&
+          errors.passwordConfirm[0].includes('restricted')
+        }
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass2.text',
         })}
       />
       <div>
-        {isSubmitted && password1 && password2 && !equalPasswords && (
-          <div className="user-form__alert">
-            {intl.formatMessage({
-              id: 'userform.not.matching.passwords.text',
-            })}
-          </div>
-        )}
+        {'passwordConfirm' in errors &&
+          errors.passwordConfirm[0].includes('not equal') && (
+            <div className="user-form__alert">
+              {intl.formatMessage({
+                id: 'userform.not.matching.passwords.text',
+              })}
+            </div>
+          )}
       </div>
       <p className="user-form__text">
         {intl.formatMessage({
@@ -148,8 +156,8 @@ const SignUpForm = () => {
         placeHolder={intl.formatMessage({
           id: 'userform.select.gender.text',
         })}
-        valueSelect={select_gender}
-        error={isSubmitted && !gender}
+        valueSelect={selectGender}
+        error={'gender' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.gender.text',
         })}
@@ -161,7 +169,7 @@ const SignUpForm = () => {
           })}
         </button>
       </div>
-      {showSignupAlert && <div className="user-form__alert"> {errorMsg} </div>}
+      {requestError && <div className="user-form__alert"> {errorMsg} </div>}
       <hr className="user-form__hr" />
       <div className="user-form__text">
         <Link to={loginPageLink}>

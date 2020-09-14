@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { func } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
+import { isEmpty, omit } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -9,6 +11,7 @@ import FormInput from 'components/common/FormInput';
 import { userRequest, userActions } from 'actions/user.actions';
 import { userConstants } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
+import { emailConstraints } from 'helpers/constraints';
 
 const ForgotPassword = ({ setForgotPassword }) => {
   const intl = useIntl();
@@ -18,23 +21,26 @@ const ForgotPassword = ({ setForgotPassword }) => {
   const [inputs, setInputs] = useState({ email: '' });
   const { email } = inputs;
 
+  const [errors, setErrors] = useState({});
+
   const [success, setSuccess] = useState(false);
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const { loading, emailSent, errorMsg } = useSelector((state) => state.user);
-
-  const showError = isSubmitted && errorMsg;
+  const { loading, emailSent, errorMsg, requestError } = useSelector(
+    (state) => state.user
+  );
 
   useEffect(() => {
     if (emailSent) {
       setSuccess(true);
-      setIsSubmitted(false);
+      setErrors({});
     }
-  }, [emailSent, setSuccess, setIsSubmitted]);
+  }, [emailSent, setSuccess, setErrors]);
 
   const handleChange = ({ target: { name, value } }) => {
-    setIsSubmitted(false);
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
+    setErrors(omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
@@ -42,16 +48,18 @@ const ForgotPassword = ({ setForgotPassword }) => {
     setForgotPassword(false);
     setSuccess(false);
     setInputs((inputs) => ({ ...inputs, email: '' }));
-    dispatch({ type: userConstants.USER_REQUEST_SUCCESS });
+    setErrors({});
+    dispatch({ type: userConstants.USER_CLEAN_ALERT });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    if (email) {
+    const currentErrors = validate(inputs, emailConstraints) || {};
+    if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(userActions.resetPassword(email));
     }
+    setErrors(currentErrors);
   };
 
   return (
@@ -78,13 +86,15 @@ const ForgotPassword = ({ setForgotPassword }) => {
               inputName="email"
               inputValue={email}
               inputOnChange={handleChange}
-              error={isSubmitted && !email}
+              error={'email' in errors}
               errorMsg={intl.formatMessage({
                 id: 'userform.missing.email.text',
               })}
             />
             {loading && <CustomLoader />}
-            {showError && <div className="user-form__alert"> {errorMsg} </div>}
+            {requestError && (
+              <div className="user-form__alert"> {errorMsg} </div>
+            )}
             <div>
               <button type="submit" className="reset_password__btn-text">
                 {intl.formatMessage({

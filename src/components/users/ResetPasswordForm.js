@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { string } from 'prop-types';
 import { useIntl } from 'react-intl';
+import { isEmpty, omit } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -9,6 +11,8 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
+import { userConstants } from 'constants/user.constants';
+import { changePasswordConstraints } from 'helpers/constraints';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const intl = useIntl();
@@ -16,14 +20,12 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
-    newPassword1: '',
-    newPassword2: '',
+    password: '',
+    passwordConfirm: '',
   });
-  const { newPassword1, newPassword2 } = inputs;
+  const { password, passwordConfirm } = inputs;
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const equalPasswords = newPassword1 === newPassword2;
+  const [errors, setErrors] = useState({});
 
   const { loading, requestError, errorMsg, updated } = useSelector(
     (state) => state.user
@@ -31,34 +33,38 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
 
   useEffect(() => {
     if (updated) {
-      setIsSubmitted(false);
+      setErrors({});
       alert(
         intl.formatMessage({
           id: 'reset.password.completed.text',
         })
       );
     }
-  }, [updated, intl, setIsSubmitted]);
+  }, [updated, intl, setErrors]);
 
   const handleChange = ({ target: { name, value } }) => {
-    setIsSubmitted(false);
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
+    setErrors(omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    if (newPassword1 && newPassword2 && equalPasswords) {
+    const currentErrors = validate(inputs, changePasswordConstraints) || {};
+    if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(
         userActions.resetPasswordConfirm(
-          newPassword1,
-          newPassword2,
+          password,
+          passwordConfirm,
           urlUid,
           urlToken
         )
       );
     }
+    setErrors(currentErrors);
   };
 
   return (
@@ -70,10 +76,10 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
           id: 'new.password.label.text',
         })}
         inputType="password"
-        inputName="newPassword1"
-        inputValue={newPassword1}
+        inputName="password"
+        inputValue={password}
         inputOnChange={handleChange}
-        error={isSubmitted && !newPassword1}
+        error={'password' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -85,27 +91,29 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
           id: 'userform.confirmpass.label.text',
         })}
         inputType="password"
-        inputName="newPassword2"
-        inputValue={newPassword2}
+        inputName="passwordConfirm"
+        inputValue={passwordConfirm}
         inputOnChange={handleChange}
-        error={isSubmitted && !newPassword2}
+        error={
+          'passwordConfirm' in errors &&
+          errors.passwordConfirm[0].includes('restricted')
+        }
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass2.text',
         })}
       />
       <div>
-        {isSubmitted && newPassword1 && newPassword2 && !equalPasswords && (
-          <div className="user-form__alert">
-            {intl.formatMessage({
-              id: 'userform.not.matching.passwords.text',
-            })}
-          </div>
-        )}
+        {'passwordConfirm' in errors &&
+          errors.passwordConfirm[0].includes('not equal') && (
+            <div className="user-form__alert">
+              {intl.formatMessage({
+                id: 'userform.not.matching.passwords.text',
+              })}
+            </div>
+          )}
       </div>
       {loading && <CustomLoader />}
-      {isSubmitted && requestError && (
-        <div className="user-form__alert"> {errorMsg} </div>
-      )}
+      {requestError && <div className="user-form__alert"> {errorMsg} </div>}
       <div>
         <button type="submit" className="user-form__btn-text">
           {intl.formatMessage({

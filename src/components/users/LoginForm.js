@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
+import { isEmpty, omit } from 'lodash';
+import { validate } from 'validate.js';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -8,6 +10,8 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
+import { loginConstraints } from 'helpers/constraints';
+import { userConstants } from 'constants/user.constants';
 
 const LoginForm = () => {
   const intl = useIntl();
@@ -17,31 +21,28 @@ const LoginForm = () => {
   const [inputs, setInputs] = useState({ email: '', password: '' });
   const { email, password } = inputs;
 
-  const [cleanAlert, setCleanAlert] = useState(false);
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const { loading, requestError, errorMsg } = useSelector(
     (state) => state.user
   );
 
-  const showLoginAlert = isSubmitted && requestError && !cleanAlert;
-
   const handleChange = ({ target: { name, value } }) => {
-    if (!loading) {
-      setInputs((inputs) => ({ ...inputs, [name]: value }));
-      setCleanAlert(true);
+    if (requestError) {
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
+    setErrors(omit(errors, name));
+    setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    if (email && password) {
-      setCleanAlert(false);
+    const currentErrors = validate(inputs, loginConstraints) || {};
+    if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(userActions.login(email, password));
     }
+    setErrors(currentErrors);
   };
 
   return (
@@ -56,7 +57,7 @@ const LoginForm = () => {
         inputName="email"
         inputValue={email}
         inputOnChange={handleChange}
-        error={isSubmitted && !email}
+        error={'email' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.email.text',
         })}
@@ -71,7 +72,7 @@ const LoginForm = () => {
         inputName="password"
         inputValue={password}
         inputOnChange={handleChange}
-        error={isSubmitted && !password}
+        error={'password' in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -84,9 +85,7 @@ const LoginForm = () => {
         </button>
       </div>
       {loading && <CustomLoader />}
-      {requestError && showLoginAlert && (
-        <div className="user-form__alert"> {errorMsg} </div>
-      )}
+      {requestError && <div className="user-form__alert"> {errorMsg} </div>}
     </form>
   );
 };

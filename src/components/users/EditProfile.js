@@ -15,6 +15,7 @@ const EditProfile = ({ user, editProfile, setEditProfile }) => {
 
   const handleGoBack = () => {
     setEditProfile(false);
+    setNewImg(null);
   };
   return (
     <div className="edit-profile">
