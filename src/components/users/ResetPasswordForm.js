@@ -11,7 +11,7 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
-import { userConstants } from 'constants/user.constants';
+import { userConstants, userFormNames } from 'constants/user.constants';
 import { changePasswordConstraints } from 'helpers/users-constraints';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
@@ -76,10 +76,10 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
           id: 'new.password.label.text',
         })}
         inputType="password"
-        inputName="password"
+        inputName={userFormNames.password}
         inputValue={password}
         inputOnChange={handleChange}
-        error={'password' in errors}
+        error={userFormNames.password in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -91,11 +91,11 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
           id: 'userform.confirmpass.label.text',
         })}
         inputType="password"
-        inputName="passwordConfirm"
+        inputName={userFormNames.passwordConfirm}
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
         error={
-          'passwordConfirm' in errors &&
+          userFormNames.passwordConfirm in errors &&
           errors.passwordConfirm[0].includes('restricted')
         }
         errorMsg={intl.formatMessage({
@@ -103,7 +103,7 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
         })}
       />
       <div>
-        {'passwordConfirm' in errors &&
+        {userFormNames.passwordConfirm in errors &&
           errors.passwordConfirm[0].includes('not equal') && (
             <div className="user-form__alert">
               {intl.formatMessage({

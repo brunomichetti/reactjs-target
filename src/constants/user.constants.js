@@ -8,3 +8,11 @@ export const userConstants = {
   USER_CLEAN_ALERT: 'USER_CLEAN_ALERT',
   USER_SIGNUP_SUCCESS: 'USER_SIGNUP_SUCCESS',
 };
+
+export const userFormNames = {
+  email: 'email',
+  password: 'password',
+  passwordConfirm: 'passwordConfirm',
+  name: 'name',
+  gender: 'gender',
+};

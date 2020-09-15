@@ -15,7 +15,7 @@ import FormSelect from 'components/common/FormSelect';
 import { genderSelectStyle } from 'components/users/genderSelectStyle';
 import { userRequest } from 'actions/user.actions';
 import { genders } from 'components/users/gendersList';
-import { userConstants } from 'constants/user.constants';
+import { userConstants, userFormNames } from 'constants/user.constants';
 import { signupConstraints } from 'helpers/users-constraints';
 import CustomLoader from 'components/common/CustomLoader';
 
@@ -44,6 +44,7 @@ const SignUpForm = ({ setSignupSuccess }) => {
   useEffect(() => {
     if (signup) {
       setSignupSuccess(true);
+      setErrors({});
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
   }, [signup, setSignupSuccess, dispatch]);
@@ -60,7 +61,7 @@ const SignUpForm = ({ setSignupSuccess }) => {
     if (requestError) {
       dispatch({ type: userConstants.USER_CLEAN_ALERT });
     }
-    setErrors(omit(errors, 'gender'));
+    setErrors(omit(errors, userFormNames.gender));
     setInputs((inputs) => ({ ...inputs, gender: selectGender['value'] }));
   };
 
@@ -85,10 +86,10 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.name.label.text',
         })}
         inputType="text"
-        inputName="name"
+        inputName={userFormNames.name}
         inputValue={name}
         inputOnChange={handleChange}
-        error={'name' in errors}
+        error={userFormNames.name in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.name.text',
         })}
@@ -100,10 +101,10 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.email.label.text',
         })}
         inputType="email"
-        inputName="email"
+        inputName={userFormNames.email}
         inputValue={email}
         inputOnChange={handleChange}
-        error={'email' in errors}
+        error={userFormNames.email in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.email.text',
         })}
@@ -115,13 +116,13 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.password.label.text',
         })}
         inputType="password"
-        inputName="password"
+        inputName={userFormNames.password}
         inputValue={password}
         inputOnChange={handleChange}
         inputPlaceHolder={intl.formatMessage({
           id: 'userform.pass.placeholder.text',
         })}
-        error={'password' in errors}
+        error={userFormNames.password in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -133,11 +134,11 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.confirmpass.label.text',
         })}
         inputType="password"
-        inputName="passwordConfirm"
+        inputName={userFormNames.passwordConfirm}
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
         error={
-          'passwordConfirm' in errors &&
+          userFormNames.passwordConfirm in errors &&
           errors.passwordConfirm[0].includes('restricted')
         }
         errorMsg={intl.formatMessage({
@@ -145,7 +146,7 @@ const SignUpForm = ({ setSignupSuccess }) => {
         })}
       />
       <div>
-        {'passwordConfirm' in errors &&
+        {userFormNames.passwordConfirm in errors &&
           errors.passwordConfirm[0].includes('not equal') && (
             <div className="user-form__alert">
               {intl.formatMessage({
@@ -168,7 +169,7 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.select.gender.text',
         })}
         valueSelect={selectGender}
-        error={'gender' in errors}
+        error={userFormNames.gender in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.gender.text',
         })}

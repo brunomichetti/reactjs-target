@@ -4,3 +4,9 @@ export const targetConstants = {
   CLEAN_TARGETS: 'CLEAN_TARGETS',
   CREATE_ALERT_FINISHED: 'TARGET_CREATE_ALERT_FINISHED',
 };
+
+export const targetFormNames = {
+  radius: 'radius',
+  title: 'title',
+  topic: 'topic',
+};

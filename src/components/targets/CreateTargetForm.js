@@ -16,7 +16,7 @@ import {
 } from 'components/common/customIconOption';
 import { topics } from 'components/targets/topicsList';
 import { targetActions } from 'actions/target.actions';
-import { targetConstants } from 'constants/target.constants';
+import { targetConstants, targetFormNames } from 'constants/target.constants';
 import { userRequest } from 'actions/user.actions';
 import { latLngShape } from 'constants/shapes';
 import CustomLoader from 'components/common/CustomLoader';
@@ -75,13 +75,13 @@ const CreateTargetForm = ({
 
   const handleChangeTopic = (select_topic) => {
     setInputs((inputs) => ({ ...inputs, topic: select_topic['value'] }));
-    setErrors(omit(errors, 'topic'));
+    setErrors(omit(errors, targetFormNames.topic));
   };
 
   const handleChangeRadius = (e) => {
     setInputs((inputs) => ({ ...inputs, radius: e.value }));
     setNewTargetRadius(e.value);
-    setErrors(omit(errors, 'radius'));
+    setErrors(omit(errors, targetFormNames.radius));
   };
 
   const handleSubmit = (e) => {
@@ -114,24 +114,26 @@ const CreateTargetForm = ({
         suffix={' m'}
         className="create-target-form__input"
         inputMode="numeric"
-        name="radius"
+        name={targetFormNames.radius}
         value={radius}
         onValueChange={handleChangeRadius}
       />
-      {'radius' in errors && errors.radius[0].includes('restricted') && (
-        <div className="user-form__alert">
-          {intl.formatMessage({
-            id: 'createtarget.missing.radius.text',
-          })}
-        </div>
-      )}
-      {'radius' in errors && errors.radius[0].includes('greater') && (
-        <div className="user-form__alert">
-          {intl.formatMessage({
-            id: 'createtarget.radius.neg.error.text',
-          })}
-        </div>
-      )}
+      {targetFormNames.radius in errors &&
+        errors.radius[0].includes('restricted') && (
+          <div className="user-form__alert">
+            {intl.formatMessage({
+              id: 'createtarget.missing.radius.text',
+            })}
+          </div>
+        )}
+      {targetFormNames.radius in errors &&
+        errors.radius[0].includes('greater') && (
+          <div className="user-form__alert">
+            {intl.formatMessage({
+              id: 'createtarget.radius.neg.error.text',
+            })}
+          </div>
+        )}
       <FormInput
         labelClassName="create-target-form__text"
         inputClassName="create-target-form__input"
@@ -139,13 +141,13 @@ const CreateTargetForm = ({
           id: 'createtarget.target.title.text',
         })}
         inputType="text"
-        inputName="title"
+        inputName={targetFormNames.title}
         inputValue={title}
         inputOnChange={handleChange}
         inputPlaceHolder={intl.formatMessage({
           id: 'createtarget.title.placeholder.text',
         })}
-        error={'title' in errors}
+        error={targetFormNames.title in errors}
         errorMsg={intl.formatMessage({
           id: 'createtarget.missing.title.text',
         })}
@@ -168,7 +170,7 @@ const CreateTargetForm = ({
           Option: CustomSelectOption,
           SingleValue: CustomSelectValue,
         }}
-        error={'topic' in errors}
+        error={targetFormNames.topic in errors}
         errorMsg={intl.formatMessage({
           id: 'createtarget.missing.topic.text',
         })}

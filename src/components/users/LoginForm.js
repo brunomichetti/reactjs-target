@@ -11,7 +11,7 @@ import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
 import { loginConstraints } from 'helpers/users-constraints';
-import { userConstants } from 'constants/user.constants';
+import { userConstants, userFormNames } from 'constants/user.constants';
 
 const LoginForm = () => {
   const intl = useIntl();
@@ -54,10 +54,10 @@ const LoginForm = () => {
           id: 'userform.email.label.text',
         })}
         inputType="email"
-        inputName="email"
+        inputName={userFormNames.email}
         inputValue={email}
         inputOnChange={handleChange}
-        error={'email' in errors}
+        error={userFormNames.email in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.email.text',
         })}
@@ -69,10 +69,10 @@ const LoginForm = () => {
           id: 'userform.password.label.text',
         })}
         inputType="password"
-        inputName="password"
+        inputName={userFormNames.password}
         inputValue={password}
         inputOnChange={handleChange}
-        error={'password' in errors}
+        error={userFormNames.password in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}

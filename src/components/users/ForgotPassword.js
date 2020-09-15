@@ -9,7 +9,7 @@ import 'style/App.scss';
 import 'components/users/user-form.scss';
 import FormInput from 'components/common/FormInput';
 import { userRequest, userActions } from 'actions/user.actions';
-import { userConstants } from 'constants/user.constants';
+import { userConstants, userFormNames } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
 import { emailConstraints } from 'helpers/users-constraints';
 
@@ -67,7 +67,13 @@ const ForgotPassword = ({ setForgotPassword }) => {
       <p className="initial-page-container__app-subtitle">
         {intl.formatMessage({ id: 'userform.forgotpassword.text' })}
       </p>
-      {!success ? (
+      {success ? (
+        <div>
+          <p className="initial-page-container__description-text">
+            {intl.formatMessage({ id: 'forgot.password.email.sent.text' })}
+          </p>
+        </div>
+      ) : (
         <div>
           <p className="initial-page-container__description-text">
             {intl.formatMessage({ id: 'forgot.password.text' })}
@@ -83,10 +89,10 @@ const ForgotPassword = ({ setForgotPassword }) => {
                 id: 'userform.email.label.text',
               })}
               inputType="email"
-              inputName="email"
+              inputName={userFormNames.email}
               inputValue={email}
               inputOnChange={handleChange}
-              error={'email' in errors}
+              error={userFormNames.email in errors}
               errorMsg={intl.formatMessage({
                 id: 'userform.missing.email.text',
               })}
@@ -103,12 +109,6 @@ const ForgotPassword = ({ setForgotPassword }) => {
               </button>
             </div>
           </form>
-        </div>
-      ) : (
-        <div>
-          <p className="initial-page-container__description-text">
-            {intl.formatMessage({ id: 'forgot.password.email.sent.text' })}
-          </p>
         </div>
       )}
       <hr className="user-profile__hr" />

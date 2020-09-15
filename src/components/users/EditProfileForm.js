@@ -13,7 +13,7 @@ import FormSelect from 'components/common/FormSelect';
 import { genderSelectStyle } from 'components/users/genderSelectStyle';
 import { userActions } from 'actions/user.actions';
 import { userRequest } from 'actions/user.actions';
-import { userConstants } from 'constants/user.constants';
+import { userConstants, userFormNames } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
 import { editProfileConstraints } from 'helpers/users-constraints';
 
@@ -98,10 +98,10 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
           id: 'editprofile.update.name.text',
         })}
         inputType="text"
-        inputName="name"
+        inputName={userFormNames.name}
         inputValue={name}
         inputOnChange={handleChange}
-        error={'name' in errors}
+        error={userFormNames.name in errors}
         errorMsg={intl.formatMessage({
           id: 'editprofile.empty.name.text',
         })}
@@ -127,7 +127,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
           id: 'editprofile.update.password.text',
         })}
         inputType="password"
-        inputName="password"
+        inputName={userFormNames.password}
         inputValue={password}
         inputOnChange={handleChange}
       />
@@ -138,10 +138,10 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
           id: 'editprofile.update.password.confirm.text',
         })}
         inputType="password"
-        inputName="passwordConfirm"
+        inputName={userFormNames.passwordConfirm}
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
-        error={'passwordConfirm' in errors}
+        error={userFormNames.passwordConfirm in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.not.matching.passwords.text',
         })}
