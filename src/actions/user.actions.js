@@ -51,14 +51,8 @@ const logout = () => {
 const signup = (name, email, password, passwordConfirm, gender) => {
   return async (dispatch) => {
     try {
-      const { data: user } = await userService.signup(
-        name,
-        email,
-        password,
-        passwordConfirm,
-        gender
-      );
-      successToHomePage(user, dispatch);
+      await userService.signup(name, email, password, passwordConfirm, gender);
+      dispatch({ type: userConstants.USER_SIGNUP_SUCCESS });
     } catch (error) {
       const errorMsg = handleSignupError(error);
       dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });

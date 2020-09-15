@@ -55,5 +55,9 @@
 
   "new.password.label.text": "NEW PASSWORD",
   "enter.new.password.text": "Please enter and confirm the new password.",
-  "reset.password.completed.text": "Reset password completed successfuly!!"
+  "reset.password.completed.text": "Reset password completed successfuly!!",
+
+  "signup.success.yey.text": "Yey!",
+  "signup.success.only.one.step.text": "Only one more step to start enjoying ",
+  "signup.success.check.email": "We’ve sent an email to confirm your account. Please check your inbox."
 }
