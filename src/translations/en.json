@@ -36,6 +36,7 @@
   "createtarget.missing.radius.text": "Radius is required.",
   "createtarget.missing.title.text": "Title is required.",
   "createtarget.success.text": "The target has been created successfully!",
+  "createtarget.radius.neg.error.text": "Radius must be greater than 0.",
 
   "editprofile.title.text": "EDIT PROFILE",
   "editprofile.update.name.text": "UPDATE NAME",

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import NumberFormat from 'react-number-format';
 import { func, string } from 'prop-types';
 import { useIntl } from 'react-intl';
+import { validate } from 'validate.js';
+import { isEmpty, omit } from 'lodash';
 
 import 'components/targets/create-target-form.scss';
 import FormInput from 'components/common/FormInput';
@@ -18,6 +20,7 @@ import { targetConstants } from 'constants/target.constants';
 import { userRequest } from 'actions/user.actions';
 import { latLngShape } from 'constants/shapes';
 import CustomLoader from 'components/common/CustomLoader';
+import { createTargetConstraints } from 'helpers/targets-constraints';
 
 const CreateTargetForm = ({
   newTargetlatlng,
@@ -29,11 +32,10 @@ const CreateTargetForm = ({
 
   const { select_topic } = {};
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
   const createTargetState = useSelector((state) => state.target);
 
   const createTargetError = useSelector((state) => state.user.errorMsg);
+
   const createTargetRequest = useSelector((state) => state.user.loading);
 
   const [inputs, setInputs] = useState({
@@ -43,7 +45,7 @@ const CreateTargetForm = ({
   });
   const { radius, title, topic } = inputs;
 
-  const [cleanAlert, setCleanAlert] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
 
@@ -66,30 +68,26 @@ const CreateTargetForm = ({
     dispatch,
   ]);
 
-  const showCreateTargetAlert = isSubmitted && createTargetError && !cleanAlert;
-
   const handleChange = ({ target: { name, value } }) => {
-    setCleanAlert(true);
     setInputs((inputs) => ({ ...inputs, [name]: value }));
+    setErrors(omit(errors, name));
   };
 
   const handleChangeTopic = (select_topic) => {
-    setCleanAlert(true);
     setInputs((inputs) => ({ ...inputs, topic: select_topic['value'] }));
+    setErrors(omit(errors, 'topic'));
   };
 
   const handleChangeRadius = (e) => {
     setInputs((inputs) => ({ ...inputs, radius: e.value }));
     setNewTargetRadius(e.value);
+    setErrors(omit(errors, 'radius'));
   };
 
-  const noMissingValues = radius && title && topic && newTargetlatlng;
-
   const handleSubmit = (e) => {
-    setCleanAlert(false);
     e.preventDefault();
-    setIsSubmitted(true);
-    if (noMissingValues) {
+    const currentErrors = validate(inputs, createTargetConstraints) || {};
+    if (isEmpty(currentErrors)) {
       dispatch(userRequest());
       dispatch(
         targetActions.create(
@@ -101,6 +99,7 @@ const CreateTargetForm = ({
         )
       );
     }
+    setErrors(currentErrors);
   };
 
   return (
@@ -119,10 +118,17 @@ const CreateTargetForm = ({
         value={radius}
         onValueChange={handleChangeRadius}
       />
-      {isSubmitted && !radius && (
+      {'radius' in errors && errors.radius[0].includes('restricted') && (
         <div className="user-form__alert">
           {intl.formatMessage({
             id: 'createtarget.missing.radius.text',
+          })}
+        </div>
+      )}
+      {'radius' in errors && errors.radius[0].includes('greater') && (
+        <div className="user-form__alert">
+          {intl.formatMessage({
+            id: 'createtarget.radius.neg.error.text',
           })}
         </div>
       )}
@@ -139,7 +145,7 @@ const CreateTargetForm = ({
         inputPlaceHolder={intl.formatMessage({
           id: 'createtarget.title.placeholder.text',
         })}
-        error={isSubmitted && !title}
+        error={'title' in errors}
         errorMsg={intl.formatMessage({
           id: 'createtarget.missing.title.text',
         })}
@@ -162,7 +168,7 @@ const CreateTargetForm = ({
           Option: CustomSelectOption,
           SingleValue: CustomSelectValue,
         }}
-        error={isSubmitted && !topic}
+        error={'topic' in errors}
         errorMsg={intl.formatMessage({
           id: 'createtarget.missing.topic.text',
         })}
@@ -174,7 +180,7 @@ const CreateTargetForm = ({
         })}
       </button>
       {createTargetRequest && <CustomLoader />}
-      {showCreateTargetAlert && (
+      {createTargetError && (
         <div className="user-form__alert"> {createTargetError} </div>
       )}
     </form>

@@ -15,7 +15,7 @@ import { userActions } from 'actions/user.actions';
 import { userRequest } from 'actions/user.actions';
 import { userConstants } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
-import { editProfileConstraints } from 'helpers/constraints';
+import { editProfileConstraints } from 'helpers/users-constraints';
 
 const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const intl = useIntl();

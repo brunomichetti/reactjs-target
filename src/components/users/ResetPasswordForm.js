@@ -12,7 +12,7 @@ import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
 import { userConstants } from 'constants/user.constants';
-import { changePasswordConstraints } from 'helpers/constraints';
+import { changePasswordConstraints } from 'helpers/users-constraints';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const intl = useIntl();
