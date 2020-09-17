@@ -1,26 +1,33 @@
-import { targetConstants } from 'constants/target.constants';
+import { targetActionTypesConstants } from 'constants/target.constants';
+
+const {
+  CREATE_TARGET_SUCCESS,
+  GET_TARGETS_SUCCESS,
+  CLEAN_TARGETS,
+  CREATE_ALERT_FINISHED,
+} = targetActionTypesConstants;
 
 export const target = (
   state = { createTargetSuccess: false, userTargets: [] },
   { type, result }
 ) => {
   switch (type) {
-    case targetConstants.CREATE_TARGET_SUCCESS:
+    case CREATE_TARGET_SUCCESS:
       return {
         createTargetSuccess: true,
         userTargets: result,
       };
-    case targetConstants.GET_TARGETS_SUCCESS:
+    case GET_TARGETS_SUCCESS:
       return {
         ...state,
         userTargets: result,
       };
-    case targetConstants.CLEAN_TARGETS:
+    case CLEAN_TARGETS:
       return {
         ...state,
         userTargets: [],
       };
-    case targetConstants.CREATE_ALERT_FINISHED:
+    case CREATE_ALERT_FINISHED:
       return { ...state, createTargetSuccess: false };
     default:
       return state;

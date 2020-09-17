@@ -11,17 +11,19 @@ import menuIcon from 'assets/icons/menuIcon.png';
 import { homePageLink } from 'constants/link.constants';
 import SignUpOptions from 'components/users/SignUpOptions';
 import ForgotPassword from 'components/users/ForgotPassword';
-import { userConstants } from 'constants/user.constants';
+import { userActionTypesConstants } from 'constants/user.constants';
 
 const LoginPage = () => {
   const intl = useIntl();
 
   const [forgotPassword, setForgotPassword] = useState(false);
 
+  const { USER_CLEAN_ALERT } = userActionTypesConstants;
+
   const dispatch = useDispatch();
 
   const handleForgotPassword = () => {
-    dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    dispatch({ type: USER_CLEAN_ALERT });
     setForgotPassword(true);
   };
 

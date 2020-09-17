@@ -1,4 +1,4 @@
-import { userConstants } from 'constants/user.constants';
+import { userActionTypesConstants } from 'constants/user.constants';
 import { userService } from 'services/user.services';
 import { history } from 'helpers/history';
 import {
@@ -10,17 +10,33 @@ import {
 } from 'helpers/error.handler';
 import { homePageLink, loginPageLink } from 'constants/link.constants';
 import { targetService } from 'services/target.services';
-import { targetConstants } from 'constants/target.constants';
+import { targetActionTypesConstants } from 'constants/target.constants';
 
-export const userRequest = () => ({ type: userConstants.USER_REQUEST });
+const {
+  USER_REQUEST,
+  USER_REQUEST_SUCCESS,
+  USER_REQUEST_ERROR,
+  USER_SIGNUP_SUCCESS,
+  USER_UPDATE_SUCCESS,
+  USER_RESET_PASSWORD_EMAIL_SENT,
+} = userActionTypesConstants;
+
+const { GET_TARGETS_SUCCESS, CLEAN_TARGETS } = targetActionTypesConstants;
+
+export const userRequest = () => ({
+  type: USER_REQUEST,
+});
 
 const successToHomePage = async (user, dispatch) => {
   localStorage.setItem('user', JSON.stringify(user));
   localStorage.setItem('refreshToken', user.refresh_token);
   localStorage.setItem('accessToken', user.access_token);
-  dispatch({ type: userConstants.USER_REQUEST_SUCCESS });
+  dispatch({ type: USER_REQUEST_SUCCESS });
   const { data: targets } = await targetService.getTargets();
-  dispatch({ type: targetConstants.GET_TARGETS_SUCCESS, result: targets });
+  dispatch({
+    type: GET_TARGETS_SUCCESS,
+    result: targets,
+  });
   history.push(homePageLink);
 };
 
@@ -31,7 +47,10 @@ const login = (email, password) => {
       successToHomePage(user, dispatch);
     } catch (error) {
       const errorMsg = handleLoginError(error);
-      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
+      dispatch({
+        type: USER_REQUEST_ERROR,
+        result: errorMsg,
+      });
     }
   };
 };
@@ -39,8 +58,8 @@ const login = (email, password) => {
 const logout = () => {
   return async (dispatch) => {
     await userService.logout();
-    dispatch({ type: userConstants.USER_REQUEST_SUCCESS });
-    dispatch({ type: targetConstants.CLEAN_TARGETS });
+    dispatch({ type: USER_REQUEST_SUCCESS });
+    dispatch({ type: CLEAN_TARGETS });
     localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
@@ -52,10 +71,13 @@ const signup = (name, email, password, passwordConfirm, gender) => {
   return async (dispatch) => {
     try {
       await userService.signup(name, email, password, passwordConfirm, gender);
-      dispatch({ type: userConstants.USER_SIGNUP_SUCCESS });
+      dispatch({ type: USER_SIGNUP_SUCCESS });
     } catch (error) {
       const errorMsg = handleSignupError(error);
-      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
+      dispatch({
+        type: USER_REQUEST_ERROR,
+        result: errorMsg,
+      });
     }
   };
 };
@@ -79,11 +101,14 @@ const update = (
         storedUser.user = user;
         localStorage.setItem('user', JSON.stringify(storedUser));
       }
-      dispatch({ type: userConstants.USER_UPDATE_SUCCESS });
+      dispatch({ type: USER_UPDATE_SUCCESS });
       history.push(homePageLink);
     } catch (error) {
       const errorMsg = handleChangePasswordError(error);
-      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
+      dispatch({
+        type: USER_REQUEST_ERROR,
+        result: errorMsg,
+      });
     }
   };
 };
@@ -92,11 +117,16 @@ const resetPassword = (email) => {
   return async (dispatch) => {
     try {
       await userService.resetPassword(email);
-      dispatch({ type: userConstants.USER_RESET_PASSWORD_EMAIL_SENT });
+      dispatch({
+        type: USER_RESET_PASSWORD_EMAIL_SENT,
+      });
       history.push(loginPageLink);
     } catch (error) {
       const errorMsg = handleResetPasswordError(error);
-      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
+      dispatch({
+        type: USER_REQUEST_ERROR,
+        result: errorMsg,
+      });
     }
   };
 };
@@ -110,11 +140,14 @@ const resetPasswordConfirm = (password, passwordConfirm, urlUid, urlToken) => {
         urlUid,
         urlToken
       );
-      dispatch({ type: userConstants.USER_UPDATE_SUCCESS });
+      dispatch({ type: USER_UPDATE_SUCCESS });
       history.push(loginPageLink);
     } catch (error) {
       const errorMsg = handleResetPasswordConfirmError(error);
-      dispatch({ type: userConstants.USER_REQUEST_ERROR, result: errorMsg });
+      dispatch({
+        type: USER_REQUEST_ERROR,
+        result: errorMsg,
+      });
     }
   };
 };

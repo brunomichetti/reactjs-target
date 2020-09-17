@@ -11,7 +11,10 @@ import { userActions } from 'actions/user.actions';
 import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
-import { userConstants, userFormNames } from 'constants/user.constants';
+import {
+  userActionTypesConstants,
+  userFormNames,
+} from 'constants/user.constants';
 import { changePasswordConstraints } from 'helpers/users-constraints';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
@@ -26,6 +29,10 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const { password, passwordConfirm } = inputs;
 
   const [errors, setErrors] = useState({});
+
+  const { USER_CLEAN_ALERT } = userActionTypesConstants;
+
+  const { PASSWORD, PASSWORD_CONFIRM } = userFormNames;
 
   const { loading, requestError, errorMsg, updated } = useSelector(
     (state) => state.user
@@ -44,7 +51,7 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
-      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+      dispatch({ type: USER_CLEAN_ALERT });
     }
     setErrors(omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
@@ -76,10 +83,10 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
           id: 'new.password.label.text',
         })}
         inputType="password"
-        inputName={userFormNames.password}
+        inputName={PASSWORD}
         inputValue={password}
         inputOnChange={handleChange}
-        error={userFormNames.password in errors}
+        error={PASSWORD in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -91,11 +98,11 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
           id: 'userform.confirmpass.label.text',
         })}
         inputType="password"
-        inputName={userFormNames.passwordConfirm}
+        inputName={PASSWORD_CONFIRM}
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
         error={
-          userFormNames.passwordConfirm in errors &&
+          PASSWORD_CONFIRM in errors &&
           errors.passwordConfirm[0].includes('restricted')
         }
         errorMsg={intl.formatMessage({
@@ -103,7 +110,7 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
         })}
       />
       <div>
-        {userFormNames.passwordConfirm in errors &&
+        {PASSWORD_CONFIRM in errors &&
           errors.passwordConfirm[0].includes('not equal') && (
             <div className="user-form__alert">
               {intl.formatMessage({

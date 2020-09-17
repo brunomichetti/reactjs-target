@@ -1,4 +1,15 @@
-import { userConstants } from 'constants/user.constants';
+import { userActionTypesConstants } from 'constants/user.constants';
+
+const {
+  USER_REQUEST,
+  USER_REQUEST_SUCCESS,
+  USER_CLEAN_ALERT,
+  USER_REQUEST_ERROR,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_SUCCESS_FINISHED,
+  USER_RESET_PASSWORD_EMAIL_SENT,
+  USER_SIGNUP_SUCCESS,
+} = userActionTypesConstants;
 
 export const user = (
   state = {
@@ -12,14 +23,14 @@ export const user = (
   { type, result }
 ) => {
   switch (type) {
-    case userConstants.USER_REQUEST:
+    case USER_REQUEST:
       return {
         ...state,
         requestError: false,
         loading: true,
       };
-    case userConstants.USER_REQUEST_SUCCESS:
-    case userConstants.USER_CLEAN_ALERT:
+    case USER_REQUEST_SUCCESS:
+    case USER_CLEAN_ALERT:
       return {
         ...state,
         loading: false,
@@ -28,31 +39,31 @@ export const user = (
         emailSent: false,
         signup: false,
       };
-    case userConstants.USER_REQUEST_ERROR:
+    case USER_REQUEST_ERROR:
       return {
         loading: false,
         requestError: true,
         errorMsg: result,
       };
-    case userConstants.USER_UPDATE_SUCCESS:
+    case USER_UPDATE_SUCCESS:
       return {
         ...state,
         loading: false,
         requestError: false,
         updated: true,
       };
-    case userConstants.USER_UPDATE_SUCCESS_FINISHED:
+    case USER_UPDATE_SUCCESS_FINISHED:
       return {
         ...state,
         updated: false,
       };
-    case userConstants.USER_RESET_PASSWORD_EMAIL_SENT:
+    case USER_RESET_PASSWORD_EMAIL_SENT:
       return {
         ...state,
         loading: false,
         emailSent: true,
       };
-    case userConstants.USER_SIGNUP_SUCCESS:
+    case USER_SIGNUP_SUCCESS:
       return {
         ...state,
         loading: false,

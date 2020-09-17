@@ -1,4 +1,4 @@
-export const targetConstants = {
+export const targetActionTypesConstants = {
   CREATE_TARGET_SUCCESS: 'CREATE_TARGET_SUCCESS',
   GET_TARGETS_SUCCESS: 'GET_TARGETS_SUCCESS',
   CLEAN_TARGETS: 'CLEAN_TARGETS',
@@ -6,7 +6,7 @@ export const targetConstants = {
 };
 
 export const targetFormNames = {
-  radius: 'radius',
-  title: 'title',
-  topic: 'topic',
+  RADIUS: 'radius',
+  TITLE: 'title',
+  TOPIC: 'topic',
 };
