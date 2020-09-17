@@ -63,6 +63,9 @@ const logout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
+    dispatch({ type: targetConstants.CLEAN_MATCHES });
+    dispatch({ type: targetConstants.CLEAN_TARGETS });
+    localStorage.removeItem('matches');
     history.push(loginPageLink);
   };
 };
