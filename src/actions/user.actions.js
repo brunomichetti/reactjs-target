@@ -21,7 +21,12 @@ const {
   USER_RESET_PASSWORD_EMAIL_SENT,
 } = userActionTypesConstants;
 
-const { GET_TARGETS_SUCCESS, CLEAN_TARGETS } = targetActionTypesConstants;
+const {
+  GET_TARGETS_SUCCESS,
+  CLEAN_TARGETS,
+  GET_MATCHES_SUCCESS,
+  CLEAN_MATCHES,
+} = targetActionTypesConstants;
 
 export const userRequest = () => ({
   type: USER_REQUEST,
@@ -32,11 +37,6 @@ const successToHomePage = async (user, dispatch) => {
   localStorage.setItem('refreshToken', user.refresh_token);
   localStorage.setItem('accessToken', user.access_token);
   dispatch({ type: USER_REQUEST_SUCCESS });
-  const { data: targets } = await targetService.getTargets();
-  dispatch({
-    type: GET_TARGETS_SUCCESS,
-    result: targets,
-  });
   history.push(homePageLink);
 };
 
@@ -63,9 +63,8 @@ const logout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
-    dispatch({ type: targetConstants.CLEAN_MATCHES });
-    dispatch({ type: targetConstants.CLEAN_TARGETS });
-    localStorage.removeItem('matches');
+    dispatch({ type: CLEAN_MATCHES });
+    dispatch({ type: CLEAN_TARGETS });
     history.push(loginPageLink);
   };
 };
@@ -155,6 +154,26 @@ const resetPasswordConfirm = (password, passwordConfirm, urlUid, urlToken) => {
   };
 };
 
+const getTargets = () => {
+  return async (dispatch) => {
+    const { data: targets } = await targetService.getTargets();
+    dispatch({
+      type: GET_TARGETS_SUCCESS,
+      result: targets,
+    });
+  };
+};
+
+const getMatches = () => {
+  return async (dispatch) => {
+    const { data: matches } = await targetService.getMatches();
+    dispatch({
+      type: GET_MATCHES_SUCCESS,
+      result: matches,
+    });
+  };
+};
+
 export const userActions = {
   login,
   logout,
@@ -162,4 +181,6 @@ export const userActions = {
   update,
   resetPassword,
   resetPasswordConfirm,
+  getTargets,
+  getMatches,
 };

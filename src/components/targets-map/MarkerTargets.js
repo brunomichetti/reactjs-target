@@ -3,7 +3,7 @@ import { CircleMarker, Marker } from 'react-leaflet';
 
 import { safron, createTargetOpacity } from 'style/common/_constants.scss';
 import { targetsArrayShape } from 'constants/shapes';
-import { getIconByTopic } from 'components/targets-map/map-icons';
+import { getLeafletIconByTopic } from 'components/targets-map/map-icons';
 
 const MarkerTarget = ({ targets }) => (
   <div>
@@ -11,7 +11,7 @@ const MarkerTarget = ({ targets }) => (
       <div key={id}>
         <Marker
           position={{ lat: lat, lng: lon }}
-          icon={getIconByTopic(topic)}
+          icon={getLeafletIconByTopic(topic)}
         />
         <CircleMarker
           center={{ lat: lat, lng: lon }}

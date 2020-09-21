@@ -59,12 +59,21 @@
   outline: none;
 }
 
-.user-profile__matches {
+.user_profile__matches {
+  margin-top: 10em;
+}
+
+.user-profile__matches-hr {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  width: 28vw;
+}
+
+.user-profile__matches-empty {
   font-family: $font-family-regular;
   font-size: 1.2em;
   line-height: 1em;
   letter-spacing: 0.1em;
-  margin-top: 10em;
   padding-left: 5em;
   padding-right: 5em;
 }

@@ -53,8 +53,6 @@ const resetPasswordConfirm = (new_password1, new_password2, uid, token) =>
     })
   );
 
-const getMatches = () => client.get('users/matches/');
-
 export const userService = {
   login,
   logout,
@@ -63,5 +61,4 @@ export const userService = {
   changePassword,
   resetPassword,
   resetPasswordConfirm,
-  getMatches,
 };

@@ -65,3 +65,34 @@ export const topics = [
     hr: false,
   },
 ];
+
+export const getIconFileByTopic = (topic) => {
+  switch (topic) {
+    case 'football':
+      return footballIcon;
+
+    case 'travel':
+      return travelIcon;
+
+    case 'politics':
+      return politicsIcon;
+
+    case 'art':
+      return artIcon;
+
+    case 'dating':
+      return datingIcon;
+
+    case 'music':
+      return musicIcon;
+
+    case 'movies':
+      return moviesIcon;
+
+    case 'series':
+      return seriesIcon;
+
+    default:
+      return foodIcon;
+  }
+};

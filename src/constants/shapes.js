@@ -9,8 +9,8 @@ export const userShape = shape({
 });
 
 export const latLngShape = shape({
-  lat: number.isRequired,
-  lng: number.isRequired,
+  lat: number,
+  lng: number,
 });
 
 export const targetShape = shape({

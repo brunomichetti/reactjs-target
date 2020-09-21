@@ -1,0 +1,39 @@
+@import '../../style/common/constants';
+
+.match-item {
+  width: 28vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.match-item__image {
+  align-self: left;
+  margin-left: 2vw;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.match-item__text-container {
+  flex-grow: 2;
+}
+
+.match-item__name {
+  font-family: $font-family-bold;
+  font-size: 1em;
+  line-height: 2em;
+  text-align: left;
+  padding-left: 2em;
+  padding-bottom: 1em;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.match-item__topic-icon {
+  margin-right: 2vw;
+  align-self: right;
+  width: 20px;
+  height: 20px;
+  padding-top: 0.8em;
+}

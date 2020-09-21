@@ -6,7 +6,7 @@ export const newTargetIcon = new Leaflet.Icon({
   iconAnchor: [22.5, 53],
 });
 
-export const getIconByTopic = (topic) => {
+export const getLeafletIconByTopic = (topic) => {
   let url = null;
   let size = [0, 0];
   let anchor = [0, 0];

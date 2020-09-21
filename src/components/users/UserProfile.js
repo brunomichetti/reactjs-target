@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { func, bool } from 'prop-types';
@@ -10,6 +10,7 @@ import { userActions } from 'actions/user.actions';
 import UserImageName from 'components/users/UserImageName';
 import CustomLoader from 'components/common/CustomLoader';
 import { userShape } from 'constants/shapes';
+import UserMatches from 'components/users/UserMatches';
 
 const UserProfile = ({ user, editProfile, setEditProfile }) => {
   const intl = useIntl();
@@ -25,6 +26,14 @@ const UserProfile = ({ user, editProfile, setEditProfile }) => {
   const handleEditProfile = () => {
     setEditProfile(true);
   };
+
+  const { getMatches } = userActions;
+
+  const { userMatches } = useSelector((state) => state.target);
+
+  useEffect(() => {
+    dispatch(getMatches());
+  }, [dispatch, getMatches]);
 
   return (
     <div className="user-profile">
@@ -56,11 +65,7 @@ const UserProfile = ({ user, editProfile, setEditProfile }) => {
         {loggingOut && <CustomLoader />}
       </div>
       <hr className="user-profile__hr" />
-      <p className="user-profile__matches">
-        {intl.formatMessage({
-          id: 'homepage.nomatches.text',
-        })}
-      </p>
+      <UserMatches userMatches={userMatches} />
     </div>
   );
 };
