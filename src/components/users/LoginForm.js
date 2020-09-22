@@ -11,7 +11,10 @@ import FormInput from 'components/common/FormInput';
 import { userRequest } from 'actions/user.actions';
 import CustomLoader from 'components/common/CustomLoader';
 import { loginConstraints } from 'helpers/users-constraints';
-import { userConstants } from 'constants/user.constants';
+import {
+  userActionTypesConstants,
+  userFormNames,
+} from 'constants/user.constants';
 
 const LoginForm = () => {
   const intl = useIntl();
@@ -23,13 +26,17 @@ const LoginForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  const { EMAIL, PASSWORD } = userFormNames;
+
+  const { USER_CLEAN_ALERT } = userActionTypesConstants;
+
   const { loading, requestError, errorMsg } = useSelector(
     (state) => state.user
   );
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
-      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+      dispatch({ type: USER_CLEAN_ALERT });
     }
     setErrors(omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
@@ -54,10 +61,10 @@ const LoginForm = () => {
           id: 'userform.email.label.text',
         })}
         inputType="email"
-        inputName="email"
+        inputName={EMAIL}
         inputValue={email}
         inputOnChange={handleChange}
-        error={'email' in errors}
+        error={EMAIL in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.email.text',
         })}
@@ -69,10 +76,10 @@ const LoginForm = () => {
           id: 'userform.password.label.text',
         })}
         inputType="password"
-        inputName="password"
+        inputName={PASSWORD}
         inputValue={password}
         inputOnChange={handleChange}
-        error={'password' in errors}
+        error={PASSWORD in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}

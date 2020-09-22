@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import 'style/App.scss';
 import smilies from 'assets/smilies.png';
@@ -10,11 +11,21 @@ import menuIcon from 'assets/icons/menuIcon.png';
 import { homePageLink } from 'constants/link.constants';
 import SignUpOptions from 'components/users/SignUpOptions';
 import ForgotPassword from 'components/users/ForgotPassword';
+import { userActionTypesConstants } from 'constants/user.constants';
 
 const LoginPage = () => {
   const intl = useIntl();
 
   const [forgotPassword, setForgotPassword] = useState(false);
+
+  const { USER_CLEAN_ALERT } = userActionTypesConstants;
+
+  const dispatch = useDispatch();
+
+  const handleForgotPassword = () => {
+    dispatch({ type: USER_CLEAN_ALERT });
+    setForgotPassword(true);
+  };
 
   const user = localStorage.getItem('user');
   if (user) {
@@ -36,7 +47,9 @@ const LoginPage = () => {
             id: 'loginpage.subtitle.text',
           })}
         </p>
-        {!forgotPassword ? (
+        {forgotPassword ? (
+          <ForgotPassword setForgotPassword={setForgotPassword} />
+        ) : (
           <div className="initial-page-container__login">
             <p className="initial-page-container__description-text">
               {intl.formatMessage({
@@ -48,7 +61,7 @@ const LoginPage = () => {
               <button
                 type="button"
                 className="forgot_password__btn-text"
-                onClick={() => setForgotPassword(true)}
+                onClick={handleForgotPassword}
               >
                 {intl.formatMessage({
                   id: 'userform.forgotpassword.text',
@@ -57,8 +70,6 @@ const LoginPage = () => {
             </div>
             <SignUpOptions />
           </div>
-        ) : (
-          <ForgotPassword setForgotPassword={setForgotPassword} />
         )}
       </div>
       <AppStoreContainer />

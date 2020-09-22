@@ -1,4 +1,4 @@
-export const userConstants = {
+export const userActionTypesConstants = {
   USER_REQUEST: 'USER_REQUEST',
   USER_REQUEST_SUCCESS: 'USER_REQUEST_SUCCESS',
   USER_REQUEST_ERROR: 'USER_REQUEST_ERROR',
@@ -7,4 +7,12 @@ export const userConstants = {
   USER_RESET_PASSWORD_EMAIL_SENT: 'USER_RESET_PASSWORD_EMAIL_SENT',
   USER_CLEAN_ALERT: 'USER_CLEAN_ALERT',
   USER_SIGNUP_SUCCESS: 'USER_SIGNUP_SUCCESS',
+};
+
+export const userFormNames = {
+  EMAIL: 'email',
+  PASSWORD: 'password',
+  PASSWORD_CONFIRM: 'passwordConfirm',
+  NAME: 'name',
+  GENDER: 'gender',
 };

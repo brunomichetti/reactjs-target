@@ -9,7 +9,10 @@ import 'style/App.scss';
 import 'components/users/user-form.scss';
 import FormInput from 'components/common/FormInput';
 import { userRequest, userActions } from 'actions/user.actions';
-import { userConstants } from 'constants/user.constants';
+import {
+  userActionTypesConstants,
+  userFormNames,
+} from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
 import { emailConstraints } from 'helpers/users-constraints';
 
@@ -25,6 +28,10 @@ const ForgotPassword = ({ setForgotPassword }) => {
 
   const [success, setSuccess] = useState(false);
 
+  const { EMAIL } = userFormNames;
+
+  const { USER_CLEAN_ALERT } = userActionTypesConstants;
+
   const { loading, emailSent, errorMsg, requestError } = useSelector(
     (state) => state.user
   );
@@ -38,7 +45,7 @@ const ForgotPassword = ({ setForgotPassword }) => {
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
-      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+      dispatch({ type: USER_CLEAN_ALERT });
     }
     setErrors(omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
@@ -49,7 +56,7 @@ const ForgotPassword = ({ setForgotPassword }) => {
     setSuccess(false);
     setInputs((inputs) => ({ ...inputs, email: '' }));
     setErrors({});
-    dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    dispatch({ type: USER_CLEAN_ALERT });
   };
 
   const handleSubmit = (e) => {
@@ -67,7 +74,13 @@ const ForgotPassword = ({ setForgotPassword }) => {
       <p className="initial-page-container__app-subtitle">
         {intl.formatMessage({ id: 'userform.forgotpassword.text' })}
       </p>
-      {!success ? (
+      {success ? (
+        <div>
+          <p className="initial-page-container__description-text">
+            {intl.formatMessage({ id: 'forgot.password.email.sent.text' })}
+          </p>
+        </div>
+      ) : (
         <div>
           <p className="initial-page-container__description-text">
             {intl.formatMessage({ id: 'forgot.password.text' })}
@@ -83,10 +96,10 @@ const ForgotPassword = ({ setForgotPassword }) => {
                 id: 'userform.email.label.text',
               })}
               inputType="email"
-              inputName="email"
+              inputName={EMAIL}
               inputValue={email}
               inputOnChange={handleChange}
-              error={'email' in errors}
+              error={EMAIL in errors}
               errorMsg={intl.formatMessage({
                 id: 'userform.missing.email.text',
               })}
@@ -103,12 +116,6 @@ const ForgotPassword = ({ setForgotPassword }) => {
               </button>
             </div>
           </form>
-        </div>
-      ) : (
-        <div>
-          <p className="initial-page-container__description-text">
-            {intl.formatMessage({ id: 'forgot.password.email.sent.text' })}
-          </p>
         </div>
       )}
       <hr className="user-profile__hr" />

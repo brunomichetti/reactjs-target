@@ -15,7 +15,10 @@ import FormSelect from 'components/common/FormSelect';
 import { genderSelectStyle } from 'components/users/genderSelectStyle';
 import { userRequest } from 'actions/user.actions';
 import { genders } from 'components/users/gendersList';
-import { userConstants } from 'constants/user.constants';
+import {
+  userActionTypesConstants,
+  userFormNames,
+} from 'constants/user.constants';
 import { signupConstraints } from 'helpers/users-constraints';
 import CustomLoader from 'components/common/CustomLoader';
 
@@ -37,6 +40,10 @@ const SignUpForm = ({ setSignupSuccess }) => {
 
   const [errors, setErrors] = useState({});
 
+  const { NAME, EMAIL, PASSWORD, PASSWORD_CONFIRM, GENDER } = userFormNames;
+
+  const { USER_CLEAN_ALERT } = userActionTypesConstants;
+
   const { requestError, errorMsg, signup, loading } = useSelector(
     (state) => state.user
   );
@@ -44,13 +51,14 @@ const SignUpForm = ({ setSignupSuccess }) => {
   useEffect(() => {
     if (signup) {
       setSignupSuccess(true);
-      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+      setErrors({});
+      dispatch({ type: USER_CLEAN_ALERT });
     }
-  }, [signup, setSignupSuccess, dispatch]);
+  }, [signup, setSignupSuccess, dispatch, USER_CLEAN_ALERT]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
-      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+      dispatch({ type: USER_CLEAN_ALERT });
     }
     setErrors(omit(errors, name)); // Return same object with deleted field
     setInputs((inputs) => ({ ...inputs, [name]: value }));
@@ -58,9 +66,9 @@ const SignUpForm = ({ setSignupSuccess }) => {
 
   const handleChangeGender = (selectGender) => {
     if (requestError) {
-      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+      dispatch({ type: USER_CLEAN_ALERT });
     }
-    setErrors(omit(errors, 'gender'));
+    setErrors(omit(errors, GENDER));
     setInputs((inputs) => ({ ...inputs, gender: selectGender['value'] }));
   };
 
@@ -85,10 +93,10 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.name.label.text',
         })}
         inputType="text"
-        inputName="name"
+        inputName={NAME}
         inputValue={name}
         inputOnChange={handleChange}
-        error={'name' in errors}
+        error={NAME in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.name.text',
         })}
@@ -100,10 +108,10 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.email.label.text',
         })}
         inputType="email"
-        inputName="email"
+        inputName={EMAIL}
         inputValue={email}
         inputOnChange={handleChange}
-        error={'email' in errors}
+        error={EMAIL in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.email.text',
         })}
@@ -115,13 +123,13 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.password.label.text',
         })}
         inputType="password"
-        inputName="password"
+        inputName={PASSWORD}
         inputValue={password}
         inputOnChange={handleChange}
         inputPlaceHolder={intl.formatMessage({
           id: 'userform.pass.placeholder.text',
         })}
-        error={'password' in errors}
+        error={PASSWORD in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.pass.text',
         })}
@@ -133,11 +141,11 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.confirmpass.label.text',
         })}
         inputType="password"
-        inputName="passwordConfirm"
+        inputName={PASSWORD_CONFIRM}
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
         error={
-          'passwordConfirm' in errors &&
+          PASSWORD_CONFIRM in errors &&
           errors.passwordConfirm[0].includes('restricted')
         }
         errorMsg={intl.formatMessage({
@@ -145,7 +153,7 @@ const SignUpForm = ({ setSignupSuccess }) => {
         })}
       />
       <div>
-        {'passwordConfirm' in errors &&
+        {PASSWORD_CONFIRM in errors &&
           errors.passwordConfirm[0].includes('not equal') && (
             <div className="user-form__alert">
               {intl.formatMessage({
@@ -168,7 +176,7 @@ const SignUpForm = ({ setSignupSuccess }) => {
           id: 'userform.select.gender.text',
         })}
         valueSelect={selectGender}
-        error={'gender' in errors}
+        error={GENDER in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.missing.gender.text',
         })}

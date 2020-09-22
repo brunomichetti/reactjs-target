@@ -13,7 +13,10 @@ import FormSelect from 'components/common/FormSelect';
 import { genderSelectStyle } from 'components/users/genderSelectStyle';
 import { userActions } from 'actions/user.actions';
 import { userRequest } from 'actions/user.actions';
-import { userConstants } from 'constants/user.constants';
+import {
+  userActionTypesConstants,
+  userFormNames,
+} from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
 import { editProfileConstraints } from 'helpers/users-constraints';
 
@@ -37,6 +40,13 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   });
   const { name, gender, password, passwordConfirm, selectGender } = inputs;
 
+  const { NAME, PASSWORD, PASSWORD_CONFIRM } = userFormNames;
+
+  const {
+    USER_UPDATE_SUCCESS_FINISHED,
+    USER_CLEAN_ALERT,
+  } = userActionTypesConstants;
+
   useEffect(() => {
     if (updated) {
       alert(
@@ -45,13 +55,13 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
         })
       );
       setEditProfile(null);
-      dispatch({ type: userConstants.USER_UPDATE_SUCCESS_FINISHED });
+      dispatch({ type: USER_UPDATE_SUCCESS_FINISHED });
     }
-  }, [updated, setEditProfile, intl, dispatch]);
+  }, [updated, setEditProfile, intl, dispatch, USER_UPDATE_SUCCESS_FINISHED]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
-      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+      dispatch({ type: USER_CLEAN_ALERT });
     }
     setErrors(omit(errors, name));
     setInputs((inputs) => ({ ...inputs, [name]: value }));
@@ -59,7 +69,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
 
   const handleChangeGender = (selectGender) => {
     if (requestError) {
-      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+      dispatch({ type: USER_CLEAN_ALERT });
     }
     setInputs((inputs) => ({
       ...inputs,
@@ -98,10 +108,10 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
           id: 'editprofile.update.name.text',
         })}
         inputType="text"
-        inputName="name"
+        inputName={NAME}
         inputValue={name}
         inputOnChange={handleChange}
-        error={'name' in errors}
+        error={NAME in errors}
         errorMsg={intl.formatMessage({
           id: 'editprofile.empty.name.text',
         })}
@@ -127,7 +137,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
           id: 'editprofile.update.password.text',
         })}
         inputType="password"
-        inputName="password"
+        inputName={PASSWORD}
         inputValue={password}
         inputOnChange={handleChange}
       />
@@ -138,10 +148,10 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
           id: 'editprofile.update.password.confirm.text',
         })}
         inputType="password"
-        inputName="passwordConfirm"
+        inputName={PASSWORD_CONFIRM}
         inputValue={passwordConfirm}
         inputOnChange={handleChange}
-        error={'passwordConfirm' in errors}
+        error={PASSWORD_CONFIRM in errors}
         errorMsg={intl.formatMessage({
           id: 'userform.not.matching.passwords.text',
         })}
