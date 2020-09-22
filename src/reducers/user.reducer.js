@@ -7,6 +7,7 @@ export const user = (
     errorMsg: '',
     updated: false,
     emailSent: false,
+    signup: false,
   },
   { type, result }
 ) => {
@@ -25,6 +26,7 @@ export const user = (
         requestError: false,
         errorMsg: '',
         emailSent: false,
+        signup: false,
       };
     case userConstants.USER_REQUEST_ERROR:
       return {
@@ -49,6 +51,13 @@ export const user = (
         ...state,
         loading: false,
         emailSent: true,
+      };
+    case userConstants.USER_SIGNUP_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        requestError: false,
+        signup: true,
       };
     default:
       return state;

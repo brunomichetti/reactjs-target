@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { isEmpty, omit } from 'lodash';
 import { validate } from 'validate.js';
+import { func } from 'prop-types';
 
 import 'style/App.scss';
 import 'components/users/user-form.scss';
@@ -16,8 +17,9 @@ import { userRequest } from 'actions/user.actions';
 import { genders } from 'components/users/gendersList';
 import { userConstants } from 'constants/user.constants';
 import { signupConstraints } from 'helpers/users-constraints';
+import CustomLoader from 'components/common/CustomLoader';
 
-const SignUpForm = () => {
+const SignUpForm = ({ setSignupSuccess }) => {
   const intl = useIntl();
 
   const { selectGender } = {};
@@ -35,7 +37,16 @@ const SignUpForm = () => {
 
   const [errors, setErrors] = useState({});
 
-  const { requestError, errorMsg } = useSelector((state) => state.user);
+  const { requestError, errorMsg, signup, loading } = useSelector(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    if (signup) {
+      setSignupSuccess(true);
+      dispatch({ type: userConstants.USER_CLEAN_ALERT });
+    }
+  }, [signup, setSignupSuccess, dispatch]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
@@ -169,6 +180,7 @@ const SignUpForm = () => {
           })}
         </button>
       </div>
+      {loading && <CustomLoader />}
       {requestError && <div className="user-form__alert"> {errorMsg} </div>}
       <hr className="user-form__hr" />
       <div className="user-form__text">
@@ -180,6 +192,10 @@ const SignUpForm = () => {
       </div>
     </form>
   );
+};
+
+SignUpForm.propTypes = {
+  setSignupSuccess: func,
 };
 
 export default SignUpForm;
