@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { string } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { isEmpty, omit } from 'lodash';
@@ -16,6 +16,7 @@ import {
   userFormNames,
 } from 'constants/user.constants';
 import { changePasswordConstraints } from 'helpers/users-constraints';
+import useResetPassword from 'hooks/useResetPassword';
 
 const ResetPasswordForm = ({ urlUid, urlToken }) => {
   const intl = useIntl();
@@ -34,20 +35,7 @@ const ResetPasswordForm = ({ urlUid, urlToken }) => {
 
   const { PASSWORD, PASSWORD_CONFIRM } = userFormNames;
 
-  const { loading, requestError, errorMsg, updated } = useSelector(
-    (state) => state.user
-  );
-
-  useEffect(() => {
-    if (updated) {
-      setErrors({});
-      alert(
-        intl.formatMessage({
-          id: 'reset.password.completed.text',
-        })
-      );
-    }
-  }, [updated, intl, setErrors]);
+  const { loading, requestError, errorMsg } = useResetPassword(setErrors);
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { func } from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { isEmpty, omit } from 'lodash';
 import { validate } from 'validate.js';
@@ -15,6 +15,7 @@ import {
 } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
 import { emailConstraints } from 'helpers/users-constraints';
+import useForgotPassword from 'hooks/useForgotPassword';
 
 const ForgotPassword = ({ setForgotPassword }) => {
   const intl = useIntl();
@@ -32,16 +33,10 @@ const ForgotPassword = ({ setForgotPassword }) => {
 
   const { USER_CLEAN_ALERT } = userActionTypesConstants;
 
-  const { loading, emailSent, errorMsg, requestError } = useSelector(
-    (state) => state.user
+  const { loading, errorMsg, requestError } = useForgotPassword(
+    setErrors,
+    setSuccess
   );
-
-  useEffect(() => {
-    if (emailSent) {
-      setSuccess(true);
-      setErrors({});
-    }
-  }, [emailSent, setSuccess, setErrors]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {

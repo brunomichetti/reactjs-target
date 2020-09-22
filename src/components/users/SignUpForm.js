@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { isEmpty, omit } from 'lodash';
 import { validate } from 'validate.js';
@@ -21,6 +21,7 @@ import {
 } from 'constants/user.constants';
 import { signupConstraints } from 'helpers/users-constraints';
 import CustomLoader from 'components/common/CustomLoader';
+import useSignUp from 'hooks/useSignUp';
 
 const SignUpForm = ({ setSignupSuccess }) => {
   const intl = useIntl();
@@ -44,17 +45,10 @@ const SignUpForm = ({ setSignupSuccess }) => {
 
   const { USER_CLEAN_ALERT } = userActionTypesConstants;
 
-  const { requestError, errorMsg, signup, loading } = useSelector(
-    (state) => state.user
+  const { requestError, errorMsg, loading } = useSignUp(
+    setErrors,
+    setSignupSuccess
   );
-
-  useEffect(() => {
-    if (signup) {
-      setSignupSuccess(true);
-      setErrors({});
-      dispatch({ type: USER_CLEAN_ALERT });
-    }
-  }, [signup, setSignupSuccess, dispatch, USER_CLEAN_ALERT]);
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {

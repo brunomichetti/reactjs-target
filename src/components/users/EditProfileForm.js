@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { func, object } from 'prop-types';
 import { useIntl } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { omit, isEmpty } from 'lodash';
 import { validate } from 'validate.js';
 
@@ -19,6 +19,7 @@ import {
 } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
 import { editProfileConstraints } from 'helpers/users-constraints';
+import useEditProdile from 'hooks/useEditProfile';
 
 const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const intl = useIntl();
@@ -27,9 +28,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
 
   const [errors, setErrors] = useState({});
 
-  const { loading, requestError, errorMsg, updated } = useSelector(
-    (state) => state.user
-  );
+  const { loading, requestError, errorMsg } = useEditProdile(setEditProfile);
 
   const [inputs, setInputs] = useState({
     name: user.name,
@@ -42,22 +41,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
 
   const { NAME, PASSWORD, PASSWORD_CONFIRM } = userFormNames;
 
-  const {
-    USER_UPDATE_SUCCESS_FINISHED,
-    USER_CLEAN_ALERT,
-  } = userActionTypesConstants;
-
-  useEffect(() => {
-    if (updated) {
-      alert(
-        intl.formatMessage({
-          id: 'editprofile.success.text',
-        })
-      );
-      setEditProfile(null);
-      dispatch({ type: USER_UPDATE_SUCCESS_FINISHED });
-    }
-  }, [updated, setEditProfile, intl, dispatch, USER_UPDATE_SUCCESS_FINISHED]);
+  const { USER_CLEAN_ALERT } = userActionTypesConstants;
 
   const handleChange = ({ target: { name, value } }) => {
     if (requestError) {
