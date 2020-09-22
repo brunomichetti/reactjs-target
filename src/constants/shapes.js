@@ -43,3 +43,12 @@ export const componentSelectShape = shape({
   Option: func.isRequired,
   SingleValue: func.isRequired,
 });
+
+export const matchShape = shape({
+  id: number.isRequired,
+  name: string.isRequired,
+  topic: string.isRequired,
+  profile_picture: string,
+});
+
+export const userMatchesShape = arrayOf(matchShape);
