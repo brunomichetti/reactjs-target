@@ -21,10 +21,10 @@ const UserImageEdit = ({ profilePicture, setNewImg }) => {
   return (
     <div>
       <label htmlFor="fileInput">
-        <div className="user-profile__rounded-image-edit">
+        <div className="user-profile__rounded-image-edit-container">
           <img
+            className="user-profile__rounded-image"
             src={imagePreview || profilePicture || defaultProfileImg}
-            width="250"
             alt="user"
           />
         </div>

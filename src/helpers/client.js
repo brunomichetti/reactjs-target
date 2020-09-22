@@ -31,7 +31,11 @@ client.interceptors.request.use((req) => {
 client.interceptors.response.use(
   (res) => res,
   async (error) => {
-    if (requiresAuth(error.config.url) && error.response.status === 401) {
+    if (
+      error.response.status &&
+      requiresAuth(error.config.url) &&
+      error.response.status === 401
+    ) {
       const refreshToken = localStorage.getItem('refreshToken');
       if (refreshToken) {
         try {

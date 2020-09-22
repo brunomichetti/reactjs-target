@@ -12,21 +12,23 @@ const UserMatches = ({ userMatches }) => {
     <div className="user_profile__matches">
       {userMatches && userMatches.length > 0 ? (
         <div>
-          <p className="user-profile__matches-empty">Chat</p>
-          {userMatches.map(({ id, name, topic, profile_picture }) => (
-            <div key={id}>
-              <hr className="user-profile__matches-hr" />
-              <MatchItem
-                name={name}
-                topic={topic}
-                profilePicture={profile_picture}
-              />
-            </div>
-          ))}
-          <hr className="user-profile__matches-hr" />
+          <p className="user-profile__matches-text">Chat</p>
+          <div className="user-profile__matches-list">
+            {userMatches.map(({ id, name, topic, profile_picture }) => (
+              <div key={id}>
+                <hr className="user-profile__matches-hr" />
+                <MatchItem
+                  name={name}
+                  topic={topic}
+                  profilePicture={profile_picture}
+                />
+              </div>
+            ))}
+            <hr className="user-profile__matches-hr" />
+          </div>
         </div>
       ) : (
-        <p className="user-profile__matches-empty">
+        <p className="user-profile__matches-text">
           {intl.formatMessage({
             id: 'homepage.nomatches.text',
           })}

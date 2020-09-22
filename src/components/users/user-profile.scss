@@ -63,13 +63,18 @@
   margin-top: 10em;
 }
 
+.user-profile__matches-list {
+  overflow-y: auto;
+  height: 25vh;
+}
+
 .user-profile__matches-hr {
   margin-top: 0.1em;
   margin-bottom: 0.1em;
-  width: 28vw;
+  width: 25vw;
 }
 
-.user-profile__matches-empty {
+.user-profile__matches-text {
   font-family: $font-family-regular;
   font-size: 1.2em;
   line-height: 1em;
@@ -102,13 +107,17 @@
   align-items: center;
 }
 
-.user-profile__rounded-image-edit {
+.user-profile__rounded-image-edit-container {
   @extend %rounded-image;
   cursor: url(../../assets/pencil.png), auto;
 }
 
-.user-profile__rounded-image {
+.user-profile__rounded-image-container {
   @extend %rounded-image;
+}
+
+.user-profile__rounded-image {
+  width: 200px;
 }
 
 .smilies-img {

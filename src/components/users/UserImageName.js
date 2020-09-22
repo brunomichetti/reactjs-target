@@ -16,10 +16,10 @@ const UserImageName = ({
       {editProfile ? (
         <UserImageEdit profilePicture={profile_picture} setNewImg={setNewImg} />
       ) : (
-        <div className="user-profile__rounded-image">
+        <div className="user-profile__rounded-image-container">
           <img
+            className="user-profile__rounded-image"
             src={profile_picture || defaultProfileImg}
-            width="250"
             alt="user"
           />
         </div>

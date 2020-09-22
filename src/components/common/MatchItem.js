@@ -7,20 +7,23 @@ import { getIconFileByTopic } from 'components/targets/topicsList';
 
 const MatchItem = ({ name, topic, profilePicture }) => (
   <div className="match-item">
-    <img
-      className="match-item__image"
-      src={profilePicture || defaultProfileImg}
-      alt="user"
-    />
+    <div className="match-item__image-container">
+      <img
+        className="match-item__image"
+        src={profilePicture || defaultProfileImg}
+        alt="user"
+      />
+    </div>
     <div className="match-item__text-container">
       <p className="match-item__name">{name}</p>
     </div>
-
-    <img
-      className="match-item__topic-icon"
-      src={getIconFileByTopic(topic)}
-      alt="icon"
-    />
+    <div className="match-item__topic-icon-container">
+      <img
+        className="match-item__topic-icon"
+        src={getIconFileByTopic(topic)}
+        alt="icon"
+      />
+    </div>
   </div>
 );
 
