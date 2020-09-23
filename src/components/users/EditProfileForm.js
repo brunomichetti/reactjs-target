@@ -19,7 +19,7 @@ import {
 } from 'constants/user.constants';
 import CustomLoader from 'components/common/CustomLoader';
 import { editProfileConstraints } from 'helpers/users-constraints';
-import useEditProdile from 'hooks/useEditProfile';
+import useEditProfile from 'hooks/useEditProfile';
 
 const EditProfileForm = ({ user, setEditProfile, newImg }) => {
   const intl = useIntl();
@@ -28,7 +28,7 @@ const EditProfileForm = ({ user, setEditProfile, newImg }) => {
 
   const [errors, setErrors] = useState({});
 
-  const { loading, requestError, errorMsg } = useEditProdile(setEditProfile);
+  const { loading, requestError, errorMsg } = useEditProfile(setEditProfile);
 
   const [inputs, setInputs] = useState({
     name: user.name,
