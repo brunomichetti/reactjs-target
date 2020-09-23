@@ -9,8 +9,8 @@ export const userShape = shape({
 });
 
 export const latLngShape = shape({
-  lat: number.isRequired,
-  lng: number.isRequired,
+  lat: number,
+  lng: number,
 });
 
 export const targetShape = shape({
@@ -43,3 +43,12 @@ export const componentSelectShape = shape({
   Option: func.isRequired,
   SingleValue: func.isRequired,
 });
+
+export const matchShape = shape({
+  id: number.isRequired,
+  name: string.isRequired,
+  topic: string.isRequired,
+  profile_picture: string,
+});
+
+export const userMatchesShape = arrayOf(matchShape);
