@@ -60,11 +60,11 @@ const logout = () => {
     await userService.logout();
     dispatch({ type: USER_REQUEST_SUCCESS });
     dispatch({ type: CLEAN_TARGETS });
+    dispatch({ type: CLEAN_MATCHES });
+    dispatch({ type: CLEAN_TARGETS });
     localStorage.removeItem('user');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessToken');
-    dispatch({ type: CLEAN_MATCHES });
-    dispatch({ type: CLEAN_TARGETS });
     history.push(loginPageLink);
   };
 };

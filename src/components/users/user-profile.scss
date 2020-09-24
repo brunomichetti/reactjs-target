@@ -35,7 +35,7 @@
   letter-spacing: 0.1em;
 }
 
-.logout__btn-text {
+.button-as-link {
   font-family: $font-family-regular;
   font-size: 1em;
   line-height: 1em;
@@ -47,34 +47,34 @@
   cursor: pointer;
 }
 
-.logout__btn-text:hover {
+.button-as-link:hover {
   // Underline and turn the button blue on hover
   text-decoration: underline;
   color: $dodger-blue;
 }
 
-.logout__btn-text:focus {
+.button-as-link:focus {
   // Eliminate border when the button is clicked
   border-color: transparent;
   outline: none;
 }
 
-.user_profile__matches {
+.user-profile__list-container {
   margin-top: 10em;
 }
 
-.user-profile__matches-list {
+.user-profile__list-display {
   overflow-y: auto;
   height: 25vh;
 }
 
-.user-profile__matches-hr {
+.user-profile__list-hr {
   margin-top: 0.1em;
   margin-bottom: 0.1em;
   width: 25vw;
 }
 
-.user-profile__matches-text {
+.user-profile__list-text {
   font-family: $font-family-regular;
   font-size: 1.2em;
   line-height: 1em;

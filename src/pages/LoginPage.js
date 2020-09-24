@@ -7,11 +7,11 @@ import 'style/App.scss';
 import smilies from 'assets/smilies.png';
 import LoginForm from 'components/users/LoginForm';
 import AppStoreContainer from 'components/app-store-container/AppStoreContainer';
-import menuIcon from 'assets/icons/menuIcon.png';
 import { homePageLink } from 'constants/link.constants';
 import SignUpOptions from 'components/users/SignUpOptions';
 import ForgotPassword from 'components/users/ForgotPassword';
 import { userActionTypesConstants } from 'constants/user.constants';
+import CustomHamburgerMenu from 'components/common/CustomHamburgerMenu';
 
 const LoginPage = () => {
   const intl = useIntl();
@@ -36,7 +36,7 @@ const LoginPage = () => {
     <div className="main-div">
       <div className="initial-page-container">
         <div className="initial-page-container__menu">
-          <img src={menuIcon} alt="menu_button" />
+          <CustomHamburgerMenu isLoggedIn={false} />
         </div>
         <div className="initial-page-container__smilies">
           <img src={smilies} alt="smilies" />
