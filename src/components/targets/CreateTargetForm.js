@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import NumberFormat from 'react-number-format';
 import { func, string } from 'prop-types';
 import { useIntl } from 'react-intl';
@@ -16,14 +16,12 @@ import {
 } from 'components/common/customIconOption';
 import { topics } from 'components/targets/topicsList';
 import { targetActions } from 'actions/target.actions';
-import {
-  targetActionTypesConstants,
-  targetFormNames,
-} from 'constants/target.constants';
+import { targetFormNames } from 'constants/target.constants';
 import { userRequest } from 'actions/user.actions';
 import { latLngShape } from 'constants/shapes';
 import CustomLoader from 'components/common/CustomLoader';
 import { createTargetConstraints } from 'helpers/targets-constraints';
+import useCreateTarget from 'hooks/useCreateTarget';
 
 const CreateTargetForm = ({
   newTargetlatlng,
@@ -35,11 +33,10 @@ const CreateTargetForm = ({
 
   const { select_topic } = {};
 
-  const createTargetState = useSelector((state) => state.target);
-
-  const createTargetError = useSelector((state) => state.user.errorMsg);
-
-  const createTargetRequest = useSelector((state) => state.user.loading);
+  const { createTargetError, createTargetRequest } = useCreateTarget(
+    setNewTargetlatlng,
+    setNewTargetRadius
+  );
 
   const [inputs, setInputs] = useState({
     radius: newTargetRadius,
@@ -50,31 +47,9 @@ const CreateTargetForm = ({
 
   const { RADIUS, TITLE, TOPIC } = targetFormNames;
 
-  const { CREATE_ALERT_FINISHED } = targetActionTypesConstants;
-
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (createTargetState.createTargetSuccess) {
-      alert(
-        intl.formatMessage({
-          id: 'createtarget.success.text',
-        })
-      );
-      setNewTargetlatlng(null);
-      setNewTargetRadius('');
-      dispatch({ type: CREATE_ALERT_FINISHED });
-    }
-  }, [
-    createTargetState,
-    setNewTargetRadius,
-    setNewTargetlatlng,
-    intl,
-    dispatch,
-    CREATE_ALERT_FINISHED,
-  ]);
 
   const handleChange = ({ target: { name, value } }) => {
     setInputs((inputs) => ({ ...inputs, [name]: value }));

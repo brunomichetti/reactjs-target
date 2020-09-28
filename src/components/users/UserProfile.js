@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { func, bool } from 'prop-types';
 
 import 'style/App.scss';
@@ -11,13 +11,12 @@ import UserImageName from 'components/users/UserImageName';
 import CustomLoader from 'components/common/CustomLoader';
 import { userShape } from 'constants/shapes';
 import UserMatches from 'components/users/UserMatches';
+import useMatches from 'hooks/useMatches';
 
 const UserProfile = ({ user, editProfile, setEditProfile }) => {
   const intl = useIntl();
 
   const dispatch = useDispatch();
-
-  const loggingOut = useSelector((state) => state.user.loading);
 
   const handleLogout = () => {
     dispatch(userActions.logout());
@@ -27,13 +26,7 @@ const UserProfile = ({ user, editProfile, setEditProfile }) => {
     setEditProfile(true);
   };
 
-  const { getMatches } = userActions;
-
-  const { userMatches } = useSelector((state) => state.target);
-
-  useEffect(() => {
-    dispatch(getMatches());
-  }, [dispatch, getMatches]);
+  const { userMatches, loggingOut } = useMatches();
 
   return (
     <div className="user-profile">
