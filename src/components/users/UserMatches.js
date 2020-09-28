@@ -20,7 +20,7 @@ const UserMatches = ({ userMatches = [] }) => {
           </p>
           <div className="user-profile__list-display">
             {userMatches.map(({ id, name, topic, profile_picture }) => (
-              <div key={id}>
+              <div key={id} className="user-profile-list-element">
                 <hr className="user-profile__list-hr" />
                 <MatchItem
                   name={name}

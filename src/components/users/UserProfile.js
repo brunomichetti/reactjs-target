@@ -25,7 +25,7 @@ const UserProfile = ({
 
   const [seeMatches, setSeeMatches] = useState(true);
 
-  const { userMatches, loggingOut } = useMatches();
+  const { userMatches, loggingOut, requestError, errorMsg } = useMatches();
 
   return (
     <div className="user-profile">
@@ -73,10 +73,16 @@ const UserProfile = ({
         {loggingOut && <CustomLoader />}
       </div>
       <hr className="user-profile__hr" />
-      {seeMatches ? (
-        <UserMatches userMatches={userMatches} />
-      ) : (
-        <TargetsList userTargets={userTargets} setMapCenter={setMapCenter} />
+      {seeMatches
+        ? !requestError && <UserMatches userMatches={userMatches} />
+        : !requestError && (
+            <TargetsList
+              userTargets={userTargets}
+              setMapCenter={setMapCenter}
+            />
+          )}
+      {requestError && (
+        <div className="user-form__alert user-profile-error"> {errorMsg} </div>
       )}
     </div>
   );

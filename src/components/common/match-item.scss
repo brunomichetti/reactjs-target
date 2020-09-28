@@ -1,16 +1,13 @@
 @import '../../style/common/constants';
 
 .match-item {
-  width: 25vw;
+  width: 26vw;
   display: flex;
-  padding-right: 0;
-  margin-right: 0;
-  padding-bottom: 0;
 }
 
 .match-item__image-container {
   align-self: left;
-  margin-left: 2vw;
+  margin-left: 1vw;
   width: 50px;
   height: 50px;
   border-radius: 100%;
@@ -41,14 +38,12 @@
 }
 
 .match-item__topic-icon-container {
-  margin-right: 0;
   align-self: right;
   width: 30px;
   height: 30px;
-  padding-top: 0.8em;
+  padding-top: 1.2em;
 }
 
 .match-item__topic-icon {
   margin-right: 0;
-  margin-top: 0.4em;
 }

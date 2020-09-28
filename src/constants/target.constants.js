@@ -5,6 +5,7 @@ export const targetActionTypesConstants = {
   CREATE_ALERT_FINISHED: 'TARGET_CREATE_ALERT_FINISHED',
   GET_MATCHES_SUCCESS: 'GET_MATCHES_SUCCESS',
   CLEAN_MATCHES: 'CLEAN_MATCHES',
+  TARGET_DELETED: 'TARGET_DELETED',
 };
 
 export const targetFormNames = {
