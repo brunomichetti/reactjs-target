@@ -11,7 +11,7 @@ const UserMatches = ({ userMatches = [] }) => {
 
   return (
     <div className="user-profile__list-container">
-      {userMatches.length > 0 ? (
+      {userMatches.length ? (
         <div>
           <p className="user-profile__list-text">
             {intl.formatMessage({

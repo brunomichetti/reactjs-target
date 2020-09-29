@@ -27,9 +27,7 @@ const CustomHamburgerMenu = ({ isLoggedIn }) => {
       <div>
         <HamburgerMenu
           isOpen={open}
-          menuClicked={() => {
-            setOpen(!open);
-          }}
+          menuClicked={() => setOpen(!open)}
           width={hambWidth}
           height={hambHeight}
           strokeWidth={hambStrokeWidth}
@@ -43,11 +41,7 @@ const CustomHamburgerMenu = ({ isLoggedIn }) => {
         <div>
           <ul className="hamburger-menu__list">
             {isLoggedIn && (
-              <li
-                onClick={() => {
-                  dispatch(userActions.logout());
-                }}
-              >
+              <li onClick={() => dispatch(userActions.logout())}>
                 {intl.formatMessage({
                   id: 'homepage.logout.text',
                 })}

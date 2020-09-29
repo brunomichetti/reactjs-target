@@ -10,7 +10,7 @@ const TargetsList = ({ userTargets = [], setMapCenter }) => {
   const intl = useIntl();
   return (
     <div className="user-profile__list-container">
-      {userTargets.length > 0 ? (
+      {userTargets.length ? (
         <div>
           <p className="user-profile__list-text">
             {intl.formatMessage({
