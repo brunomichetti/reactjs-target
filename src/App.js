@@ -6,13 +6,13 @@ import HomePage from 'pages/HomePage';
 import SignUpPage from 'pages/SignUpPage';
 import ResetPasswordPage from 'pages/ResetPasswordPage';
 import { history } from 'helpers/history';
-import PrivateRoute from 'helpers/private.route';
+import PrivateRoute from 'helpers/privateRoute';
 import {
   homePageLink,
   loginPageLink,
   signupPageLink,
   resetPasswordLink,
-} from 'constants/link.constants';
+} from 'constants/linkConstants';
 
 const App = () => (
   <Router history={history}>

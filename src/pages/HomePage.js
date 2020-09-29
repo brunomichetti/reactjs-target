@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 import 'style/App.scss';
-import UserProfile from 'components/users/UserProfile';
-import CreateTarget from 'components/targets/CreateTarget';
-import TargetsMap from 'components/targets-map/TargetsMap';
+import UserProfile from 'components/users/UserProfile/UserProfile';
+import CreateTarget from 'components/targets/CreateTarget/CreateTarget';
+import TargetsMap from 'components/targets-map/TargetsMap/TargetsMap';
 import smilies from 'assets/smilies.png';
-import EditProfile from 'components/users/EditProfile';
+import EditProfile from 'components/users/EditProfile/EditProfile';
 import useTargetsMap from 'hooks/useTargetsMap';
-import { mapConstants } from 'constants/map.constants';
+import { mapConstants } from 'constants/mapConstants';
 
 const HomePage = () => {
   const { user } = JSON.parse(localStorage.getItem('user'));

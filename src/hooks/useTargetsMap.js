@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
 
-import { userActions } from 'actions/user.actions';
+import { userActions } from 'actions/userActions';
 
 const useTargetsMap = () => {
   const { getTargets, getMatches } = userActions;

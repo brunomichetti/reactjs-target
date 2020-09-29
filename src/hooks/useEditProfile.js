@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 
-import { userActionTypesConstants } from 'constants/user.constants';
+import { userActionTypesConstants } from 'constants/userConstants';
 
 const useEditProfile = (setEditProfile) => {
   const intl = useIntl();

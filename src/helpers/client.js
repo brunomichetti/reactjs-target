@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { loginPageLink } from 'constants/link.constants';
+import { loginPageLink } from 'constants/linkConstants';
 import { history } from 'helpers/history';
 
 const URLS_WITHOUT_AUTH = [

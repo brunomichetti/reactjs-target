@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux';
 
 import 'style/App.scss';
 import smilies from 'assets/smilies.png';
-import LoginForm from 'components/users/LoginForm';
-import AppStoreContainer from 'components/app-store-container/AppStoreContainer';
-import { homePageLink } from 'constants/link.constants';
-import SignUpOptions from 'components/users/SignUpOptions';
-import ForgotPassword from 'components/users/ForgotPassword';
-import { userActionTypesConstants } from 'constants/user.constants';
-import CustomHamburgerMenu from 'components/common/CustomHamburgerMenu';
+import LoginForm from 'components/users/LoginForm/LoginForm';
+import AppStoreContainer from 'components/app-store-container/AppStoreContainer/AppStoreContainer';
+import { homePageLink } from 'constants/linkConstants';
+import SignUpOptions from 'components/users/SignUpOptions/SignUpOptions';
+import ForgotPassword from 'components/users/ForgotPassword/ForgotPassword';
+import { userActionTypesConstants } from 'constants/userConstants';
+import CustomHamburgerMenu from 'components/common/CustomHamburgerMenu/CustomHamburgerMenu';
 
 const LoginPage = () => {
   const intl = useIntl();

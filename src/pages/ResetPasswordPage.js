@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 
 import 'style/App.scss';
-import AppStoreContainer from 'components/app-store-container/AppStoreContainer';
-import ResetPasswordForm from 'components/users/ResetPasswordForm';
+import AppStoreContainer from 'components/app-store-container/AppStoreContainer/AppStoreContainer';
+import ResetPasswordForm from 'components/users/ResetPasswordForm/ResetPasswordForm';
 import smilies from 'assets/smilies.png';
 
 const ResetPasswordPage = () => {
