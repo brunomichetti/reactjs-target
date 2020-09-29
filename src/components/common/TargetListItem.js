@@ -29,9 +29,8 @@ const TargetListItem = ({ id, title, topic, lat, lon, setMapCenter }) => {
         >
           <img
             className="target-item__trash-button-img"
-            type="image"
             src={trashButton}
-            alt="Back button"
+            alt="Trash button"
           />
         </button>
       </div>

@@ -27,18 +27,16 @@ const create = (radius, title, topic, lat, lon) => {
   };
 };
 
-const deleteTarget = (id) => {
-  return async (dispatch) => {
-    try {
-      await targetService.deleteTarget(id);
-      dispatch({ type: TARGET_DELETED });
-    } catch (error) {
-      dispatch({
-        type: USER_REQUEST_ERROR,
-        result: userErrorConstants.DELETE_TARGET_ERROR,
-      });
-    }
-  };
+const deleteTarget = (id) => async (dispatch) => {
+  try {
+    await targetService.deleteTarget(id);
+    dispatch({ type: TARGET_DELETED });
+  } catch (error) {
+    dispatch({
+      type: USER_REQUEST_ERROR,
+      result: userErrorConstants.DELETE_TARGET_ERROR,
+    });
+  }
 };
 
 export const targetActions = {
