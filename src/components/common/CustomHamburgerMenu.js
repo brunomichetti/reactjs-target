@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import HamburgerMenu from 'react-hamburger-menu';
 import { useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
+import { bool } from 'prop-types';
 
 import {
   hambWidth,
@@ -28,13 +29,13 @@ const CustomHamburgerMenu = ({ isLoggedIn }) => {
         <HamburgerMenu
           isOpen={open}
           menuClicked={() => setOpen(!open)}
-          width={hambWidth}
-          height={hambHeight}
-          strokeWidth={hambStrokeWidth}
-          rotate={hambRotate}
+          width={Number(hambWidth)}
+          height={Number(hambHeight)}
+          strokeWidth={Number(hambStrokeWidth)}
+          rotate={Number(hambRotate)}
           color={hambColor}
-          borderRadius={hambBorderRadius}
-          animationDuration={hambAnimationDuration}
+          borderRadius={Number(hambBorderRadius)}
+          animationDuration={Number(hambAnimationDuration)}
         />
       </div>
       {open && (
@@ -57,6 +58,10 @@ const CustomHamburgerMenu = ({ isLoggedIn }) => {
       )}
     </div>
   );
+};
+
+CustomHamburgerMenu.propTypes = {
+  isLoggedIn: bool,
 };
 
 export default CustomHamburgerMenu;

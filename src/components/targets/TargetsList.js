@@ -19,7 +19,7 @@ const TargetsList = ({ userTargets = [], setMapCenter }) => {
           </p>
           <div className="user-profile__list-display">
             {userTargets.map(({ id, title, topic, lat, lon }) => (
-              <div id={id} className="user-profile-list-element">
+              <div key={id} className="user-profile-list-element">
                 <hr className="user-profile__list-hr" />
                 <TargetListItem
                   id={id}
