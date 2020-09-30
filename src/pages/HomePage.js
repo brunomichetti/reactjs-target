@@ -6,12 +6,25 @@ import CreateTarget from 'components/targets/CreateTarget';
 import TargetsMap from 'components/targets-map/TargetsMap';
 import smilies from 'assets/smilies.png';
 import EditProfile from 'components/users/EditProfile';
+import useTargetsMap from 'hooks/useTargetsMap';
+import { mapConstants } from 'constants/map.constants';
 
 const HomePage = () => {
   const { user } = JSON.parse(localStorage.getItem('user'));
+
   const [newTargetlatlng, setNewTargetlatlng] = useState(null);
+
   const [newTargetRadius, setNewTargetRadius] = useState('');
+
   const [editProfile, setEditProfile] = useState(false);
+
+  const [mapCenter, setMapCenter] = useState({
+    lat: mapConstants.INTIAL_LAT,
+    lng: mapConstants.INITIAL_LONG,
+  });
+
+  const { userTargets } = useTargetsMap();
+
   return (
     <div className="main-div">
       <div className="main-div-left-homepage">
@@ -27,6 +40,8 @@ const HomePage = () => {
             user={user}
             editProfile={editProfile}
             setEditProfile={setEditProfile}
+            userTargets={userTargets}
+            setMapCenter={setMapCenter}
           />
         )}
         {newTargetlatlng && !editProfile && (
@@ -45,6 +60,8 @@ const HomePage = () => {
         newTargetlatlng={newTargetlatlng}
         setNewTargetlatlng={setNewTargetlatlng}
         newTargetRadius={newTargetRadius}
+        userTargets={userTargets}
+        mapCenter={mapCenter}
       />
     </div>
   );

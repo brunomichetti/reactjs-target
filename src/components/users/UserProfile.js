@@ -1,45 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useDispatch } from 'react-redux';
+
 import { func, bool } from 'prop-types';
 
 import 'style/App.scss';
 import 'components/users/user-profile.scss';
-import menuIcon from 'assets/icons/menuIcon.png';
-import { userActions } from 'actions/user.actions';
+
 import UserImageName from 'components/users/UserImageName';
 import CustomLoader from 'components/common/CustomLoader';
-import { userShape } from 'constants/shapes';
+import { userShape, targetsArrayShape } from 'constants/shapes';
 import UserMatches from 'components/users/UserMatches';
 import useMatches from 'hooks/useMatches';
+import TargetsList from 'components/targets/TargetsList';
+import CustomHamburgerMenu from 'components/common/CustomHamburgerMenu';
 
-const UserProfile = ({ user, editProfile, setEditProfile }) => {
+const UserProfile = ({
+  user,
+  editProfile,
+  setEditProfile,
+  userTargets,
+  setMapCenter,
+}) => {
   const intl = useIntl();
 
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    dispatch(userActions.logout());
-  };
-
-  const handleEditProfile = () => {
-    setEditProfile(true);
-  };
+  const [seeMatches, setSeeMatches] = useState(true);
 
   const { userMatches, loggingOut } = useMatches();
 
   return (
     <div className="user-profile">
       <div className="user-profile__options">
-        <img src={menuIcon} alt="menu_button" />
+        <CustomHamburgerMenu isLoggedIn={true} />
       </div>
       <p className="user-profile__app-title">TARGET</p>
       <UserImageName user={user} editProfile={editProfile} />
       <div className="user-profile__button-link">
         <button
           type="button"
-          className="logout__btn-text"
-          onClick={handleEditProfile}
+          className="button-as-link"
+          onClick={() => {
+            setEditProfile(true);
+          }}
         >
           {intl.formatMessage({
             id: 'homepage.edit.text',
@@ -48,17 +49,35 @@ const UserProfile = ({ user, editProfile, setEditProfile }) => {
         &nbsp; / &nbsp;
         <button
           type="button"
-          className="logout__btn-text"
-          onClick={handleLogout}
+          className="button-as-link"
+          onClick={() => {
+            setSeeMatches(true);
+          }}
         >
           {intl.formatMessage({
-            id: 'homepage.logout.text',
+            id: 'matches.list.text',
+          })}
+        </button>{' '}
+        &nbsp; / &nbsp;
+        <button
+          type="button"
+          className="button-as-link"
+          onClick={() => {
+            setSeeMatches(false);
+          }}
+        >
+          {intl.formatMessage({
+            id: 'homepage.my.targets.text',
           })}
         </button>
         {loggingOut && <CustomLoader />}
       </div>
       <hr className="user-profile__hr" />
-      <UserMatches userMatches={userMatches} />
+      {seeMatches ? (
+        <UserMatches userMatches={userMatches} />
+      ) : (
+        <TargetsList userTargets={userTargets} setMapCenter={setMapCenter} />
+      )}
     </div>
   );
 };
@@ -67,6 +86,8 @@ UserProfile.propTypes = {
   user: userShape,
   editProfile: bool,
   setEditProfile: func,
+  userTargets: targetsArrayShape,
+  setMapCenter: func,
 };
 
 export default UserProfile;

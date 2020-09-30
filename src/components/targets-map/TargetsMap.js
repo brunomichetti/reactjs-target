@@ -12,25 +12,23 @@ import { mapConstants } from 'constants/map.constants';
 import { newTargetIcon } from 'components/targets-map/map-icons';
 import MarketTarget from 'components/targets-map/MarkerTargets';
 import { latLngShape } from 'constants/shapes';
-import useTargetsMap from 'hooks/useTargetsMap';
+import { targetsArrayShape } from 'constants/shapes';
 
 const TargetsMap = ({
   newTargetlatlng,
   setNewTargetlatlng,
   newTargetRadius,
+  userTargets,
+  mapCenter,
 }) => {
   const createTarget = (e) => {
     setNewTargetlatlng(e.latlng);
   };
-  const { userTargets } = useTargetsMap();
 
   return (
     <Map
       className="targets-map"
-      center={{
-        lat: mapConstants.INTIAL_LAT,
-        lng: mapConstants.INITIAL_LONG,
-      }}
+      center={mapCenter}
       zoom={mapConstants.INITIAL_ZOOM}
       onClick={createTarget}
     >
@@ -59,6 +57,7 @@ TargetsMap.propTypes = {
   newTargetlatlng: latLngShape,
   setNewTargetlatlng: func,
   newTargetRadius: string,
+  userTargets: targetsArrayShape,
 };
 
 export default TargetsMap;

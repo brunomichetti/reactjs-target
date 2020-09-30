@@ -22,6 +22,7 @@
 
   "homepage.edit.text": "Edit",
   "homepage.logout.text": "Logout",
+  "homepage.my.targets.text": "My Targets",
   "homepage.nomatches.text": "There are no matches for your targets yet.",
 
   "createtarget.title.text": "CREATE TARGET",
@@ -59,5 +60,10 @@
 
   "signup.success.yey.text": "Yey!",
   "signup.success.only.one.step.text": "Only one more step to start enjoying ",
-  "signup.success.check.email": "We’ve sent an email to confirm your account. Please check your inbox."
+  "signup.success.check.email": "We’ve sent an email to confirm your account. Please check your inbox.",
+  "hamburger.menu.about.text": "About",
+
+  "matches.list.text": "Chat",
+  "targets.list.empty.text": "You haven't created any targets yet. Click on the map to start!",
+  "targets.list.text": "Targets list"
 }

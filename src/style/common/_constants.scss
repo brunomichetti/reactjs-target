@@ -24,6 +24,15 @@ $create-target-circle-opacity: 0.8;
 $loader-height: 80;
 $loader-width: 50;
 
+// Hamburger menu style
+$hambWidth: 20;
+$hambHeight: 12;
+$hambStrokeWidth: 2;
+$hambRotate: 0;
+$hambColor: $black;
+$hambBorderRadius: 0;
+$hambAnimationDuration: 0.5;
+
 :export {
   safron: $safron;
   white: $white;
@@ -31,4 +40,11 @@ $loader-width: 50;
   createTargetOpacity: $create-target-circle-opacity;
   loaderHeight: $loader-height;
   loaderWidth: $loader-width;
+  hambWidth: $hambWidth;
+  hambHeight: $hambHeight;
+  hambStrokeWidth: $hambStrokeWidth;
+  hambRotate: $hambRotate;
+  hambColor: $hambColor;
+  hambBorderRadius: $hambBorderRadius;
+  hambAnimationDuration: $hambAnimationDuration;
 }
