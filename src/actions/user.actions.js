@@ -11,6 +11,7 @@ import {
 import { homePageLink, loginPageLink } from 'constants/link.constants';
 import { targetService } from 'services/target.services';
 import { targetActionTypesConstants } from 'constants/target.constants';
+import { userErrorConstants } from 'constants/user.request.error.constants';
 
 const {
   USER_REQUEST,
@@ -156,21 +157,35 @@ const resetPasswordConfirm = (password, passwordConfirm, urlUid, urlToken) => {
 
 const getTargets = () => {
   return async (dispatch) => {
-    const { data: targets } = await targetService.getTargets();
-    dispatch({
-      type: GET_TARGETS_SUCCESS,
-      result: targets,
-    });
+    try {
+      const { data: targets } = await targetService.getTargets();
+      dispatch({
+        type: GET_TARGETS_SUCCESS,
+        result: targets,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_REQUEST_ERROR,
+        result: userErrorConstants.GET_TARGETS_ERROR,
+      });
+    }
   };
 };
 
 const getMatches = () => {
   return async (dispatch) => {
-    const { data: matches } = await targetService.getMatches();
-    dispatch({
-      type: GET_MATCHES_SUCCESS,
-      result: matches,
-    });
+    try {
+      const { data: matches } = await targetService.getMatches();
+      dispatch({
+        type: GET_MATCHES_SUCCESS,
+        result: matches,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_REQUEST_ERROR,
+        result: userErrorConstants.GET_MATCHES_ERROR,
+      });
+    }
   };
 };
 

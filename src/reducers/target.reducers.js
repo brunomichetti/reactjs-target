@@ -7,10 +7,16 @@ const {
   CREATE_ALERT_FINISHED,
   GET_MATCHES_SUCCESS,
   CLEAN_MATCHES,
+  TARGET_DELETED,
 } = targetActionTypesConstants;
 
 export const target = (
-  state = { createTargetSuccess: false, userTargets: [], userMatches: [] },
+  state = {
+    createTargetSuccess: false,
+    targetDeleted: false,
+    userTargets: [],
+    userMatches: [],
+  },
   { type, result }
 ) => {
   switch (type) {
@@ -23,6 +29,7 @@ export const target = (
       return {
         ...state,
         userTargets: result,
+        targetDeleted: false,
       };
     case CLEAN_TARGETS:
       return {
@@ -41,6 +48,8 @@ export const target = (
       };
     case CREATE_ALERT_FINISHED:
       return { ...state, createTargetSuccess: false };
+    case TARGET_DELETED:
+      return { ...state, targetDeleted: true };
     default:
       return state;
   }

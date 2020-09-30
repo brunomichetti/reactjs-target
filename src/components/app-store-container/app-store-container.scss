@@ -9,7 +9,7 @@
 }
 
 .app-store-container__i6-img {
-  margin-top: 3em;
+  margin-top: 10vh;
 }
 
 /* Define this for @extend */
@@ -25,16 +25,16 @@
 
 .app-store-container__app-store-button {
   @extend %overlap-image;
-  top: 42em;
+  top: 90vh;
 }
 
 .app-store-container__social {
   @extend %overlap-image;
-  top: 45em;
+  top: 85vh;
   padding-bottom: 3em;
 }
 
 .app-store-container__play {
   @extend %overlap-image;
-  top: 23em;
+  top: 40vh;
 }

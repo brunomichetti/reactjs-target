@@ -61,17 +61,30 @@
 
 .user-profile__list-container {
   margin-top: 10em;
+  text-align: -webkit-center;
 }
 
 .user-profile__list-display {
   overflow-y: auto;
   height: 25vh;
+  text-align: -webkit-center;
+  align-content: center;
+  margin-left: 1vw;
+  padding-left: 0;
+  margin-right: 1vw;
+  padding-right: 0;
+  width: 28vw;
 }
 
 .user-profile__list-hr {
   margin-top: 0.1em;
   margin-bottom: 0.1em;
-  width: 25vw;
+  width: 26vw;
+}
+
+.user-profile-list-element {
+  text-align: -webkit-center;
+  width: 27vw;
 }
 
 .user-profile__list-text {
@@ -138,4 +151,8 @@ a:hover {
 .user-profile__rounded-image-edit-hide-btn {
   cursor: pointer;
   display: none;
+}
+
+.user-profile-error {
+  margin-top: 20em;
 }

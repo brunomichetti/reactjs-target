@@ -7,8 +7,11 @@ const getTargets = () => client.get('targets/');
 
 const getMatches = () => client.get('users/matches/');
 
+const deleteTarget = (id) => client.delete(`targets/${id}`);
+
 export const targetService = {
   create,
   getTargets,
   getMatches,
+  deleteTarget,
 };

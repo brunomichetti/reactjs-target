@@ -8,7 +8,9 @@ const useMatches = () => {
 
   const { getMatches } = userActions;
 
-  const loggingOut = useSelector((state) => state.user.loading);
+  const { loading: loggingOut, requestError, errorMsg } = useSelector(
+    (state) => state.user
+  );
 
   const { userMatches } = useSelector((state) => state.target);
 
@@ -16,7 +18,7 @@ const useMatches = () => {
     dispatch(getMatches());
   }, [dispatch, getMatches]);
 
-  return { userMatches, loggingOut };
+  return { userMatches, loggingOut, requestError, errorMsg };
 };
 
 export default useMatches;

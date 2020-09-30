@@ -65,5 +65,6 @@
 
   "matches.list.text": "Chat",
   "targets.list.empty.text": "You haven't created any targets yet. Click on the map to start!",
-  "targets.list.text": "Targets list"
+  "targets.list.text": "Targets list",
+  "delete.target.success.text": "Target successfully deleted!"
 }

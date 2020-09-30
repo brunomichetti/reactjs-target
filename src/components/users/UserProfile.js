@@ -25,7 +25,7 @@ const UserProfile = ({
 
   const [seeMatches, setSeeMatches] = useState(true);
 
-  const { userMatches, loggingOut } = useMatches();
+  const { userMatches, loggingOut, requestError, errorMsg } = useMatches();
 
   return (
     <div className="user-profile">
@@ -38,9 +38,7 @@ const UserProfile = ({
         <button
           type="button"
           className="button-as-link"
-          onClick={() => {
-            setEditProfile(true);
-          }}
+          onClick={() => setEditProfile(true)}
         >
           {intl.formatMessage({
             id: 'homepage.edit.text',
@@ -50,9 +48,7 @@ const UserProfile = ({
         <button
           type="button"
           className="button-as-link"
-          onClick={() => {
-            setSeeMatches(true);
-          }}
+          onClick={() => setSeeMatches(true)}
         >
           {intl.formatMessage({
             id: 'matches.list.text',
@@ -62,9 +58,7 @@ const UserProfile = ({
         <button
           type="button"
           className="button-as-link"
-          onClick={() => {
-            setSeeMatches(false);
-          }}
+          onClick={() => setSeeMatches(false)}
         >
           {intl.formatMessage({
             id: 'homepage.my.targets.text',
@@ -73,7 +67,9 @@ const UserProfile = ({
         {loggingOut && <CustomLoader />}
       </div>
       <hr className="user-profile__hr" />
-      {seeMatches ? (
+      {requestError ? (
+        <div className="user-form__alert user-profile-error"> {errorMsg} </div>
+      ) : seeMatches ? (
         <UserMatches userMatches={userMatches} />
       ) : (
         <TargetsList userTargets={userTargets} setMapCenter={setMapCenter} />

@@ -1,13 +1,10 @@
-import {
-  loginErrorConstants,
-  resetPasswordErrorConstants,
-} from 'constants/login.error.constants';
+import { userErrorConstants } from 'constants/user.request.error.constants';
 
 export const handleLoginError = ({ response: { status, data } }) => {
   if (status === 400 && data.non_field_errors) {
-    return loginErrorConstants.LOGIN_ERROR_CREDENTIALS;
+    return userErrorConstants.LOGIN_ERROR_CREDENTIALS;
   } else {
-    return loginErrorConstants.SERVER_ERROR;
+    return userErrorConstants.SERVER_ERROR;
   }
 };
 
@@ -18,7 +15,7 @@ export const handleSignupError = ({ response: { data } }) => {
   if (data['password1']) {
     return data.password1[0];
   }
-  return loginErrorConstants.SERVER_ERROR;
+  return userErrorConstants.SERVER_ERROR;
 };
 
 export const handleCreateTargetError = ({ response: { data } }) => {
@@ -28,29 +25,29 @@ export const handleCreateTargetError = ({ response: { data } }) => {
   if (data.length > 0) {
     return data[0];
   }
-  return loginErrorConstants.SERVER_ERROR;
+  return userErrorConstants.SERVER_ERROR;
 };
 
 export const handleChangePasswordError = ({ response: { data } }) => {
   if (data['new_password2']) {
     return data.new_password2[0];
   }
-  return loginErrorConstants.SERVER_ERROR;
+  return userErrorConstants.SERVER_ERROR;
 };
 
 export const handleResetPasswordError = ({ response: { data } }) => {
   if (data['email']) {
     return data.email[0];
   }
-  return loginErrorConstants.SERVER_ERROR;
+  return userErrorConstants.SERVER_ERROR;
 };
 
 export const handleResetPasswordConfirmError = ({ response: { data } }) => {
   if (data['token']) {
-    return resetPasswordErrorConstants.RESET_PWD_INVALID_TOKEN_ERROR;
+    return userErrorConstants.RESET_PWD_INVALID_TOKEN_ERROR;
   }
   if (data['new_password2']) {
     return data.new_password2[0];
   }
-  return loginErrorConstants.SERVER_ERROR;
+  return userErrorConstants.SERVER_ERROR;
 };
