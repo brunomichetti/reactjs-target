@@ -10,7 +10,7 @@
   font-weight: 600;
   font-size: 1em;
   line-height: 1em;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.2rem;
 }
 
 .user-form__input {
@@ -42,10 +42,10 @@
 }
 
 .user-form__btn-text {
-  width: 15.5em;
-  height: 2em;
+  width: 15.5rem;
+  height: 2rem;
   border: 0;
-  margin-top: 2.2em;
+  margin-top: 2.2rem;
   // text
   @extend %button-text;
 }
@@ -68,7 +68,7 @@
   font-family: $font-family-regular;
   font-size: 0.8em;
   line-height: 2em;
-  padding-top: 0.8em;
+  padding-top: 0.8rem;
 }
 
 .user-form__alert {
@@ -80,21 +80,21 @@
 }
 
 .user-form__hr {
-  margin-top: 1em;
-  width: 10em;
-  margin-bottom: 2em;
+  margin-top: 1rem;
+  width: 10rem;
+  margin-bottom: 2rem;
 }
 
 .user-form__select {
-  width: 16em;
+  width: 16rem;
   margin-bottom: 1.5em;
-  height: 1em;
+  height: 1rem;
   font-size: 1em;
   line-height: 1em;
 }
 
 .reset-password-form {
-  margin-top: 5em;
+  margin-top: 5rem;
 }
 
 // underline links only on hover

@@ -3,27 +3,31 @@
 .match-item {
   width: 26vw;
   display: flex;
+  position: relative; // to center vertically the children
 }
 
 .match-item__image-container {
-  align-self: left;
-  margin-left: 1vw;
-  width: 50px;
-  height: 50px;
+  margin-left: 1rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0.4em;
+  // to center vertically
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .match-item__image {
-  width: 100px;
+  width: 6rem;
 }
 
 .match-item__text-container {
   flex-grow: 2;
+  margin-left: 4rem;
 }
 
 .match-item__name {
@@ -31,19 +35,22 @@
   font-size: 1em;
   line-height: 2em;
   text-align: left;
-  padding-left: 2em;
-  padding-bottom: 1em;
-  padding-top: 0;
   margin-top: 0;
+  padding-left: 1.5rem;
 }
 
 .match-item__topic-icon-container {
-  align-self: right;
-  width: 30px;
-  height: 30px;
-  padding-top: 1.2em;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
 }
 
 .match-item__topic-icon {
-  margin-right: 0;
+  // to center horizontally
+  width: 0.8rem;
+  // to center vertically
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
