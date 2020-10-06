@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { userActionTypesConstants } from 'constants/user.constants';
+import { userActionTypesConstants } from 'constants/userConstants';
 
 const useSignUp = (setErrors, setSignupSuccess) => {
   const dispatch = useDispatch();

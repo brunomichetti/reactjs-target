@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import 'style/App.scss';
-import SignUpForm from 'components/users/SignUpForm';
-import AppStoreContainer from 'components/app-store-container/AppStoreContainer';
-import SignUpSuccess from 'components/users/SignUpSuccess';
+import SignUpForm from 'components/users/SignUpForm/SignUpForm';
+import AppStoreContainer from 'components/app-store-container/AppStoreContainer/AppStoreContainer';
+import SignUpSuccess from 'components/users/SignUpSuccess/SignUpSuccess';
 
 const SignUpPage = () => {
   const intl = useIntl();

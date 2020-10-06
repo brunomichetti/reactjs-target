@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 
-import { targetActionTypesConstants } from 'constants/target.constants';
+import { targetActionTypesConstants } from 'constants/targetConstants';
 
 const useCreateTarget = (setNewTargetlatlng, setNewTargetRadius) => {
   const intl = useIntl();

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { userActions } from 'actions/user.actions';
+import { userActions } from 'actions/userActions';
 
 const useMatches = () => {
   const dispatch = useDispatch();
