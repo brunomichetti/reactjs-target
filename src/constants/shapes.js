@@ -17,8 +17,8 @@ export const targetShape = shape({
   id: number.isRequired,
   topic: string.isRequired,
   radius: number.isRequired,
-  lat: number.isRequired,
-  lng: number.isRequired,
+  lat: number,
+  lng: number,
 });
 
 export const targetsArrayShape = arrayOf(targetShape);
