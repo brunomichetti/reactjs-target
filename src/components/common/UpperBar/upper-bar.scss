@@ -2,27 +2,44 @@
 
 .upper-bar {
   background-color: $dodger-blue;
-  height: 5em;
+  height: 5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative; // to center vertically the children
 }
 
 .upper-bar__back {
-  margin-left: 1em;
-  margin-top: 0.2em;
+  margin-left: 2rem;
+  // to center vertically
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .upper-bar__back-img {
-  width: 12px;
-  height: 22px;
+  height: 1rem;
+  margin: 0;
+}
+
+.upper-bar__back-img:focus {
+  // Eliminate border when the button is clicked
+  border-color: transparent;
+  outline: none;
+}
+
+.upper-bar__back:hover {
+  border: 2px solid $white;
+  border-radius: 2px;
 }
 
 .upper-bar__title-text {
-  width: 99vw;
   color: $white;
   font-family: $font-family-bold;
   font-size: 1.5em;
   line-height: 1.8em;
   letter-spacing: 0.2em;
+  // to center vertically
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translateY(-50%);
 }

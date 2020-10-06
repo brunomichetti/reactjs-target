@@ -3,20 +3,28 @@
 .target-item {
   width: 26vw;
   display: flex;
+  position: relative; // to center vertically the children
 }
 
 .target-item:hover {
   border: 4px solid $dodger-blue;
+  cursor: pointer;
 }
 
 .target-item__trash-button-container {
   text-align: left;
-  padding-top: 0.2em;
-  height: 2em;
+}
+
+.target-item__trash-button {
+  margin-left: 0.5rem;
+  // to center vertically
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .target-item__trash-button-img {
-  width: 30px;
+  width: 2rem;
 }
 
 .target-item__trash-button:hover {
@@ -24,31 +32,28 @@
 }
 
 .target-item__text-container {
-  text-align: left;
   flex-grow: 2;
-  margin-left: 2vw;
-  padding-left: 1em;
+  margin-left: 3rem;
 }
 
 .target-item__title {
   font-family: $font-family-bold;
   font-size: 1em;
-  line-height: 2em;
-  padding-left: 1vw;
-  padding-top: 0.2em;
-  padding-bottom: 0.8em;
-  margin: 0;
+  line-height: 1em;
 }
 
 .target-item__topic-icon-container {
-  margin-right: 0;
-  padding-right: 0;
-  align-self: right;
-  width: 30px;
-  height: 30px;
-  padding-top: 0.3em;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
 }
 
 .target-item__topic-icon {
-  margin-top: 0.4em;
+  // to center horizontally
+  width: 0.8rem;
+  // to center vertically
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
